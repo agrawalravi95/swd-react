@@ -1,0 +1,190 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+.icon-block {
+  padding: 0 15px;
+}
+
+.padded-container {
+	padding: 1.5em !important;
+}
+
+.no-padding {
+	padding: 0 !important;
+}
+
+.leftpad {
+	padding-left: 1em !important;
+}
+
+.picker__date-display {
+	display: none;
+}
+
+@media only screen and (max-width: 992px){
+	.padded-container {
+		padding: 0 .75em !important;
+	}
+
+	.no-padding--mobile {
+		padding: 0 !important;
+	}
+
+	.top-padding--mobile {
+		padding-top: 1em !important;
+	}
+
+	.left-pad {
+		padding-left: none;
+	}
+}
+
+.modal {
+	padding-bottom: 15px;
+}
+
+
+
+/*  Nav */
+
+.top-nav--home {
+	display: none;
+}
+
+.side-nav li i{
+	position: relative;
+	top: 7px;
+	margin-right: 1rem;
+	font-size: 1.75rem;
+}
+
+#logo-container {
+	height: auto;
+}
+
+#logo-container img{
+	width: 125px;
+	display: block;
+	margin: 0 auto;
+}
+
+header, .main, footer {
+    padding-left: 240px;
+  }
+
+@media only screen and (max-width : 992px) {
+
+	header, .main, footer {
+		padding-left: 0;
+	}
+
+	.top-nav--home {
+		display: inline;
+	}
+}
+
+/*  Main */
+
+#login-modal {
+	max-width: 400px;
+}
+
+.card-title {
+	max-width: calc(100% - 150px);
+	display: inline-block;
+}
+
+.card-date {
+	float: right;
+	margin-top: 15px;
+}
+
+@media only screen and (max-width : 992px) {
+	.card-title {
+		max-width: 100%;
+	}
+
+	.card-date {
+		float: none;
+		display: block;
+		margin-top: 0;
+		margin-bottom: 15px;
+	}
+
+	.card-content p {
+		font-size: 1.2em;
+		line-height: 1.5em;
+	}
+}
+
+/* SWD Services */
+.feature-list li{
+	font-size: 1.2em;
+	padding: 0.5em; 
+}
+
+/* CSA */
+
+.csa-role {
+	margin: 0;
+	font-weight: 600;
+}
+
+.csa-contact-row {
+	margin: .5rem 0;
+}
+
+.csa-contact-row i{
+	margin-right: 1.5rem;
+	font-size: 1.4em;
+}
+
+.csa-contact-row span {
+	/* font-size: 1.1em; */
+}
+
+
+/* Profile */
+.profile-block {
+	padding: 0 !important;
+	margin: 0.75rem 0;
+}
+
+.profile-name {
+	margin-bottom: 1rem;
+}
+
+.profile-content {
+	position: relative;
+	top: 8px;
+	margin-left: 1.5rem;
+}
+	
+	.profile-content--location {
+		top: 7px;
+	}
+
+.profile-content-icon-container {
+	padding: 0 !important;
+}
+
+.profile-content-icon {
+	font-size: 1.8em;
+}
+
+.profile-map {
+	margin-top: 1rem;
+}
+
+#profile-update-modal {
+	min-height: 490px;
+}
+
+.swd-services-content p{
+	font-size: 1.1em;
+}
