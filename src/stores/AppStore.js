@@ -28,6 +28,7 @@ if (__SERVER__) {
   _pages['/migration-form'] = {title: 'Migration Form'};
   _pages['/contact'] = {title: 'Contact'};
   _pages['/student'] = {title: 'Student'};
+  _pages['/student-leave'] = {title: 'Leave Portal'};
 }
 
 var AppStore = assign({}, EventEmitter.prototype, {
@@ -39,6 +40,10 @@ var AppStore = assign({}, EventEmitter.prototype, {
    * @returns {*} Page data.
    */
   getPage(path) {
+    if(path === '/student') {
+
+    }
+
     return path in _pages ? _pages[path] : {
       title: 'Page Not Found',
       type: 'notfound'

@@ -188,3 +188,18 @@ header, .main, footer {
 .swd-services-content p{
 	font-size: 1.1em;
 }
+
+
+/* Leave */
+
+.leave-input {
+	margin-top: 10em;
+}
+
+.leave-input--select {
+	display: inline;
+}
+
+.label-transparent {
+	opacity: 0;
+}

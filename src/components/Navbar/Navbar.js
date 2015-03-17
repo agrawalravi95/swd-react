@@ -14,15 +14,15 @@ var Navbar = React.createClass({
 
   componentDidMount() {
    (function($){
-                  $(function(){
-
-                    $('.button-collapse').sideNav();
-                  }); 
-                })(jQuery);
+    $(function(){
+      $('.button-collapse').sideNav();
+    }); 
+  })(jQuery);
   },
 
   render() {
     return (
+        
       /* jshint ignore:start */
   <div className="navbar">
       <div className="top-nav--home">

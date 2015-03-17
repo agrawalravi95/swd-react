@@ -7,12 +7,12 @@ title: Welcome, John Doe
       .row
         h4 Profile
       .row
-        .col.s12.padded-container.white.z-depth-1.no-padding--mobile
+        .col.s12.padded-container.white.z-depth-1.no-padding--mobile.centre-align
           .col.s12.m6.l4.no-padding--mobile
             img.responsive-img(src='images/avatar-large.jpg', alt='President')
           .col.s12.m6.l8.top-padding--mobile
             .row.leftpad
-              .col.s9.m11
+              .col.s10.m11
                 h5.profile-name Jonathon Doe
               .col.s1.m1
                 a.waves-effect.waves-orange.btn-flat.modal-trigger.no-padding(href="#profile-update-modal")
@@ -36,7 +36,7 @@ title: Welcome, John Doe
                           input#profile-email.validate(type='email')                           
                           label(htmlfor='profile-email') Email Address         
                   .modal-footer
-                    a.waves-effect.waves-red.btn-flat.modal-action.modal-close(href='/student') Update
+                    a.waves-effect.waves-orange.btn-flat.modal-action.modal-close(href='/student') Update
                     a.waves-effect.waves-red.btn-flat.modal-action.modal-close(href='/student') Cancel                  
               .col.s12.l6.profile-block
                 .col.s1
@@ -72,9 +72,9 @@ title: Welcome, John Doe
       .row
         h4 Parental Information
       .row
-        .col.s12.padded-container.white.z-depth-1
-          .col.s12
-            .row
+        .col.s12.padded-container.white.z-depth-1.no-padding--mobile
+          .col.s12.top-padding--mobile
+            .row.leftpad
               .col.s9.m11
                 h5.profile-name Jonathon Doe
               .col.s1.m1
@@ -114,12 +114,12 @@ title: Welcome, John Doe
                 .col.s11
                   .profile-content johndoe@gmail.com
         .col.s12.padded-container.white.z-depth-1
-          .col.s12
-            .row
+          .col.s12.top-padding--mobile
+            .row.leftpad
               .col.s9.m11
                 h5.profile-name Jane Doe
-              .col.s1.m1
-                a.waves-effect.waves-orange.btn-flat.modal-trigger.right-align(href="#parent-update-modal--mother")
+              .col.s1.m1.right-align
+                a.waves-effect.waves-orange.btn-flat.modal-trigger(href="#parent-update-modal--mother")
                   i.mdi-editor-mode-edit.red-text
                 #parent-update-modal--mother.modal
                   .modal-content
@@ -137,7 +137,7 @@ title: Welcome, John Doe
                           input#parent-email.validate(type='email')                           
                           label(htmlfor='parent-email') Email Address         
                   .modal-footer
-                    a.waves-effect.waves-red.btn-flat.modal-action.modal-close(href='/student') Update
+                    a.waves-effect.waves-orange.btn-flat.modal-action.modal-close(href='/student') Update
                     a.waves-effect.waves-red.btn-flat.modal-action.modal-close(href='/student') Cancel                  
               .col.s12.l4.profile-block
                 .col.s1

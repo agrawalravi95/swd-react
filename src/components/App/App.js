@@ -35,6 +35,7 @@ var Application = React.createClass({
       $(function(){
         $('.modal-trigger').leanModal();
         $('ul.tabs').tabs();
+        $('select').material_select();
         $('.datepicker').pickadate({
           selectMonths: true, // Creates a dropdown to control month
           selectYears: 60 // Creates a dropdown of 15 years to control year
@@ -48,6 +49,7 @@ var Application = React.createClass({
       $(function(){
         $('.modal-trigger').leanModal();
         $('ul.tabs').tabs();
+        $('select').material_select();
         $('.datepicker').pickadate();
       }); 
     })(jQuery);
