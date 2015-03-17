@@ -16,6 +16,7 @@ import React from 'react';
 import Dispatcher from './core/Dispatcher';
 import ActionTypes from './constants/ActionTypes';
 import AppStore from './stores/AppStore';
+import DBStore from './stores/DBStore';
 
 var server = express();
 
@@ -29,6 +30,13 @@ server.get('/api/page/*', function(req, res) {
   var path = req.path.substr(9);
   var page = AppStore.getPage(path);
   res.send(page);
+});
+
+//
+// DB APIs
+//
+server.get('/api/db/*', function(req, res) {
+  DBStore.process(req, res);
 });
 
 //

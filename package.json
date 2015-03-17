@@ -17,6 +17,7 @@
     "front-matter": "0.2.1",
     "jade": "1.9.2",
     "lodash": "3.3.0",
+    "mysql": "^2.5.4",
     "react": "0.12.2",
     "superagent": "0.21.0"
   },
