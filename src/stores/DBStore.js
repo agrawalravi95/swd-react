@@ -7,10 +7,33 @@
  */
 
 'use strict';
+var mysql = require('mysql');
+var conn = mysql.createConnection({
+  host: 'localhost',
+  user: 'swd',
+  password: 'swd',
+  database: 'students'
+});
+
+var api = {
+  // Returns basic student info for login page.
+  // PARAMS: id = ldap login id
+  studentInfo: function(req, res, id) {
+    conn.query("SELECT * FROM student_info WHERE loginID=?",
+               req.query.id, function(err, row) {
+      res.json([err, row]);
+    });
+  }
+}
 
 var DBStore = {
-  process: function(req) {
-    return "Hello, world!";
+  process: function(req, res) {
+    var path = req.path.substr(8);
+    if (!api.hasOwnProperty(path)) {
+      res.json("Trying something illegal?\n" + path);
+      return;
+    }
+    api[path](req, res);
   }
 };
 

@@ -36,7 +36,7 @@ server.get('/api/page/*', function(req, res) {
 // DB APIs
 //
 server.get('/api/db/*', function(req, res) {
-  res.json(DBStore.process(req));
+  DBStore.process(req, res);
 });
 
 //
