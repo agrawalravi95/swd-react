@@ -13,6 +13,7 @@
     "babel": "^4.4.3",
     "eventemitter3": "0.1.6",
     "express": "4.11.2",
+    "client-sessions": "^0.7.0",
     "flux": "2.0.1",
     "front-matter": "0.2.1",
     "jade": "1.9.2",

@@ -30,7 +30,7 @@ var Navbar = React.createClass({
       <ul id="nav-mobile" className="fixed side-nav">
         <li className="logo">
           <a id="logo-container" href="http://www.bits-pilani.ac.in" className="brand-logo">
-            <img src={require('./logo-small.png')} width="125" height="125" alt="BITS Pilani Logo" />
+            <img src="images/logo-small.png" width="125" height="125" alt="BITS Pilani Logo" />
           </a>
         </li>
         <li className="bold active"><a href="/" className="waves-effect waves-orange"><i className="small mdi-action-home"></i> Home</a></li>
@@ -52,7 +52,7 @@ var Navbar = React.createClass({
       <ul id="nav-mobile" className="fixed side-nav">
         <li className="logo">
           <a id="logo-container" href="http://www.bits-pilani.ac.in" className="brand-logo">
-            <img src={require('./logo-small.png')} width="125" height="125" alt="BITS Pilani Logo" />
+            <img src="images/logo-small.png" width="125" height="125" alt="BITS Pilani Logo" />
           </a>
         </li>
         <li className="bold active"><a href="/" className="waves-effect waves-orange"><i className="small mdi-action-home"></i> Home</a></li>
