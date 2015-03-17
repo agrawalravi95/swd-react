@@ -28,6 +28,7 @@ var Application = React.createClass({
     onSetTitle: React.PropTypes.func.isRequired,
     onSetMeta: React.PropTypes.func.isRequired,
     onPageNotFound: React.PropTypes.func.isRequired
+    
   },
 
   componentDidMount() {
