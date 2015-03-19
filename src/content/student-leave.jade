@@ -4,56 +4,24 @@ title: Leave Portal
 div.main
   div.container
     div.section
-      .row
-        h4 Apply for Leave
-      .row
-        .col.s12.white.z-depth-1.no-padding
-          .col.s12
-            p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          .col.s12
-            br
-
+      .fixed-action-btn.leave-add-btn
+        a.btn-floating.btn-large.orange.darken-2.modal-trigger.no-padding(href="#add-leave-modal")
+          i.mdi-content-add
+        #add-leave-modal.modal
+          .modal-content
+            .row.center-align
+              h4 Apply For Leave                 
             form.col.s12
               .row
                 .input-field.col.s12.m6
                   input#start-date.validate.datepicker(type='date')                        
-                  label.active(htmlfor='dob') Start Date
+                  label(htmlfor='start-date') Start Date
                 .input-field.col.s12.m6
                   input#end-date.validate.datepicker(type='date')                        
-                  label.active(htmlfor='dob') End Date
+                  label(htmlfor='end-date') End Date
                 .input-field.col.s6.m3
                   label Start time (HOURS)
                     select
-                      option(value='1' selected='') Option 1
-                      option(value='2') Option 2
-                      option(value='3') Option 3
-                      option(value='1' selected='') Option 1
-                      option(value='2') Option 2
-                      option(value='3') Option 3
-                      option(value='1' selected='') Option 1
-                      option(value='2') Option 2
-                      option(value='3') Option 3
-                      option(value='1' selected='') Option 1
-                      option(value='2') Option 2
-                      option(value='3') Option 3
-                      option(value='1' selected='') Option 1
-                      option(value='2') Option 2
-                      option(value='3') Option 3
-                      option(value='1' selected='') Option 1
-                      option(value='2') Option 2
-                      option(value='3') Option 3
-                      option(value='1' selected='') Option 1
-                      option(value='2') Option 2
-                      option(value='3') Option 3
-                      option(value='1' selected='') Option 1
-                      option(value='2') Option 2
-                      option(value='3') Option 3
-                      option(value='1' selected='') Option 1
-                      option(value='2') Option 2
-                      option(value='3') Option 3
-                      option(value='1' selected='') Option 1
-                      option(value='2') Option 2
-                      option(value='3') Option 3
                       option(value='1' selected='') Option 1
                       option(value='2') Option 2
                       option(value='3') Option 3
@@ -63,13 +31,13 @@ div.main
                       option(value='1' selected='' disabled='') Option 1
                       option(value='2') Option 2
                       option(value='3') Option 3
-                .input-field.col.s6.m3
+                .input-field.col.s6.m3.leave-input--mobile
                   label End time (HOURS)
                     select
                       option(value='1' selected='' disabled='') Option 1
                       option(value='2') Option 2
                       option(value='3') Option 3
-                .input-field.col.s6.m3
+                .input-field.col.s6.m3.leave-input--mobile
                   label End time (MINUTES)
                     select 
                       option(value='1' selected='' disabled='') Option 1
@@ -77,12 +45,187 @@ div.main
                       option(value='3') Option 3
                 br
                 br
-                .input-field.col.s6.leave-input
-                  input#start-date.validate.datepicker(type='date')                        
-                  label.active(htmlfor='dob') Start Date
-                .input-field.col.s6.leave-input
-                  input#end-date.validate.datepicker(type='date')                        
-                  label.active(htmlfor='dob') End Date
-            br
-
-                 
+                .input-field.col.s12.m6.leave-input.leave-input--mobile
+                  input#reason.validate(type='text')                           
+                  label(htmlfor='reason') Reason
+                .input-field.col.s12.m6.leave-input.leave-input--less-mobile
+                  input#contact.validate(type='text')                           
+                  label(htmlfor='contact') Contact
+                .input-field.col.m6.s12
+                  textarea#textarea1.materialize-textarea
+                  label(for='textarea1') Temporary Address
+                .input-field.col.m6.s12
+                  label Consent Type
+                    select 
+                      option(value='1' selected='') Email 
+                      option(value='2') Fax
+                      option(value='3') Letter        
+          .modal-footer
+            a.waves-effect.waves-orange.btn-flat.modal-action.modal-close(href='#') Apply
+            a.waves-effect.waves-red.btn-flat.modal-action.modal-close(href='#') Cancel
+      .row
+        h4 Current Leave status
+      .row
+        .col.s12.white.z-depth-1
+          .col.s12.valign-wrapper
+            .col.s12.m1.hidden-on-mobile-only
+              i.mdi-action-done.green-text.medium
+              here
+            .col.s12.m11
+              h5.leftpad The warden has <strong>approved</strong> your leave. Reference no: <strong>5542</strong>
+          .col.s12.padded-container
+            .row
+              .col.s6.m3
+                span.grey-text.text-lighten-1 START DATE
+                  br
+                span 21 March, 2015
+              .col.s6.m3
+                span.grey-text.text-lighten-1 END DATE
+                  br
+                span 21 March, 2015
+              .col.s6.m3.leave-input--less-mobile
+                span.grey-text.text-lighten-1 CONTACT
+                  br
+                span 9XXX XXX XXX
+              .col.s6.m3.leave-input--less-mobile
+                span.grey-text.text-lighten-1 CONSENT TYPE
+                  br
+                span Email
+            .row
+              .col.s12.m6
+                span.grey-text.text-lighten-1 ADDRESS
+                  br
+                span NH 17B Bypass Road, Zuarinagar, Sancoale, Goa 403726
+              .col.s12.m6.leave-input--less-mobile
+                span.grey-text.text-lighten-1 REASON
+                  br
+                span Family function at home.      
+    div.section
+      .row
+        h4 Previous leave records
+      .row
+        .col.s12.white.z-depth-1.collection
+          .col.s12.padded-container.collection-item
+            .row
+              .col.s12.m3
+                span.grey-text.text-lighten-1 LEAVE ID
+                  br
+                strong 5540
+              .col.s12.m3
+                span.grey-text.text-lighten-1 STATUS
+                  br
+                span.green-text Approved
+              .col.s6.m3
+                span.grey-text.text-lighten-1 START DATE
+                  br
+                span 21 March, 2015
+              .col.s6.m3
+                span.grey-text.text-lighten-1 END DATE
+                  br
+                span 21 March, 2015
+            .row
+              .col.s12.m6
+                span.grey-text.text-lighten-1 ADDRESS
+                  br
+                span NH 17B Bypass Road, Zuarinagar, Sancoale, Goa 403726
+              .col.s12.m3
+                span.grey-text.text-lighten-1 REASON
+                  br
+                span Family function at home.
+              .col.s12.m3
+                span.grey-text.text-lighten-1 CONSENT TYPE
+                  br
+                span Email
+          .col.s12.padded-container.collection-item
+            .row
+              .col.s12.m3
+                span.grey-text.text-lighten-1 LEAVE ID
+                  br
+                strong 5540
+              .col.s12.m3
+                span.grey-text.text-lighten-1 STATUS
+                  br
+                span.red-text Dispproved
+              .col.s6.m3
+                span.grey-text.text-lighten-1 START DATE
+                  br
+                span 21 March, 2015
+              .col.s6.m3
+                span.grey-text.text-lighten-1 END DATE
+                  br
+                span 21 March, 2015
+            .row
+              .col.s12.m6
+                span.grey-text.text-lighten-1 ADDRESS
+                  br
+                span NH 17B Bypass Road, Zuarinagar, Sancoale, Goa 403726
+              .col.s12.m3
+                span.grey-text.text-lighten-1 REASON
+                  br
+                span Family function at home.
+              .col.s12.m3
+                span.grey-text.text-lighten-1 CONSENT TYPE
+                  br
+                span Email
+          .col.s12.padded-container.collection-item
+            .row
+              .col.s12.m3
+                span.grey-text.text-lighten-1 LEAVE ID
+                  br
+                strong 5540
+              .col.s12.m3
+                span.grey-text.text-lighten-1 STATUS
+                  br
+                span.green-text Approved
+              .col.s6.m3
+                span.grey-text.text-lighten-1 START DATE
+                  br
+                span 21 March, 2015
+              .col.s6.m3
+                span.grey-text.text-lighten-1 END DATE
+                  br
+                span 21 March, 2015
+            .row
+              .col.s12.m6
+                span.grey-text.text-lighten-1 ADDRESS
+                  br
+                span NH 17B Bypass Road, Zuarinagar, Sancoale, Goa 403726
+              .col.s12.m3
+                span.grey-text.text-lighten-1 REASON
+                  br
+                span Family function at home.
+              .col.s12.m3
+                span.grey-text.text-lighten-1 CONSENT TYPE
+                  br
+                span Email
+          .col.s12.padded-container.collection-item
+            .row
+              .col.s12.m3
+                span.grey-text.text-lighten-1 LEAVE ID
+                  br
+                strong 5540
+              .col.s12.m3
+                span.grey-text.text-lighten-1 STATUS
+                  br
+                span.green-text Approved
+              .col.s6.m3
+                span.grey-text.text-lighten-1 START DATE
+                  br
+                span 21 March, 2015
+              .col.s6.m3
+                span.grey-text.text-lighten-1 END DATE
+                  br
+                span 21 March, 2015
+            .row
+              .col.s12.m6
+                span.grey-text.text-lighten-1 ADDRESS
+                  br
+                span NH 17B Bypass Road, Zuarinagar, Sancoale, Goa 403726
+              .col.s12.m3
+                span.grey-text.text-lighten-1 REASON
+                  br
+                span Family function at home.
+              .col.s12.m3
+                span.grey-text.text-lighten-1 CONSENT TYPE
+                  br
+                span Email

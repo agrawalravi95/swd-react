@@ -38,8 +38,11 @@ var Application = React.createClass({
         $('ul.tabs').tabs();
         $('select').material_select();
         $('.datepicker').pickadate({
-          selectMonths: true, // Creates a dropdown to control month
-          selectYears: 60 // Creates a dropdown of 15 years to control year
+          selectMonths: true, 
+          selectYears: 60
+        });
+        $('.collapsible').collapsible({
+          accordion : false 
         });
       }); 
     })(jQuery);
@@ -51,7 +54,13 @@ var Application = React.createClass({
         $('.modal-trigger').leanModal();
         $('ul.tabs').tabs();
         $('select').material_select();
-        $('.datepicker').pickadate();
+        $('.datepicker').pickadate({
+          selectMonths: true,
+          selectYears: 60
+        });
+        $('.collapsible').collapsible({
+          accordion : false 
+        });
       }); 
     })(jQuery);
   },

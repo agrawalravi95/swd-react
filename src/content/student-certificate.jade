@@ -1,0 +1,28 @@
+---
+title: Certificates
+---
+div.main
+	div.container
+		div.section
+			.row
+				h4 Bonafide Certificate
+			.row
+				.col.s12.white.z-depth-1.padded-container
+					p.larger-font A bonafide certificate is issued by the institute to prove that one has studied in the institute and prove that continuity of residence in a particular location.
+					p.larger-font You have not applied for a bonafide certificate. To apply for one, click the link below.
+					.col.s12.right-align
+						a.waves-effect.waves-orange.btn-flat.modal-trigger.right-align(href='#bonafide-form-modal') Apply
+					#bonafide-form-modal.modal
+						.modal-content
+							.row.center-align
+								h4 Apply For Bonafide
+							form.col.s12
+								.row
+									.input-field.col.s12
+										input#reason.validate(type='text')
+										label(htmlfor='reason') Reason
+						.modal-footer
+							a.waves-effect.waves-orange.btn-flat.modal-action.modal-close(href='#') Apply
+							a.waves-effect.waves-red.btn-flat.modal-action.modal-close(href='#') Cancel
+
+						

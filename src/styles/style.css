@@ -14,6 +14,10 @@
 	padding: 1.5em !important;
 }
 
+.padded-container--less {
+	padding: .5em !important;
+}
+
 .no-padding {
 	padding: 0 !important;
 }
@@ -26,9 +30,17 @@
 	display: none;
 }
 
+.bold {
+	font-weight: bold;
+}
+
+.larger-font {
+	font-size: 1.1em !important;
+}
+
 @media only screen and (max-width: 992px){
 	.padded-container {
-		padding: 0 .75em !important;
+		padding: 0 1em !important;
 	}
 
 	.no-padding--mobile {
@@ -128,6 +140,20 @@ header, .main, footer {
 	padding: 0.5em; 
 }
 
+.financial-aid-list-item {
+	line-height: 1.8em;
+}
+
+@media only screen and (max-width : 600px) {
+	.financial-aid-list-item {
+		padding-left: 3em !important;
+	}
+}
+
+.financial-aid-list-item {
+
+}
+
 /* CSA */
 
 .csa-role {
@@ -185,6 +211,7 @@ header, .main, footer {
 	min-height: 490px;
 }
 
+.due-details-content p,
 .swd-services-content p{
 	font-size: 1.1em;
 }
@@ -192,14 +219,33 @@ header, .main, footer {
 
 /* Leave */
 
+.leave-add-btn {
+	right: 25px;
+	bottom: 45px;
+}
+
 .leave-input {
-	margin-top: 10em;
+	margin-top: 8em;
 }
 
-.leave-input--select {
-	display: inline;
+#add-leave-modal {
+	max-height: 95%;
+	top: 3% !important;
 }
 
-.label-transparent {
-	opacity: 0;
+@media only screen and (max-width : 600px) {
+	.leave-input--mobile {
+		margin-top: 10em;
+	}
+
+	.leave-input--less-mobile {
+		margin-top: 1em;
+	}
 }
+
+
+/* Due Details */
+
+
+
+
