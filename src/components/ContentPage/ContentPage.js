@@ -16,6 +16,27 @@ var ContentPage = React.createClass({
     body: React.PropTypes.string.isRequired
   },
 
+  componentDidMount() {
+    $.ajax({
+      url: '/api/backend/studentInfo',
+      type: 'POST',
+      data: "",
+      success: function(data) {
+        if (data.err) {
+          alert("Error:\n" + data.err);
+          return;
+        }
+        data = data.row;
+        $("#profile-name").text(data.name);
+        $("#profile-id").text(data.studentID);
+        $("#profile-hostel").text(data.hostel);
+      }.bind(this),
+      error: function(xhr, status, err) {
+        alert(err.toString());
+      }.bind(this)
+    });
+  },
+
   render() {
     var { className, title, body, other } = this.props;
 

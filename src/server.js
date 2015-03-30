@@ -12,23 +12,27 @@ import _ from 'lodash';
 import fs from 'fs';
 import path from 'path';
 import express from 'express';
-import session from 'client-sessions';
+import sessions from 'client-sessions';
 import React from 'react';
 import Dispatcher from './core/Dispatcher';
 import ActionTypes from './constants/ActionTypes';
 import AppStore from './stores/AppStore';
-import DBStore from './stores/DBStore';
+import Backend from './stores/Backend';
+import bodyParser from 'body-parser';
 
 var server = express();
-//server.use(session({
-//  cookieName: 'session',
-//  secret: 'had98f7yh23yfbsdanyf98uq03984w',
-//  duration: 30 * 60 * 1000,
-//  activeDuration: 5 * 60 * 1000
-//}));
+server.use(sessions({
+  cookieName: 'session',
+  secret: 'had98f7yh23yfbsdanyf98uq03984w',
+  duration: 30 * 60 * 1000,
+  activeDuration: 5 * 60 * 1000
+}));
 
 server.set('port', (process.env.PORT || 5000));
 server.use(express.static(path.join(__dirname)));
+server.use(bodyParser.json());
+server.use(bodyParser.urlencoded({extended: true}));
+
 
 //
 // Page API
@@ -46,8 +50,11 @@ server.get('/api/page/*', function(req, res) {
 //
 // DB APIs
 //
-server.get('/api/db/*', function(req, res) {
-  DBStore.process(req, res);
+server.get('/api/backend/*', function(req, res) {
+  Backend.process(req, res);
+});
+server.post('/api/backend/*', function(req, res) {
+  Backend.process(req, res);
 });
 
 //

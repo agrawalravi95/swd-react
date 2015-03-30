@@ -16,19 +16,40 @@ var conn = mysql.createConnection({
 });
 
 var api = {
+  login: function(req, res) {
+    if (!validateLDAP(req.body.user, req.body.pass)) {
+      res.json({error: "invalid login"});
+      return;
+    }
+    req.session.reset();
+    req.session.user = req.body.user;
+    res.json({success: true});
+  },
   // Returns basic student info for login page.
   // PARAMS: id = ldap login id
-  studentInfo: function(req, res, id) {
+  studentInfo: function(req, res) {
+    if (!req.session || !req.session.user) {
+      res.json({error: "not logged in"});
+      return;
+    }
     conn.query("SELECT * FROM student_info WHERE loginID=?",
-               req.query.id, function(err, row) {
-      res.json([err, row]);
+               req.session.user, function(err, row) {
+      res.json({error: err, row: row[0]});
     });
   }
 }
 
-var DBStore = {
+function validateLDAP(user, pass) {
+  return true;
+}
+
+function validateSession(u) {
+  return true;
+}
+
+var Backend = {
   process: function(req, res) {
-    var path = req.path.substr(8);
+    var path = req.url.substr(13);
     if (!api.hasOwnProperty(path)) {
       res.json("Trying something illegal?\n" + path);
       return;
@@ -37,5 +58,5 @@ var DBStore = {
   }
 };
 
-module.exports = DBStore;
+module.exports = Backend;
 

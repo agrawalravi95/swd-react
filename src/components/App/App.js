@@ -48,7 +48,35 @@ var Application = React.createClass({
     })(jQuery);
   },
 
+  onLoginSubmit(e) {
+    var user = this.refs.username.getDOMNode().value.trim();
+    var pass = this.refs.password.getDOMNode().value;
+    e.preventDefault();
+    e.stopPropagation();
+    if (!user || !pass) {
+      alert("Enter your username and password");
+      return;
+    }
+    $.ajax({
+      url: '/api/backend/login',
+      dataType: 'json',
+      type: 'POST',
+      data: {user: user, pass: pass},
+      success: function(data) {
+        if (data.success) {
+          window.location.href = "/student";
+          return;
+        }
+        alert(data.error);
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+  },
+
   componentDidUpdate() {
+    alert("update");
    (function($){
       $(function(){
         $('.modal-trigger').leanModal();
@@ -98,20 +126,20 @@ var Application = React.createClass({
                       <form className="col s12">
                         <div className="row">
                           <div className="input-field col s12">
-                            <input id="username" type="text" className="validate"/>
+                            <input ref="username" type="text" className="validate"/>
                             <label htmlFor="username">Username</label>
                           </div>
                         </div>
                         <div className="row">
                           <div className="input-field col s12">
-                            <input id="password" type="password" className="validate"/>
+                            <input ref="password" type="password" className="validate"/>
                             <label htmlFor="password">Password</label>
                           </div>
                         </div>
                       </form>
                     </div>
                     <div className="modal-footer">
-                      <a href="/student" className="waves-effect waves-red btn-flat modal-action modal-close">Login</a>
+                      <a className="waves-effect waves-red btn-flat modal-action modal-close" onClick={this.onLoginSubmit} ref="login">Login</a>
                       <a href="/" className="waves-effect waves-red btn-flat modal-action modal-close">Cancel</a>
                     </div>
                   </div>  
@@ -165,7 +193,7 @@ var Application = React.createClass({
           </div>
           <div className="footer-copyright">
             <div className="container">
-            Developed By Nihant Subramanya and Ravi Agrawal
+            Developed By Nihanth Subramanya and Ravi Agrawal
             </div>
           </div>
         </footer>
