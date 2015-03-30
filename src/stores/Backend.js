@@ -8,12 +8,21 @@
 
 'use strict';
 var mysql = require('mysql');
-var conn = mysql.createConnection({
+var pool = mysql.createPool({
+  connectionLimit: 100,
   host: 'localhost',
   user: 'swd',
   password: 'swd',
   database: 'students'
 });
+
+
+function poolHelper(aSQL, aParams, aCallback) {
+  pool.getConnection(function(err, conn) {
+    conn.query(aSQL, aParams, aCallback);
+    conn.release();
+  });
+}
 
 var api = {
   login: function(req, res) {
@@ -32,9 +41,8 @@ var api = {
       res.json({error: "not logged in"});
       return;
     }
-    conn.query("SELECT * FROM student_info WHERE loginID=?",
-               req.session.user, function(err, row) {
-      res.json({error: err, row: row?row[0]:null});
+    poolHelper("SELECT * FROM student_info WHERE loginID=?", [req.session.user], function(err, row) {
+      res.json({error: err, row: row ? row[0] : null});
     });
   }
 }
