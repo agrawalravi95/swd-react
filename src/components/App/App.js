@@ -76,7 +76,7 @@ var Application = React.createClass({
   },
 
   componentDidUpdate() {
-    alert("update");
+    // alert("update");
    (function($){
       $(function(){
         $('.modal-trigger').leanModal();
@@ -136,11 +136,11 @@ var Application = React.createClass({
                             <label htmlFor="password">Password</label>
                           </div>
                         </div>
+                        <div className="modal-footer no-padding">
+                          <input type="submit" className="waves-effect waves-red btn orange modal-action modal-close" onClick={this.onLoginSubmit} ref="login" />
+                          <a href="/" className="waves-effect waves-red btn-flat modal-action modal-close">Cancel</a>
+                        </div>
                       </form>
-                    </div>
-                    <div className="modal-footer">
-                      <a className="waves-effect waves-red btn-flat modal-action modal-close" onClick={this.onLoginSubmit} ref="login">Login</a>
-                      <a href="/" className="waves-effect waves-red btn-flat modal-action modal-close">Cancel</a>
                     </div>
                   </div>  
                 </div>

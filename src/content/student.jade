@@ -1,8 +1,6 @@
 ---
 title: Welcome, John Doe
 ---
-script(src='jquery-2.1.1.min.js')
-
 div.main
   .container
     .section
@@ -10,15 +8,15 @@ div.main
         h4 Profile
       .row
         .col.s12.padded-container.white.z-depth-1.no-padding--mobile.centre-align
-          .col.s12.m4.no-padding--mobile
+          .col.s12.l4.hide-on-med-and-down
             img.responsive-img(src='images/avatar-large.jpg', alt='President')
-          .col.s12.m8.top-padding--mobile
+          .col.s12.l8.top-padding--mobile
             .row.leftpad
-              .col.s10.m11
+              .col.s10.m10.l11
                 h5.profile-name#profile-name test
               .col.s1.m1
                 a.waves-effect.waves-orange.btn-flat.modal-trigger.no-padding(href="#profile-update-modal")
-                  i.mdi-editor-mode-edit.red-text.right-align
+                  i.mdi-editor-mode-edit.red-text
                 #profile-update-modal.modal
                   .modal-content
                     .row.center-align
@@ -80,10 +78,10 @@ div.main
         .col.s12.padded-container.white.z-depth-1.no-padding--mobile
           .col.s12.top-padding--mobile
             .row.leftpad
-              .col.s9.m11
+              .col.s10.m10.l11
                 h5.profile-name Jonathon Doe
               .col.s1.m1
-                a.waves-effect.waves-orange.btn-flat.modal-trigger.right-align(href="#parent-update-modal--father")
+                a.waves-effect.waves-orange.btn-flat.modal-trigger(href="#parent-update-modal--father")
                   i.mdi-editor-mode-edit.red-text
                 #parent-update-modal--father.modal
                   .modal-content
@@ -118,12 +116,12 @@ div.main
                   i.mdi-communication-email.grey-text.text-lighten-1.profile-content-icon
                 .col.s11.valign
                   .profile-content johndoe@gmail.com
-        .col.s12.padded-container.white.z-depth-1
+        .col.s12.padded-container.white.z-depth-1.no-padding--mobile
           .col.s12.top-padding--mobile
             .row.leftpad
-              .col.s9.m11
+              .col.s10.m10.l11
                 h5.profile-name Jane Doe
-              .col.s1.m1.right-align
+              .col.s1.m1
                 a.waves-effect.waves-orange.btn-flat.modal-trigger(href="#parent-update-modal--mother")
                   i.mdi-editor-mode-edit.red-text
                 #parent-update-modal--mother.modal

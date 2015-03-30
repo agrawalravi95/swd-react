@@ -34,7 +34,7 @@ var api = {
     }
     conn.query("SELECT * FROM student_info WHERE loginID=?",
                req.session.user, function(err, row) {
-      res.json({error: err, row: row[0]});
+      res.json({error: err, row: row?row[0]:null});
     });
   }
 }
