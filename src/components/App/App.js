@@ -28,7 +28,7 @@ var Application = React.createClass({
     onSetTitle: React.PropTypes.func.isRequired,
     onSetMeta: React.PropTypes.func.isRequired,
     onPageNotFound: React.PropTypes.func.isRequired
-    
+
   },
 
   componentDidMount() {
@@ -38,13 +38,13 @@ var Application = React.createClass({
         $('ul.tabs').tabs();
         $('select').material_select();
         $('.datepicker').pickadate({
-          selectMonths: true, 
+          selectMonths: true,
           selectYears: 60
         });
         $('.collapsible').collapsible({
-          accordion : false 
+          accordion : false
         });
-      }); 
+      });
     })(jQuery);
   },
 
@@ -87,9 +87,9 @@ var Application = React.createClass({
           selectYears: 60
         });
         $('.collapsible').collapsible({
-          accordion : false 
+          accordion : false
         });
-      }); 
+      });
     })(jQuery);
   },
 
@@ -142,7 +142,7 @@ var Application = React.createClass({
                         </div>
                       </form>
                     </div>
-                  </div>  
+                  </div>
                 </div>
                 <br/><br/>
               </div>

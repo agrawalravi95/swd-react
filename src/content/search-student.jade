@@ -1,0 +1,234 @@
+---
+title: Search Student
+---
+div.main
+	.container
+		.section
+			.row
+				h4 Search Result
+			.row.search-result
+				ul.collapsible(data-collapsible="accordion")
+					li
+						.collapsible-header
+							.row.leftpad
+								.col.s12.m4.valign-wrapper
+									.col.s12.valign
+										.profile-content.bold Jonathon Doe
+								.col.s12.m4.valign-wrapper.hide-on-med-and-down
+									.col.s1.valign
+										i.mdi-action-payment.grey-text.text-lighten-1.profile-content-icon
+									.col.s11.valign
+										.profile-content 2012A7PS046G
+								.col.s12.m4.valign-wrapper.hide-on-med-and-down
+									.col.s1.valign
+										i.mdi-maps-my-location.grey-text.text-lighten-1.profile-content-icon
+									.col.s11.valign
+										.profile-content 106, AH-4
+						.collapsible-body
+							.grey.lighten-4.no-padding--mobile
+								.search-tabs
+									.col.s12
+										ul.tabs
+											li.tab.col.s4
+												a(href="#profile") Profile
+											li.tab.col.s4
+												a(href="#leave") Leave
+											li.tab.col.s4
+												a(href="#dc") DC
+									#profile.col.s12
+										.collection.search-list--profile-contianer
+											.col.s12.valign-wrapper.padded-container.white.top-padding--mobile.collection-item
+												.col.s12.row.no-padding
+													h6.grey-text.text-lighten-1.search-list--header GENERAL INFORMATION
+													.col.s12.l3.hide-on-med-and-down
+															img.responsive-img(src='images/avatar-large.jpg', alt='President')
+													.col.s12.l9.no-padding--mobile
+														.row.leftpad.search-list--profile
+															.col.s12.m6.valign-wrapper.no-padding
+																.col.12
+																	h5 Jonathon Jane Doe
+														.row.leftpad.search-list--profile
+															.col.s12.m6.valign-wrapper.no-padding
+																.col.s1.valign
+																	i.mdi-communication-call.grey-text.text-lighten-1.profile-content-icon
+																.col.s11.valign
+																	.profile-content 9561422504
+															.row.hide-on-large-only
+															.col.s12.m6.valign-wrapper.no-padding
+																.col.s1.valign
+																	i.mdi-communication-email.grey-text.text-lighten-1.profile-content-icon
+																.col.s11.valign
+																	.profile-content agrawalravi95@gmail.com
+														.row.leftpad
+															.col.s12.m6.valign-wrapper.no-padding
+																.col.s1.valign
+																	i.mdi-communication-location-on.grey-text.text-lighten-1.profile-content-icon
+																.col.s11.valign
+																	.profile-content C1 - 1147, Vasant Kunj, New Delhi, India 110030
+															.row.hide-on-large-only
+															.col.s12.m6.valign-wrapper.no-padding
+																.col.s1.valign
+																	i.mdi-action-assignment.grey-text.text-lighten-1.profile-content-icon
+																.col.s11.valign
+																	.profile-content 7.47 (CGPA)
+											.col.s12.leftpad.padded-container.white.top-padding--mobile.collection-item
+												.col.s12.row
+													h6.grey-text.text-lighten-1.search-list--header ACHIEVEMENTS
+													.row.achievement-block.padded-container
+														.col.s12.valign-wrapper.no-padding
+																.col.s1.l1.valign.hide-on-small-only.achievenment-icon-container
+																	i.mdi-action-wallet-membership.cyan-text.text-lighten-1.profile-content-icon.medium
+																.col.s11.l11.profile-content.leftpad--more
+																	.col.s12.valign-wrapper.no-padding--mobile
+																		.col.s12.l8.valign.no-padding--mobile
+																			h5 Runner Up, AngelHack 2014
+																		.col.s12.l4.right-align.valign
+																			a(href="#") View Certificate
+																	.col.s12.grey-text.no-padding--mobile
+																		.col.s12.no-padding--mobile Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 9561422504
+											.col.s12.leftpad.padded-container.white.top-padding--mobile.collection-item
+												.col.s12.row.no-padding--mobile
+													h6.grey-text.text-lighten-1.search-list--header FATHER'S INFORMATION
+													.col.s12.m4.valign-wrapper.no-padding
+														.col.s1.valign
+															i.mdi-action-account-box.grey-text.text-lighten-1.profile-content-icon
+														.col.s11.valign
+															.profile-content Jonathon Doe Sr.
+													.row.hide-on-large-only
+													.col.s12.m4.valign-wrapper.no-padding
+														.col.s1.valign
+															i.mdi-communication-call.grey-text.text-lighten-1.profile-content-icon
+														.col.s11.valign
+															.profile-content 9561422504
+													.row.hide-on-large-only
+													.col.s12.m4.valign-wrapper.no-padding
+														.col.s1.valign
+															i.mdi-communication-business.grey-text.text-lighten-1.profile-content-icon
+														.col.s11.valign
+															.profile-content 9561422504
+											.col.s12.leftpad.padded-container.white.top-padding--mobile.collection-item
+												.col.s12.row.no-padding--mobile
+													h6.grey-text.text-lighten-1.search-list--header MOTHER'S INFORMATION
+													.col.s12.m4.valign-wrapper.no-padding
+														.col.s1.valign
+															i.mdi-action-account-box.grey-text.text-lighten-1.profile-content-icon
+														.col.s11.valign
+															.profile-content Jane Smith Doe
+													.row.hide-on-large-only
+													.col.s12.m4.valign-wrapper.no-padding
+														.col.s1.valign
+															i.mdi-communication-call.grey-text.text-lighten-1.profile-content-icon
+														.col.s11.valign
+															.profile-content 9561422504
+													.row.hide-on-large-only
+													.col.s12.m4.valign-wrapper.no-padding
+														.col.s1.valign
+															i.mdi-communication-business.grey-text.text-lighten-1.profile-content-icon
+														.col.s11.valign
+															.profile-content 9561422504
+													.col.s12.m4.valign-wrapper.no-padding
+											.row.hide-on-large-only
+									#leave.col.s12
+										.white.collection.search-list--leave-contianer
+											.col.s12.padded-container.collection-item.top-padding--mobile
+												.row
+													.col.s6.m3
+														span.grey-text.text-lighten-1 LEAVE ID
+															br
+														strong 5540
+													.col.s6.m3
+														span.grey-text.text-lighten-1 STATUS
+															br
+														span.green-text Approved
+													.row.hide-on-large-only
+													.col.s6.m3
+														span.grey-text.text-lighten-1 START DATE
+															br
+														span 21 March, 2015
+													.col.s6.m3
+														span.grey-text.text-lighten-1 END DATE
+															br
+														span 21 March, 2015
+												.row
+													.col.s12.m6
+														span.grey-text.text-lighten-1 ADDRESS
+															br
+														span NH 17B Bypass Road, Zuarinagar, Sancoale, Goa 403726
+													.row.hide-on-large-only
+													.col.s12.m3
+														span.grey-text.text-lighten-1 REASON
+															br
+														span Family function at home.
+													.row.hide-on-large-only
+													.col.s12.m3
+														span.grey-text.text-lighten-1 CONSENT TYPE
+															br
+														span Email
+											.col.s12.padded-container.collection-item.top-padding--mobile
+												.row
+													.col.s6.m3
+														span.grey-text.text-lighten-1 LEAVE ID
+															br
+														strong 5540
+													.col.s6.m3
+														span.grey-text.text-lighten-1 STATUS
+															br
+														span.green-text Approved
+													.row.hide-on-large-only
+													.col.s6.m3
+														span.grey-text.text-lighten-1 START DATE
+															br
+														span 21 March, 2015
+													.col.s6.m3
+														span.grey-text.text-lighten-1 END DATE
+															br
+														span 21 March, 2015
+												.row
+													.col.s12.m6
+														span.grey-text.text-lighten-1 ADDRESS
+															br
+														span NH 17B Bypass Road, Zuarinagar, Sancoale, Goa 403726
+													.row.hide-on-large-only
+													.col.s12.m3
+														span.grey-text.text-lighten-1 REASON
+															br
+														span Family function at home.
+													.row.hide-on-large-only
+													.col.s12.m3
+														span.grey-text.text-lighten-1 CONSENT TYPE
+															br
+														span Email
+											.col.s12.padded-container.collection-item.top-padding--mobile
+												.row
+													.col.s6.m3
+														span.grey-text.text-lighten-1 LEAVE ID
+															br
+														strong 5540
+													.col.s6.m3
+														span.grey-text.text-lighten-1 STATUS
+															br
+														span.green-text Approved
+													.row.hide-on-large-only
+													.col.s6.m3
+														span.grey-text.text-lighten-1 START DATE
+															br
+														span 21 March, 2015
+													.col.s6.m3
+														span.grey-text.text-lighten-1 END DATE
+															br
+														span 21 March, 2015
+												.row
+													.col.s12.m6
+														span.grey-text.text-lighten-1 ADDRESS
+															br
+														span NH 17B Bypass Road, Zuarinagar, Sancoale, Goa 403726
+													.row.hide-on-large-only
+													.col.s12.m3
+														span.grey-text.text-lighten-1 REASON
+															br
+														span Family function at home.
+													.row.hide-on-large-only
+													.col.s12.m3
+														span.grey-text.text-lighten-1 CONSENT TYPE
+															br
+														span Email

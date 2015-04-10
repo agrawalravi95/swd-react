@@ -26,6 +26,10 @@
 	padding-left: 1em !important;
 }
 
+.leftpad--more {
+	padding-left: 2em !important;
+}
+
 .picker__date-display {
 	display: none;
 }
@@ -58,6 +62,14 @@
 
 .modal {
 	padding-bottom: 15px;
+	max-height: 90% !important;
+	overflow-x: hidden;
+}
+
+@media only screen and (max-width: 992px){
+	.modal {
+		top: 5% !important;
+	}
 }
 
 
@@ -137,7 +149,7 @@ header, .main, footer {
 /* SWD Services */
 .feature-list li{
 	font-size: 1.2em;
-	padding: 0.5em; 
+	padding: 0.5em;
 }
 
 .financial-aid-list-item {
@@ -189,7 +201,7 @@ header, .main, footer {
 	position: relative;
 	margin-left: 1.5rem;
 }
-	
+
 	.profile-content--location {
 		top: 7px;
 	}
@@ -207,7 +219,7 @@ header, .main, footer {
 }
 
 #profile-update-modal {
-	min-height: 490px;
+	/* min-height: 490px; */
 }
 
 .due-details-content p,
@@ -242,5 +254,26 @@ header, .main, footer {
 	}
 }
 
+/* Search Result */
 
-/* Due Details */
+.search-list--header{
+	margin-bottom: 20px;
+	padding-left: 12px;
+}
+.search-list--name{
+	margin-top: 9px;
+	font-size: 20px;
+}
+
+.search-list--profile-contianer,
+.search-list--leave-contianer {
+	margin-top: 0;
+}
+
+
+
+/* Achievements */
+
+.achievenment-icon-container {
+	margin-top: 30px;
+}

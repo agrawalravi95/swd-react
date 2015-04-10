@@ -19,6 +19,10 @@ var pool = mysql.createPool({
 
 function poolHelper(aSQL, aParams, aCallback) {
   pool.getConnection(function(err, conn) {
+    if(err) {
+      aCallback(err);
+      return;
+    }
     conn.query(aSQL, aParams, aCallback);
     conn.release();
   });
