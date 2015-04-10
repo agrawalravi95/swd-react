@@ -6,6 +6,11 @@
  * Made By MaterializeCSS.com
  */
 
+ .collection {
+ 	background: none;
+ 	border: none;
+ }
+
 .icon-block {
   padding: 0 15px;
 }
@@ -272,8 +277,15 @@ header, .main, footer {
 
 
 
-/* Achievements */
-
-.achievenment-icon-container {
+/* Achievements & DC Cases*/
+.disco-title h5,
+.achievement-title h5{
+	line-height: 2.2rem;
+}
+.achievemment-icon-container,
+.disco-icon-container {
 	margin-top: 30px;
+}
+.achievenment-icon-container i {
+	display: block;
 }
