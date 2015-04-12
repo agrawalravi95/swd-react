@@ -10,6 +10,161 @@
 
 import React from 'react';
 
+var componentDidMountFoos = {}
+componentDidMountFoos["student"] = function() {
+  $.ajax({
+    url: '/api/backend/studentInfo',
+    type: 'POST',
+    data: "",
+    success: function(data) {
+      if (data.error) {
+        alert("Error:\n" + data.error);
+        return;
+      }
+      data = data.row;
+      $("#profile-name").text(data.name);
+      $("#profile-id").text(data.id);
+      $("#profile-bday").text(data.bday);
+      $("#profile-addr").text(data.address);
+      $("#profile-email").text(data.email);
+      $("#profile-hostel").text(data.hostel);
+      $("#profile-phone").text(data.phone);
+      $("#profile-email").text(data.email);
+      $("#father-name").text(data.father_name);
+      $("#father-phone").text(data.father_phone);
+      $("#father-email").text(data.father_email);
+      $("#mother-name").text(data.mother_name);
+      $("#mother-phone").text(data.mother_phone);
+      $("#mother-email").text(data.mother_email);
+    }.bind(this),
+    error: function(xhr, status, err) {
+      alert(err.toString());
+    }.bind(this)
+  });
+};
+componentDidMountFoos["csa"] = function() {
+  $.ajax({
+    url: '/api/backend/csaInfo',
+    type: 'POST',
+    data: "",
+    success: function(data) {
+      if (data.error) {
+        alert("Error:\n" + data.error);
+        return;
+      }
+      for (var row of data.rows) {
+        var id = "#" + row.title;
+        $(id + "-name").text(row.name);
+        $(id + "-email").text(row.email);
+        $(id + "-phone").text(row.phone);
+      }
+    }.bind(this),
+    error: function(xhr, status, err) {
+      alert(err.toString());
+    }.bind(this)
+  });
+};
+componentDidMountFoos["student-mess"] = function() {
+  $("#mess-submit").click(function() {
+    var mess = null;
+    if (document.getElementById("amess").checked) {
+      mess = 0;
+    }
+    else if (document.getElementById("cmess").checked) {
+      mess = 1;
+    }
+    if (mess == null) {
+      alert("Please choose your mess option.");
+      return;
+    }
+    $.ajax({
+      url: '/api/backend/chooseMessOption',
+      type: 'POST',
+      data: {mess: mess},
+      success: function(data) {
+        if (data.error) {
+          alert("Error:\n" + data.error);
+          return;
+        }
+        alert("Mess option successfully chosen!");
+        window.location.reload();
+        }.bind(this),
+        error: function(xhr, status, err) {
+          alert(err.toString());
+        }.bind(this)
+    });
+  });
+  $.ajax({
+    url: '/api/backend/messOptionOpen',
+    type: 'POST',
+    data: "",
+    success: function(data) {
+      if (data.error) {
+        alert("Error:\n" + data.error);
+        return;
+      }
+      if (data.open) $("#mess-closed-section").hide()
+      else $("#mess-open-section").hide();
+    }.bind(this),
+    error: function(xhr, status, err) {
+      alert(err.toString());
+    }.bind(this)
+  });
+  $.ajax({
+    url: '/api/backend/messOptionOpen',
+    type: 'POST',
+    data: "",
+    success: function(data) {
+      if (data.error) {
+        alert("Error:\n" + data.error);
+        return;
+      }
+      if (data.open) $("#mess-open-section").show()
+      else $("#mess-closed-section").show();
+      $("#allotted").text($("#allotted").text().replace("{MONTH}", data.currentMonth));
+      $("#next-month").text($("#next-month").text().replace("{MONTH}", data.nextMonth));
+      $("#chosen").text($("#chosen").text().replace("{MONTH}", data.nextMonth));
+    }.bind(this),
+    error: function(xhr, status, err) {
+      alert(err.toString());
+    }.bind(this)
+  });
+  $.ajax({
+    url: '/api/backend/currentMessOption',
+    type: 'POST',
+    data: "",
+    success: function(data) {
+      if (data.error) {
+        alert("Error:\n" + JSON.stringify(data.error));
+        return;
+      }
+      $("#allotted").text($("#allotted").text().replace("{MESS}", data.mess));
+    }.bind(this),
+    error: function(xhr, status, err) {
+      alert(err.toString());
+    }.bind(this)
+  });
+  $.ajax({
+    url: '/api/backend/futureMessOption',
+    type: 'POST',
+    data: "",
+    success: function(data) {
+      if (data.error) {
+        alert("Error:\n" + JSON.stringify(data.error));
+        return;
+      }
+      if (data.mess == null) {
+        return;
+      }
+      $("#mess-chosen-section").show();
+      $("#chosen").text($("#chosen").text().replace("{MESS}", data.mess));
+    }.bind(this),
+    error: function(xhr, status, err) {
+      alert(err.toString());
+    }.bind(this)
+  });
+};
+
 var ContentPage = React.createClass({
 
   propTypes: {
@@ -17,24 +172,9 @@ var ContentPage = React.createClass({
   },
 
   componentDidMount() {
-    $.ajax({
-      url: '/api/backend/studentInfo',
-      type: 'POST',
-      data: "",
-      success: function(data) {
-        if (data.err) {
-          alert("Error:\n" + data.err);
-          return;
-        }
-        data = data.row;
-        $("#profile-name").text(data.name);
-        $("#profile-id").text(data.studentID);
-        $("#profile-hostel").text(data.hostel);
-      }.bind(this),
-      error: function(xhr, status, err) {
-        alert(err.toString());
-      }.bind(this)
-    });
+    if (Object.hasOwnProperty.call(componentDidMountFoos, this.props.path.substring(1))) {
+      componentDidMountFoos[this.props.path.substring(1)]();
+    }
   },
 
   render() {

@@ -3,12 +3,12 @@ title: Mess Option
 ---
 div.main
 	div.container
-		div.section
+		div.section(hidden='true')#mess-open-section
 			.row
 				h4 Mess Option Open
 			.row
 				.col.s12.white.z-depth-1.padded-container
-					p.larger-font The mess option for the months of April and May is open now and you may choose your option below.
+					p.larger-font#next-month The mess option for {MONTH} is open. Choose your option below.
 					form(action='#')
 						br
 						.col.s12
@@ -25,10 +25,19 @@ div.main
 						.col.s12
 							br
 							br
-							a.waves-effect.waves-light.btn.orange.darken-2(href="#") Submit
+							a.waves-effect.waves-light.btn.orange.darken-2(href="#")#mess-submit Submit
+		div.section(hidden='true')#mess-closed-section
+			.row
+				h4 Mess Option Closed
 		div.section
 			.row
-				h4 Alloted Mess
+				h4 Currently Alloted Mess
 			.row
 				.col.s12.white.z-depth-1.padded-container
-					h5 You have currently been alloted <strong>C Mess</strong> for the month of March. 
+					h5#allotted You have currently been alloted {MESS} for {MONTH}.
+		div.section(hidden='true')#mess-chosen-section
+			.row
+				h4 Mess Chosen for Next Month
+			.row
+				.col.s12.white.z-depth-1.padded-container
+					h5#chosen You have currently chosen {MESS} for {MONTH}.

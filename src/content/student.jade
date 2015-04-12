@@ -13,7 +13,7 @@ div.main
           .col.s12.l8.top-padding--mobile
             .row.leftpad
               .col.s10.m10.l11
-                h5.profile-name#profile-name test
+                h5.profile-name#profile-name Name
               .col.s1.m1
                 a.waves-effect.waves-orange.btn-flat.modal-trigger.no-padding(href="#profile-update-modal")
                   i.mdi-editor-mode-edit.red-text
@@ -24,17 +24,17 @@ div.main
                     form.col.s12
                       .row
                         .input-field.col.s12
-                          input#dob.validate.datepicker(type='date')
-                          label.active(htmlfor='dob') Date of Birth
+                          input#profile-edit-dob.validate.datepicker(type='date')
+                          label.active(htmlfor='profile-edit-dob') Date of Birth
                         .input-field.col.s12
-                          input#address.validate(type='text')
-                          label(htmlfor='address') Permanent Address
+                          input#profile-edit-address.validate(type='text')
+                          label(htmlfor='profile-edit-address') Permanent Address
                         .input-field.col.s12
-                          input#profile-contact.validate(type='text')
-                          label(htmlfor='profile-contact') Contact Number
+                          input#profile-edit-contact.validate(type='text')
+                          label(htmlfor='profile-edit-contact') Contact Number
                         .input-field.col.s12
-                          input#profile-email.validate(type='email')
-                          label(htmlfor='profile-email') Email Address
+                          input#profile-edit-email.validate(type='email')
+                          label(htmlfor='profile-edit-email') Email Address
                   .modal-footer
                     a.waves-effect.waves-orange.btn-flat.modal-action.modal-close(href='/student') Update
                     a.waves-effect.waves-red.btn-flat.modal-action.modal-close(href='/student') Cancel
@@ -43,37 +43,37 @@ div.main
                   .col.s1.valign
                     i.mdi-action-payment.grey-text.text-lighten-1.profile-content-icon
                   .col.s11.valign
-                    .profile-content#profile-id
+                    .profile-content#profile-id ID
                 .row.hide-on-large-only
                 .col.s12.l6.valign-wrapper
                   .col.s1.valign
                     i.mdi-action-wallet-giftcard.grey-text.text-lighten-1.profile-content-icon
                   .col.s11.valign
-                    .profile-content#profile-bday
+                    .profile-content#profile-bday Birthday
               .row
                 .col.s12.l6.valign-wrapper
                   .col.s1.valign
                     i.mdi-maps-my-location.grey-text.text-lighten-1.profile-content-icon
                   .col.s11.valign
-                    .profile-content#profile-hostel
+                    .profile-content#profile-hostel Hostel
                 .row.hide-on-large-only
                 .col.s12.l6.valign-wrapper
                   .col.s1.valign
                     i.mdi-communication-location-on.grey-text.text-lighten-1.profile-content-icon
                   .col.s11.valign
-                    .profile-content.profile-content--location#profile-addr
+                    .profile-content.profile-content--location#profile-addr Address
               .row
                 .col.s12.l6.valign-wrapper
                   .col.s1.valign
                     i.mdi-communication-call.grey-text.text-lighten-1.profile-content-icon
                   .col.s11.valign
-                    .profile-content#profile-phone
+                    .profile-content#profile-phone Phone
                 .row.hide-on-large-only
                 .col.s12.l6.valign-wrapper
                   .col.s1.valign
                     i.mdi-communication-email.grey-text.text-lighten-1.profile-content-icon
                   .col.s11.valign
-                    .profile-content#profile-email
+                    .profile-content#profile-email Email
     .section
       .row
         h4 Parental Information
@@ -82,7 +82,7 @@ div.main
           .col.s12.top-padding--mobile
             .row.leftpad
               .col.s9.l11
-                h5.profile-name Venkatesh Prasad Swami Chaada Singh SOnu
+                h5.profile-name Father
               .col.s1
                 a.waves-effect.waves-orange.btn-flat.modal-trigger(href="#parent-update-modal--father")
                   i.mdi-editor-mode-edit.red-text
@@ -92,9 +92,6 @@ div.main
                       h5 Update Father's Details
                     form.col.s12
                       .row
-                        .input-field.col.s12
-                          input#parent-name.validate(type='text')
-                          label(htmlfor='parent-name') Name
                         .input-field.col.s12
                           input#parent-contact.validate(type='text')
                           label(htmlfor='parent-contact') Contact Number
@@ -109,24 +106,24 @@ div.main
                 .col.s1.valign
                   i.mdi-action-account-box.grey-text.text-lighten-1.profile-content-icon
                 .col.s11.valign
-                  .profile-content Jane Doe Smith
+                  .profile-content#father-name Name
               .row.hide-on-large-only
               .col.s12.l4.valign-wrapper
                 .col.s1.valign
                   i.mdi-communication-call.grey-text.text-lighten-1.profile-content-icon
                 .col.s11.valign
-                  .profile-content (91) 9XXX XXX XXX
+                  .profile-content#father-phone Phone
               .row.hide-on-large-only
               .col.s12.l4.valign-wrapper
                 .col.s1.valign
                   i.mdi-communication-email.grey-text.text-lighten-1.profile-content-icon
                 .col.s11.valign
-                  .profile-content johndoe@gmail.com
+                  .profile-content#father-email Email
         .col.s12.padded-container.white.z-depth-1.no-padding--mobile
           .col.s12.top-padding--mobile
             .row.leftpad
               .col.s9.l11
-                h5.profile-name Jane Doe
+                h5.profile-name Mother
               .col.s1
                 a.waves-effect.waves-orange.btn-flat.modal-trigger(href="#parent-update-modal--mother")
                   i.mdi-editor-mode-edit.red-text
@@ -136,9 +133,6 @@ div.main
                       h5 Update Mother's Details
                     form.col.s12
                       .row
-                        .input-field.col.s12
-                          input#parent-name.validate(type='text')
-                          label(htmlfor='parent-name') Name
                         .input-field.col.s12
                           input#parent-contact.validate(type='text')
                           label(htmlfor='parent-contact') Contact Number
@@ -152,17 +146,17 @@ div.main
                 .col.s1.valign
                   i.mdi-action-account-box.grey-text.text-lighten-1.profile-content-icon
                 .col.s11.valign
-                  .profile-content Jane Doe Smith
+                  .profile-content#mother-name Name
               .row.hide-on-large-only
               .col.s12.l4.valign-wrapper
                 .col.s1.valign
                   i.mdi-communication-call.grey-text.text-lighten-1.profile-content-icon
                 .col.s11.valign
-                  .profile-content (91) 9XXX XXX XXX
+                  .profile-content#mother-phone Phone
               .row.hide-on-large-only
               .col.s12.l4.valign-wrapper
                 .col.s1.valign
                   i.mdi-communication-email.grey-text.text-lighten-1.profile-content-icon
                 .col.s11.valign
-                  .profile-content johndoe@gmail.com
+                  .profile-content#mother-email Email
 

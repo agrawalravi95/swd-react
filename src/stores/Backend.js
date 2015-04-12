@@ -13,7 +13,7 @@ var pool = mysql.createPool({
   host: 'localhost',
   user: 'swd',
   password: 'swd',
-  database: 'students'
+  database: 'students2'
 });
 
 
@@ -36,17 +36,91 @@ var api = {
     }
     req.session.reset();
     req.session.user = req.body.user;
-    res.json({success: true});
+    poolHelper("SELECT * FROM login_ids WHERE login_id=?", [req.session.user], function(err, row) {
+      if (err) {
+        res.json({error: "error accessing login id database"});
+        return;
+      }
+      req.session.type = row[0].type;
+      res.json({success: true});
+    });
   },
   // Returns basic student info for login page.
-  // PARAMS: id = ldap login id
   studentInfo: function(req, res) {
-    if (!req.session || !req.session.user) {
+    if (!req.session || !req.session.user || req.session.type != 'student') {
       res.json({error: "not logged in"});
       return;
     }
-    poolHelper("SELECT * FROM student_info WHERE loginID=?", [req.session.user], function(err, row) {
+    poolHelper("SELECT * FROM student_info WHERE login_id=?", [req.session.user], function(err, row) {
       res.json({error: err, row: row ? row[0] : null});
+    });
+  },
+  // Returns CSA members info. 4 rows.
+  csaInfo: function(req, res) {
+    poolHelper("SELECT * FROM csa", [], function(err, rows) {
+      res.json({error: err, rows: rows || null});
+    });
+  },
+  // Returns an object containing an error if any, and a variable "open" - true
+  // or false depending on if mess option is open. Also current month and next month.
+  messOptionOpen: function(req, res) {
+    poolHelper("SELECT * FROM mess_option_open", [], function(err, rows) {
+      res.json({error: err, open: rows[0].open == 1,
+               currentMonth: rows[0].current_month,
+               nextMonth: rows[0].next_month});
+    });
+  },
+  // Returns an object containing an error if any, and a variable "open" - true
+  // or false depending on if mess option is open. Also current month and next month.
+  currentMessOption: function(req, res) {
+    if (!req.session || !req.session.user || req.session.type != 'student') {
+      res.json({error: "not logged in"});
+      return;
+    }
+    poolHelper("SELECT mess FROM mess_option INNER JOIN mess_option_open ON mess_option.month=mess_option_open.current_month WHERE login_id=?",
+               [req.session.user], function(err, rows) {
+      res.json({error: err, mess: rows && rows[0] ? rows[0].mess : null});
+    });
+  },
+  // Returns an object containing an error if any, and a variable "open" - true
+  // or false depending on if mess option is open. Also current month and next month.
+  futureMessOption: function(req, res) {
+    if (!req.session || !req.session.user || req.session.type != 'student') {
+      res.json({error: "not logged in"});
+      return;
+    }
+    poolHelper("SELECT mess FROM mess_option_future WHERE login_id=?", [req.session.user], function(err, rows) {
+      res.json({error: err, mess: rows && rows[0] ? rows[0].mess : null});
+    });
+  },
+  chooseMessOption: function(req, res) {
+    if (!req.session || !req.session.user || req.session.type != 'student') {
+      res.json({error: "not logged in"});
+      return;
+    }
+    poolHelper("SELECT * FROM mess_option_open", [], function(err, rows) {
+      if (err) {
+        res.json({error: err});
+        return;
+      }
+      if (rows[0].open == 0) {
+        res.json({error: "mess option closed"});
+        return;
+      }
+      var mess = req.body.mess == 0 ? "A Mess" : "C Mess";
+      poolHelper("DELETE FROM mess_option_future WHERE login_id=?", [req.session.user], function(err, rows) {
+        if (err) {
+          res.json({error: err});
+          return;
+        }
+        poolHelper("INSERT INTO mess_option_future (login_id, mess) VALUES (?, ?)", [req.session.user, mess], function(err, rows) {
+          if (err) {
+            res.json({error: err});
+            return;
+          }
+          res.json({success: true});
+        });
+      })
     });
   }
 }
