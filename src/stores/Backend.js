@@ -122,6 +122,50 @@ var api = {
         });
       })
     });
+  },
+  getNotices: function(req, res) {
+    poolHelper("SELECT * FROM notices ORDER BY updated DESC", [], function(err, rows) {
+      if (err) {
+        req.json({error: err});
+        return;
+      }
+      var rett = [];
+      rows.forEach(function(row) {
+        rett.push({
+          archived: row.archived == 1,
+          title: row.title,
+          url: row.url,
+          date: (new Date(row.updated)).toDateString()
+        });
+      });
+      res.json(rett);
+    });
+  },
+  getLeaves: function(req, res) {
+    if (!req.session || !req.session.user || req.session.type != 'student') {
+      res.json({error: "not logged in"});
+      return;
+    }
+    poolHelper("SELECT * FROM leave_requests WHERE login_id=? ORDER BY start_date DESC", [req.session.user], function(err, rows) {
+      if (err) {
+        res.json({error: err});
+        return;
+      }
+      var ret = [];
+      rows.forEach(function(row) {
+        ret.push({
+          id: row.leave_id,
+          start: (new Date(row.start_date)).toDateString(),
+          end: (new Date(row.end_date)).toDateString(),
+          phone: row.phone,
+          consent: row.consent_type,
+          address: row.address,
+          reason: row.reason,
+          status: row.approved
+        });
+      });
+      res.json({firstIsCurrent: rows.length ? rows[0].end_date >= (new Date()).valueOf() : false, leaves: ret});
+    });
   }
 }
 

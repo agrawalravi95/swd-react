@@ -63,169 +63,56 @@ div.main
           .modal-footer
             a.waves-effect.waves-orange.btn-flat.modal-action.modal-close(href='#') Apply
             a.waves-effect.waves-red.btn-flat.modal-action.modal-close(href='#') Cancel
+    .div.section#no-leaves
       .row
-        h4 Current Leave status
+        h4 No Leave Records to Show
+    .div.section#current-leave(hidden='true')
+      .row
+        h4 Current Leave Status
       .row
         .col.s12.white.z-depth-1
           .col.s12.valign-wrapper
-            .col.s12.m1.hidden-on-mobile-only
+            .col.s12.m1.hidden-on-mobile-only.approved-tick(hidden='true')
               i.mdi-action-done.green-text.medium
-              here
-            .col.s12.m11
-              h5.leftpad The warden has <strong>approved</strong> your leave. Reference no: <strong>5542</strong>
-          .col.s12.padded-container
+            .col.s12.m1.hidden-on-mobile-only.denied-tick(hidden='true')
+              i.mdi-content-clear.red-text.medium
+            .col.s12.m11.approved-text(hidden='true')
+              h5.leftpad The warden has <strong>approved</strong> your leave.
+            .col.s12.m11.denied-text(hidden='true')
+              h5.leftpad The warden has <strong>denied</strong> your leave.
+          .col.s12.padded-container.collection-item#leave-template
             .row
+              .col.s12.m3
+                span.grey-text.text-lighten-1 LEAVE ID
+                  br
+                strong.leave-id Leave ID
+              .col.s12.m3
+                span.grey-text.text-lighten-1 STATUS
+                  br
+                span.status Status
               .col.s6.m3
                 span.grey-text.text-lighten-1 START DATE
                   br
-                span 21 March, 2015
+                span.start-date Start Date
               .col.s6.m3
                 span.grey-text.text-lighten-1 END DATE
                   br
-                span 21 March, 2015
-              .col.s6.m3.leave-input--less-mobile
-                span.grey-text.text-lighten-1 CONTACT
-                  br
-                span 9XXX XXX XXX
-              .col.s6.m3.leave-input--less-mobile
-                span.grey-text.text-lighten-1 CONSENT TYPE
-                  br
-                span Email
+                span.end-date End date
             .row
               .col.s12.m6
                 span.grey-text.text-lighten-1 ADDRESS
                   br
-                span NH 17B Bypass Road, Zuarinagar, Sancoale, Goa 403726
-              .col.s12.m6.leave-input--less-mobile
+                span.address Address
+              .col.s12.m3
                 span.grey-text.text-lighten-1 REASON
                   br
-                span Family function at home.      
-    div.section
+                span.reason Reason
+              .col.s12.m3
+                span.grey-text.text-lighten-1 CONSENT TYPE
+                  br
+                span.consent Consent Type
+    div.section#prev-leaves(hidden='true')
       .row
-        h4 Previous leave records
+        h4 Previous Leave Records
       .row
-        .col.s12.white.z-depth-1.collection
-          .col.s12.padded-container.collection-item
-            .row
-              .col.s12.m3
-                span.grey-text.text-lighten-1 LEAVE ID
-                  br
-                strong 5540
-              .col.s12.m3
-                span.grey-text.text-lighten-1 STATUS
-                  br
-                span.green-text Approved
-              .col.s6.m3
-                span.grey-text.text-lighten-1 START DATE
-                  br
-                span 21 March, 2015
-              .col.s6.m3
-                span.grey-text.text-lighten-1 END DATE
-                  br
-                span 21 March, 2015
-            .row
-              .col.s12.m6
-                span.grey-text.text-lighten-1 ADDRESS
-                  br
-                span NH 17B Bypass Road, Zuarinagar, Sancoale, Goa 403726
-              .col.s12.m3
-                span.grey-text.text-lighten-1 REASON
-                  br
-                span Family function at home.
-              .col.s12.m3
-                span.grey-text.text-lighten-1 CONSENT TYPE
-                  br
-                span Email
-          .col.s12.padded-container.collection-item
-            .row
-              .col.s12.m3
-                span.grey-text.text-lighten-1 LEAVE ID
-                  br
-                strong 5540
-              .col.s12.m3
-                span.grey-text.text-lighten-1 STATUS
-                  br
-                span.red-text Dispproved
-              .col.s6.m3
-                span.grey-text.text-lighten-1 START DATE
-                  br
-                span 21 March, 2015
-              .col.s6.m3
-                span.grey-text.text-lighten-1 END DATE
-                  br
-                span 21 March, 2015
-            .row
-              .col.s12.m6
-                span.grey-text.text-lighten-1 ADDRESS
-                  br
-                span NH 17B Bypass Road, Zuarinagar, Sancoale, Goa 403726
-              .col.s12.m3
-                span.grey-text.text-lighten-1 REASON
-                  br
-                span Family function at home.
-              .col.s12.m3
-                span.grey-text.text-lighten-1 CONSENT TYPE
-                  br
-                span Email
-          .col.s12.padded-container.collection-item
-            .row
-              .col.s12.m3
-                span.grey-text.text-lighten-1 LEAVE ID
-                  br
-                strong 5540
-              .col.s12.m3
-                span.grey-text.text-lighten-1 STATUS
-                  br
-                span.green-text Approved
-              .col.s6.m3
-                span.grey-text.text-lighten-1 START DATE
-                  br
-                span 21 March, 2015
-              .col.s6.m3
-                span.grey-text.text-lighten-1 END DATE
-                  br
-                span 21 March, 2015
-            .row
-              .col.s12.m6
-                span.grey-text.text-lighten-1 ADDRESS
-                  br
-                span NH 17B Bypass Road, Zuarinagar, Sancoale, Goa 403726
-              .col.s12.m3
-                span.grey-text.text-lighten-1 REASON
-                  br
-                span Family function at home.
-              .col.s12.m3
-                span.grey-text.text-lighten-1 CONSENT TYPE
-                  br
-                span Email
-          .col.s12.padded-container.collection-item
-            .row
-              .col.s12.m3
-                span.grey-text.text-lighten-1 LEAVE ID
-                  br
-                strong 5540
-              .col.s12.m3
-                span.grey-text.text-lighten-1 STATUS
-                  br
-                span.green-text Approved
-              .col.s6.m3
-                span.grey-text.text-lighten-1 START DATE
-                  br
-                span 21 March, 2015
-              .col.s6.m3
-                span.grey-text.text-lighten-1 END DATE
-                  br
-                span 21 March, 2015
-            .row
-              .col.s12.m6
-                span.grey-text.text-lighten-1 ADDRESS
-                  br
-                span NH 17B Bypass Road, Zuarinagar, Sancoale, Goa 403726
-              .col.s12.m3
-                span.grey-text.text-lighten-1 REASON
-                  br
-                span Family function at home.
-              .col.s12.m3
-                span.grey-text.text-lighten-1 CONSENT TYPE
-                  br
-                span Email
+        .col.s12.white.z-depth-1.collection#prev-leaves-list
