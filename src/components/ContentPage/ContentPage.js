@@ -138,6 +138,10 @@ componentDidMountFoos["student-mess"] = function() {
         alert("Error:\n" + JSON.stringify(data.error));
         return;
       }
+      if (!data.mess) {
+        return;
+      }
+      $("#allotted-section").show();
       $("#allotted").text($("#allotted").text().replace("{MESS}", data.mess));
     }.bind(this),
     error: function(xhr, status, err) {
