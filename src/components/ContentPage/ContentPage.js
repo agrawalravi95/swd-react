@@ -270,6 +270,42 @@ componentDidMountFoos["student-leave"] = function() {
   });
 }
 
+componentDidMountFoos["student-dues"] = function() {
+  $.ajax({
+    url: '/api/backend/getDues',
+    type: 'POST',
+    data: "",
+    success: function(data) {
+      //Materialize.toast("Test", 4000, function() {location.href="about:blank";});
+      if (data.error) {
+        alert("Error:\n" + JSON.stringify(data.error));
+        return;
+      }
+      var tbody = $('#dues-tbody');
+      var template = tbody.find('.due-entry-template').clone();
+      var balance = 0;
+      data.forEach(function(due) {
+        var elt = template.clone();
+        elt.find('.desc').text(due.desc);
+        elt.find('.credit').text(due.credit);
+        elt.find('.debit').text(due.debit);
+        balance += ((due.credit || 0) - (due.debit || 0));
+        tbody.append(elt);
+        elt.show(0);
+      });
+      var elt = template.clone();
+      elt.find('.desc').text("Balance Amount");
+      elt.find('.credit').text("");
+      elt.find('.debit').text(balance);
+      tbody.append(elt);
+      elt.show(0);
+    }.bind(this),
+    error: function(xhr, status, err) {
+      alert(err.toString());
+    }.bind(this)
+  });
+}
+
 var ContentPage = React.createClass({
 
   propTypes: {

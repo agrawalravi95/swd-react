@@ -166,6 +166,28 @@ var api = {
       });
       res.json({firstIsCurrent: rows.length ? rows[0].end_date >= (new Date()).valueOf() : false, leaves: ret});
     });
+  },
+  getDues: function(req, res) {
+    if (!req.session || !req.session.user || req.session.type != 'student') {
+      res.json({error: "not logged in"});
+      return;
+    }
+    poolHelper("SELECT * FROM student_dues WHERE login_id=?", [req.session.user], function(err, rows) {
+      if (err) {
+        res.json({error: err});
+        return;
+      }
+      var row = rows[0];
+      var ret = [];
+      for (var key in row) {
+        if (!Object.hasOwnProperty.call(row, key) || key == "login_id" || !row[key])
+          continue;
+        var item = {desc: key};
+        item[key == "Advance" ? "credit" : "debit"] = row[key];
+        ret.push(item);
+      }
+      res.json(ret);
+    });
   }
 }
 
