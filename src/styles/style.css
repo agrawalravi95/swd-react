@@ -236,7 +236,7 @@ header, .main, footer {
 /* Leave */
 
 .leave-add-btn {
-	right: 25px;
+	right: 35px;
 	bottom: 45px;
 }
 
@@ -288,4 +288,32 @@ header, .main, footer {
 }
 .achievenment-icon-container i {
 	display: block;
+}
+
+
+
+/* Staff Notices */
+.delete-link,
+.archive-notice-form {
+	float: right;
+}
+
+.delete-link {
+	margin-top: -5px;
+	margin-right: 0 !important;
+} 
+
+.delete-link i {
+	font-size: 1.5rem;
+}
+
+.delete-link:active i {
+	color: #d32f2f; 
+}
+
+
+/* Staff & Warden Leave List */
+
+.leave-approve-checkbox {
+	margin-top: 10px;
 }

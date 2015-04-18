@@ -1,0 +1,369 @@
+---
+title: Student Leaves
+---
+div.main
+	div.container
+		.section
+			.row
+				h4 Printed Leaves
+			.row
+				.col.s6
+					a.btn.waves-effect.waves-light.orange(href='#')
+						i.mdi-action-print.left
+						span Print New Leave
+				.col.s6.right-align					
+					a.btn-flat.waves-effect.modal-trigger(href='#add-filters-modal') Add Filters
+					#add-filters-modal.modal
+						.modal-content
+							.row.center-align
+								h4 Add Filters
+							form.col.s12
+								.row
+									.input-field.col.s12.m6
+										input#leaveID.validate(type='text')
+										label(htmlfor='leaveID') Leave ID
+									.input-field.col.s12.m6
+										input#studentID.validate(type='text')
+										label(htmlfor='studentID') Student ID
+								.row
+									.input-field.col.s12.m4.left-align
+										label Status
+											select
+												option(value='1' selected='') Approved
+												option(value='2') Pending
+												option(value='3') Denied
+									.row.hide-on-med-and-up
+									.row.hide-on-med-and-up
+									.row.hide-on-med-and-up
+									.row.hide-on-med-and-up
+									.input-field.col.s12.m4.left-align
+										label Consent Type
+											select
+												option(value='1' selected='') Email
+												option(value='2') Letter
+												option(value='3') Fax
+								.row.hide-on-med-and-up
+								.row.hide-on-med-and-up
+								.row.hide-on-med-and-up
+								.row.hide-on-med-and-up
+								.row
+									.input-field.col.s12.m4
+										input#start-date.validate.datepicker(type='date')
+										label(htmlfor='start-date') Start Date
+									.input-field.col.s12.m4
+										input#start-date.validate.datepicker(type='date')
+										label(htmlfor='end-date') End Date
+								.row
+								.row
+								.row							
+			.col.s12.white.z-depth-1.collection
+				.col.s12.padded-container.collection-item#leave-template
+					.row
+						.col.s12.m3
+							span.grey-text.text-lighten-1 Leave ID
+								br
+							strong.leave-id Leave ID
+						.col.s12.m3
+							span.grey-text.text-lighten-1 Name
+								br
+							span.name Name
+						.col.s12.m3
+							span.grey-text.text-lighten-1 ID
+								br
+							span.studentId ID Number
+						.col.s6.m3
+							span.grey-text.text-lighten-1 Room No
+								br
+							span.roomNo #XXX, AH-X
+					.row
+						.col.s12.m3
+							span.grey-text.text-lighten-1 Warden Verification
+								br
+							span.wardenVerification Status
+						.col.s12.m3
+							span.grey-text.text-lighten-1 Status
+								br
+							span.status Status
+						.col.s6.m3
+							span.grey-text.text-lighten-1 Start Date
+								br
+							span.start-date Start Date
+						.col.s6.m3
+							span.grey-text.text-lighten-1 End Date
+								br
+							span.end-date End date
+					.row
+						.col.s12.m6
+							span.grey-text.text-lighten-1 Address
+								br
+							span.address Address
+						.col.s12.m3
+							span.grey-text.text-lighten-1 Reason
+								br
+							span.reason Reason
+						.col.s12.m3
+							span.grey-text.text-lighten-1 Consent Type
+								br
+							span.consent Consent Type
+				.col.s12.padded-container.collection-item#leave-template
+					.row
+						.col.s12.m3
+							span.grey-text.text-lighten-1 Leave ID
+								br
+							strong.leave-id Leave ID
+						.col.s12.m3
+							span.grey-text.text-lighten-1 Name
+								br
+							span.name Name
+						.col.s12.m3
+							span.grey-text.text-lighten-1 ID
+								br
+							span.studentId ID Number
+						.col.s6.m3
+							span.grey-text.text-lighten-1 Room No
+								br
+							span.roomNo #XXX, AH-X
+					.row
+						.col.s12.m3
+							span.grey-text.text-lighten-1 Warden Verification
+								br
+							span.wardenVerification Status
+						.col.s12.m3
+							span.grey-text.text-lighten-1 Status
+								br
+							span.status Status
+						.col.s6.m3
+							span.grey-text.text-lighten-1 Start Date
+								br
+							span.start-date Start Date
+						.col.s6.m3
+							span.grey-text.text-lighten-1 End Date
+								br
+							span.end-date End date
+					.row
+						.col.s12.m6
+							span.grey-text.text-lighten-1 Address
+								br
+							span.address Address
+						.col.s12.m3
+							span.grey-text.text-lighten-1 Reason
+								br
+							span.reason Reason
+						.col.s12.m3
+							span.grey-text.text-lighten-1 Consent Type
+								br
+							span.consent Consent Type
+		.section
+			.row
+				h4 Pending Leaves
+			.row
+				.col.s6
+					a.btn.waves-effect.waves-light.orange(href='#')
+						i.mdi-action-done-all.left
+						span Approve Marked
+				.col.s6.right-align					
+					a.btn-flat.waves-effect.modal-trigger(href='#add-filters-modal') Add Filters
+			.col.s12.white.z-depth-1.collection
+				.col.s12.padded-container.collection-item#leave-template
+					.row
+						.col.s12.m3
+							form.leave-approve-checkbox(action='#')
+								input#approve(type='checkbox')
+								label.larger-font(for='approve') Mark for approval
+						.col.s12.m3
+							span.grey-text.text-lighten-1 Leave ID
+								br
+							strong.leave-id Leave ID
+						.col.s12.m3
+							span.grey-text.text-lighten-1 Name
+								br
+							span.name Name
+						.col.s12.m3
+							span.grey-text.text-lighten-1 ID
+								br
+							span.studentId ID Number
+					.row
+						.col.s6.m3
+							span.grey-text.text-lighten-1 Room No
+								br
+							span.roomNo #XXX, AH-X
+						.col.s12.m3
+							span.grey-text.text-lighten-1 Status
+								br
+							span.status Status
+						.col.s6.m3
+							span.grey-text.text-lighten-1 Start Date
+								br
+							span.start-date Start Date
+						.col.s6.m3
+							span.grey-text.text-lighten-1 End Date
+								br
+							span.end-date End date
+					.row
+						.col.s12.m6
+							span.grey-text.text-lighten-1 Address
+								br
+							span.address Address
+						.col.s12.m3
+							span.grey-text.text-lighten-1 Reason
+								br
+							span.reason Reason
+						.col.s12.m3
+							span.grey-text.text-lighten-1 Consent Type
+								br
+							span.consent Consent Type
+				.col.s12.padded-container.collection-item#leave-template
+					.row
+						.col.s12.m3
+							form.leave-approve-checkbox(action='#')
+								input#approve(type='checkbox')
+								label.larger-font(for='approve') Mark for approval
+						.col.s12.m3
+							span.grey-text.text-lighten-1 Leave ID
+								br
+							strong.leave-id Leave ID
+						.col.s12.m3
+							span.grey-text.text-lighten-1 Name
+								br
+							span.name Name
+						.col.s12.m3
+							span.grey-text.text-lighten-1 ID
+								br
+							span.studentId ID Number
+					.row
+						.col.s6.m3
+							span.grey-text.text-lighten-1 Room No
+								br
+							span.roomNo #XXX, AH-X
+						.col.s12.m3
+							span.grey-text.text-lighten-1 Status
+								br
+							span.status Status
+						.col.s6.m3
+							span.grey-text.text-lighten-1 Start Date
+								br
+							span.start-date Start Date
+						.col.s6.m3
+							span.grey-text.text-lighten-1 End Date
+								br
+							span.end-date End date
+					.row
+						.col.s12.m6
+							span.grey-text.text-lighten-1 Address
+								br
+							span.address Address
+						.col.s12.m3
+							span.grey-text.text-lighten-1 Reason
+								br
+							span.reason Reason
+						.col.s12.m3
+							span.grey-text.text-lighten-1 Consent Type
+								br
+							span.consent Consent Type
+		.section
+			.row
+				h4 Leave History
+			.row
+				.col.s6
+					a.btn.waves-effect.waves-light.orange(href='#')
+						i.mdi-action-done-all.left
+						span Approve Marked
+				.col.s6.right-align					
+					a.btn-flat.waves-effect.modal-trigger(href='#add-filters-modal') Add Filters
+			.col.s12.white.z-depth-1.collection
+				.col.s12.padded-container.collection-item#leave-template
+					.row
+						.col.s12.m3
+							form.leave-approve-checkbox(action='#')
+								input#approve(type='checkbox')
+								label.larger-font(for='approve') Mark for approval
+						.col.s12.m3
+							span.grey-text.text-lighten-1 Leave ID
+								br
+							strong.leave-id Leave ID
+						.col.s12.m3
+							span.grey-text.text-lighten-1 Name
+								br
+							span.name Name
+						.col.s12.m3
+							span.grey-text.text-lighten-1 ID
+								br
+							span.studentId ID Number
+					.row
+						.col.s6.m3
+							span.grey-text.text-lighten-1 Room No
+								br
+							span.roomNo #XXX, AH-X
+						.col.s12.m3
+							span.grey-text.text-lighten-1 Status
+								br
+							span.status Status
+						.col.s6.m3
+							span.grey-text.text-lighten-1 Start Date
+								br
+							span.start-date Start Date
+						.col.s6.m3
+							span.grey-text.text-lighten-1 End Date
+								br
+							span.end-date End date
+					.row
+						.col.s12.m6
+							span.grey-text.text-lighten-1 Address
+								br
+							span.address Address
+						.col.s12.m3
+							span.grey-text.text-lighten-1 Reason
+								br
+							span.reason Reason
+						.col.s12.m3
+							span.grey-text.text-lighten-1 Consent Type
+								br
+							span.consent Consent Type
+				.col.s12.padded-container.collection-item#leave-template
+					.row
+						.col.s12.m3
+							form.leave-approve-checkbox(action='#')
+								input#approve(type='checkbox')
+								label.larger-font(for='approve') Mark for approval
+						.col.s12.m3
+							span.grey-text.text-lighten-1 Leave ID
+								br
+							strong.leave-id Leave ID
+						.col.s12.m3
+							span.grey-text.text-lighten-1 Name
+								br
+							span.name Name
+						.col.s12.m3
+							span.grey-text.text-lighten-1 ID
+								br
+							span.studentId ID Number
+					.row
+						.col.s6.m3
+							span.grey-text.text-lighten-1 Room No
+								br
+							span.roomNo #XXX, AH-X
+						.col.s12.m3
+							span.grey-text.text-lighten-1 Status
+								br
+							span.status Status
+						.col.s6.m3
+							span.grey-text.text-lighten-1 Start Date
+								br
+							span.start-date Start Date
+						.col.s6.m3
+							span.grey-text.text-lighten-1 End Date
+								br
+							span.end-date End date
+					.row
+						.col.s12.m6
+							span.grey-text.text-lighten-1 Address
+								br
+							span.address Address
+						.col.s12.m3
+							span.grey-text.text-lighten-1 Reason
+								br
+							span.reason Reason
+						.col.s12.m3
+							span.grey-text.text-lighten-1 Consent Type
+								br
+							span.consent Consent Type
