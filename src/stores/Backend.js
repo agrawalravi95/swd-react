@@ -142,21 +142,35 @@ var api = {
     });
   },
   getLeaves: function(req, res) {
-    if (!req.session || !req.session.user || req.session.type != 'student') {
-      res.json({error: "not logged in"});
-      return;
+    var login_id;
+    //if (!req.session || !req.session.user) {
+      //res.json({error: "not logged in"});
+      //return;
+    //}
+    if (req.session.type == 'student') {
+      login_id = req.session.user;
     }
-    poolHelper("SELECT * FROM leave_requests WHERE login_id=? ORDER BY start_date DESC", [req.session.user], function(err, rows) {
+    else {
+      if (!req.body.login_id) {
+        res.json({error: "please specify login id"});
+        return;
+      }
+      login_id = req.body.login_id;
+    }
+    poolHelper("SELECT * FROM leave_requests WHERE login_id=? ORDER BY start_date DESC", [login_id], function(err, rows) {
       if (err) {
         res.json({error: err});
         return;
       }
       var ret = [];
       rows.forEach(function(row) {
+        var start = (new Date(row.start_date)).toDateString();
+        var end = (new Date(row.end_date)).toDateString();
         ret.push({
           id: row.leave_id,
-          start: (new Date(row.start_date)).toDateString(),
-          end: (new Date(row.end_date)).toDateString(),
+          start: start,
+          end: end,
+          days: 1 + Math.floor((Date.parse(end) - Date.parse(start)) / 86400000),
           phone: row.phone,
           consent: row.consent_type,
           address: row.address,
@@ -188,6 +202,49 @@ var api = {
       }
       res.json(ret);
     });
+  },
+  searchStudentSimple: function(req, res) {
+    poolHelper("SELECT student_name, id, hostel FROM student_info WHERE student_name RLIKE ? OR id RLIKE ? OR hostel RLIKE ?", ["(^|[[:blank:]]+)" + req.body.query + ".*", req.body.query, req.body.query], function(err, rows) {
+      if (err) {
+        res.json({error: err});
+        return;
+      }
+      res.json(rows);
+    });
+  },
+  searchStudentStaff: function(req, res) {
+    //if (!req.session || !req.session.user) {
+    //  res.json({error: "not logged in"});
+    //  return;
+    //}
+    //if (req.session.type == 'student') {
+    //  res.json({error: "not authorized"});
+    //  return;
+    //}
+    poolHelper("SELECT student_info.*, cgpa.cgpa FROM student_info INNER JOIN cgpa ON student_info.login_id=cgpa.login_id WHERE student_name RLIKE ? OR student_info.id RLIKE ? OR hostel RLIKE ?", ["(^|[[:blank:]]+)" + req.body.query + ".*", req.body.query, req.body.query], function(err, rows) {
+      if (err) {
+        res.json({error: err});
+        return;
+      }
+      res.json(rows);
+    });
+  },
+  getDisco: function(req, res) {
+    //if (!req.session || !req.session.user) {
+    //  res.json({error: "not logged in"});
+    //  return;
+    //}
+    //if (req.session.type == 'student') {
+    //  res.json({error: "not authorized"});
+    //  return;
+    //}
+    poolHelper("SELECT discp.* FROM student_info INNER JOIN discp ON student_info.login_id=discp.login_id WHERE student_info.login_id=?", [req.body.login_id], function(err, rows) {
+      if (err) {
+        res.json({error: err});
+        return;
+      }
+      res.json(rows);
+    });
   }
 }
 
@@ -203,7 +260,7 @@ var Backend = {
   process: function(req, res) {
     var path = req.url.substr(13);
     if (!api.hasOwnProperty(path)) {
-      res.json("Trying something illegal?\n" + path);
+      res.json({error: "Trying something illegal?\n" + path});
       return;
     }
     api[path](req, res);

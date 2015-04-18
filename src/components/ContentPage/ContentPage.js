@@ -22,7 +22,7 @@ componentDidMountFoos["student"] = function() {
         return;
       }
       data = data.row;
-      $("#profile-name").text(data.name);
+      $("#profile-name").text(data.student_name);
       $("#profile-id").text(data.id);
       $("#profile-bday").text(data.bday);
       $("#profile-addr").text(data.address);
@@ -306,13 +306,23 @@ componentDidMountFoos["student-dues"] = function() {
   });
 }
 
+componentDidMountFoos["student-search-min"] = function() {
+
+}
+
+
 var ContentPage = React.createClass({
 
   propTypes: {
     body: React.PropTypes.string.isRequired
   },
+  prevpath: null,
 
   componentDidUpdate() {
+    if (this.prevpath == this.props.path) {
+      return;
+    }
+    this.prevpath = this.props.path;
     if (Object.hasOwnProperty.call(componentDidMountFoos, this.props.path.substring(1))) {
       componentDidMountFoos[this.props.path.substring(1)]();
     }
@@ -322,6 +332,10 @@ var ContentPage = React.createClass({
   },
 
   componentDidMount() {
+    if (this.prevpath == this.props.path) {
+      return;
+    }
+    this.prevpath = this.props.path;
     if (Object.hasOwnProperty.call(componentDidMountFoos, this.props.path.substring(1))) {
       componentDidMountFoos[this.props.path.substring(1)]();
     }

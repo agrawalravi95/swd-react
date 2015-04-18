@@ -1,0 +1,43 @@
+---
+title: Search Student
+---
+div.main
+    .container
+        .section
+        .section
+            .row
+                h4 Search
+            .form(action='/student')
+              .row
+                .input-field
+                    input#search(type='text', onkeyup="if (event.keyCode != 13) return; search();")
+                    label(htmlfor='search') Search by name, ID, or hostel
+        .section(hidden='true')#results-section
+            .row
+                h4 Search Result
+            .row.search-result
+                ul.collapsible(data-collapsible="accordion")#results-list
+                    li.search-result-template(hidden='true')
+                        .collapsible-header
+                            .row.leftpad
+                                .col.s12.m4.valign-wrapper
+                                    .col.s12.valign
+                                        .profile-content.name.bold Jonathon Doe
+                                .col.s12.m4.valign-wrapper.hide-on-med-and-down
+                                    .col.s1.valign
+                                        i.mdi-action-payment.grey-text.text-lighten-1.profile-content-icon
+                                    .col.s11.valign
+                                        .profile-content.id 2008A7PS012G
+                                .col.s12.m4.valign-wrapper.hide-on-med-and-down
+                                    .col.s1.valign
+                                        i.mdi-maps-my-location.grey-text.text-lighten-1.profile-content-icon
+                                    .col.s11.valign
+                                        .profile-content.hostel 123, CH-1
+        .section(hidden='true')#no-results-section
+            .row
+              h4 No Results :(
+
+
+
+              
+script(src='scripts/search.js')
