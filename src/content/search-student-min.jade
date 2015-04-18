@@ -10,7 +10,7 @@ div.main
             .form(action='/student')
               .row
                 .input-field
-                    input#search(type='text', onkeyup="if (event.keyCode != 13) return; search();")
+                    input#search(type='text', onkeyup="if (event.keyCode != 13) return; searchMin();")
                     label(htmlfor='search') Search by name, ID, or hostel
         .section(hidden='true')#results-section
             .row
