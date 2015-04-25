@@ -35,8 +35,51 @@
 	padding-left: 2em !important;
 }
 
+.no-margin {
+	margin: 0 !important;
+}
+
+.no-margin--bottom {
+	margin-bottom: 0 !important;
+}
+
+/* Form Correction */
+input {
+	position: relative;
+	z-index: 1000;
+}
+
 .picker__date-display {
 	display: none;
+}
+
+/* Pagination Correction */
+
+ul.pagination {
+	display: block;
+	margin: 0 auto;
+}
+
+ul.pagination li {
+	display: inline-block;
+	float: none;
+}
+
+ul.pagination li i.mdi-navigation-chevron-left,
+ul.pagination li i.mdi-navigation-chevron-right {
+	position: relative;
+	top: 0.5rem;
+}
+
+ul.pagination:after {
+	content: "";
+  display: table;
+	clear: both;
+}
+
+ul.pagination li a {
+	position: relative;
+	top: 0.15rem;
 }
 
 .bold {
@@ -314,6 +357,29 @@ header, .main, footer {
 
 /* Staff & Warden Leave List */
 
+.leave-approve-checkbox-container {
+	position: relative;
+}
+
 .leave-approve-checkbox {
-	margin-top: 10px;
+	position: absolute;
+	left: -0.2rem;
+	padding-right: 0.2rem;
+
+}
+
+.leave-approve-checkbox label {
+	left: 0.7rem;
+	top: 0.1rem;
+}
+
+.leave-block--history .collapsible-body,
+.leave-block--printed .collapsible-body,
+.leave-block--pending .collapsible-body{
+	padding: 1.5rem 1rem;
+}
+
+.leave-search-btn {
+	right: 35px;
+	bottom: 45px;
 }

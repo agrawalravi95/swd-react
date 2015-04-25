@@ -17,7 +17,7 @@ import React from 'react';
 import Dispatcher from './core/Dispatcher';
 import ActionTypes from './constants/ActionTypes';
 import AppStore from './stores/AppStore';
-import Backend from './stores/Backend';
+// import Backend from './stores/Backend';
 import bodyParser from 'body-parser';
 
 var server = express();
@@ -50,12 +50,12 @@ server.get('/api/page/*', function(req, res) {
 //
 // DB APIs
 //
-server.get('/api/backend/*', function(req, res) {
+/*server.get('/api/backend/*', function(req, res) {
   Backend.process(req, res);
 });
 server.post('/api/backend/*', function(req, res) {
   Backend.process(req, res);
-});
+});*/
 
 //
 // Server-side rendering
