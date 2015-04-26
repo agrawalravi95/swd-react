@@ -2,43 +2,44 @@
 title: Edit Notices
 ---
 div.main
-	div.container
-		.section
-			.fixed-action-btn.notice-add-btn
-				a.btn-floating.btn-large.orange.darken-2.modal-trigger.no-padding.bold(href="#add-notice-modal")
-					i.mdi-content-add
-				#add-notice-modal.modal
-					.modal-content
-						.row.center-align
-							h4 Add Notice
-						form.col.s12
-							.row
-								.input-field.col.s12
-									input#title.validate(type='text')
-									label(htmlfor='reason') Title
-								.input-field.col.s12.file-field
-									input#start-date.validate.file-path(type='text')
-									.btn(onclick='updateInputFieldFileName()')
-										span File
-										input(type='file')
-					.modal-footer
-						a.waves-effect.waves-orange.btn-flat.modal-action.modal-close(href='#') Add
-						a.waves-effect.waves-red.btn-flat.modal-action.modal-close(href='#') Cancel
-		.section
-			.row
-				h4 Current Notices
-			.row
-				.col.s12
-					.row
-						.col.s12
-							.card.darken-1
-								.card-content
-									span.card-title.grey-text.text-darken-4.truncate Title
-									span.grey-text.text-lighten-1.card-date Date
-								.card-action
-									a.dl-link(href='#') Download PDF
-									a.delete-link.leftpad--more.red-text.text-lighten-1(href='#')
-										i.mdi-action-delete.small
-									form.archive-notice-form(action='#')
-										input#archive(type='checkbox')
-										label.larger-font(for='archive') Mark As Archived
+  div.container
+    .section
+      .fixed-action-btn.notice-add-btn
+        a.btn-floating.btn-large.orange.darken-2.modal-trigger.no-padding.bold(href="#add-notice-modal")
+          i.mdi-content-add
+        #add-notice-modal.modal
+          .modal-content
+            .row.center-align
+              h4 Add Notice
+            form.col.s12
+              .row
+                .input-field.col.s12
+                  input#title.validate(type='text')
+                  label(htmlfor='reason') Title
+                .file-field.col.s12.input-field
+                    input.validate.file-path(type='text', disabled='true', placeholder="Test")
+                    .btn(style="left: 0;")
+                        span File
+                        input(type='file')
+          .modal-footer
+            a.waves-effect.waves-orange.btn-flat.modal-action.modal-close(href='#') Add
+            a.waves-effect.waves-red.btn-flat.modal-action.modal-close(href='#') Cancel
+    .section
+      .row
+        h4 Current Notices
+      .row
+        .col.s12
+          .row
+            .col.s12
+              .card.darken-1
+                .card-content
+                  span.card-title.grey-text.text-darken-4.truncate Title
+                  span.grey-text.text-lighten-1.card-date Date
+                .card-action
+                  a.dl-link(href='#') Download PDF
+                  a.delete-link.leftpad--more.red-text.text-lighten-1(href='#')
+                    i.mdi-action-delete.small
+                  form.archive-notice-form(action='#')
+                    input#archive(type='checkbox')
+                    label.larger-font(for='archive') Mark As Archived
+script(src='materialize.min2.js')

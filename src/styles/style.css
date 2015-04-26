@@ -383,3 +383,11 @@ header, .main, footer {
 	right: 35px;
 	bottom: 45px;
 }
+.collapsible-header-proxy {
+  display: block;
+  cursor: pointer;
+  height: 3rem;
+  line-height: 3rem;
+  padding: 0 1rem;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd; }

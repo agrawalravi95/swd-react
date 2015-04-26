@@ -307,9 +307,7 @@ componentDidMountFoos["student-dues"] = function() {
 }
 
 componentDidMountFoos["staff-leave"] = function() {
-  $('input[type=checkbox]').click(function(){
-    $(this).closest('.leave-block--pending').toggleClass('grey lighten-5');
-  });
+
 }
 
 componentDidMountFoos["student-search-min"] = function() {

@@ -16,7 +16,7 @@ div.main
                 h4 Search Result
             .row.search-result
                 ul.collapsible(data-collapsible="accordion")#results-list
-                    li.search-result-template(hidden='true', onclick='populateLeaves(this); populateDisco(this);')
+                    li.search-result-template(hidden='true', onclick='setTimeout(function() { $(this).find("ul.tabs").tabs(); }.bind(this), 0); populateLeaves(this); populateDisco(this);')
                         .collapsible-header
                             .row.leftpad
                                 .col.s12.m4.valign-wrapper
@@ -38,7 +38,7 @@ div.main
                                     .col.s12
                                         ul.tabs
                                             li.tab.col.s4
-                                                a.profile-a Profile
+                                                a.profile-a.active Profile
                                             li.tab.col.s4
                                                 a.leave-a Leave
                                             li.tab.col.s4
@@ -61,28 +61,28 @@ div.main
                                                                     i.mdi-communication-call.blue-text.text-accent-2.profile-content-icon
                                                                 .col.s11.valign
                                                                     .profile-content.phone Phone
-                                                                        .grey-text.text-lighten-1 Phone
+                                                                    .profile-content.grey-text.text-lighten-1 Phone
                                                             .row.hide-on-large-only
                                                             .col.s12.m6.valign-wrapper.no-padding
                                                                 .col.s1.valign
                                                                     i.mdi-communication-email.blue-text.text-accent-2.profile-content-icon
                                                                 .col.s11.valign
                                                                     .profile-content.email Email
-                                                                        .grey-text.text-lighten-1 Email
+                                                                    .profile-content.grey-text.text-lighten-1 Email
                                                         .row.leftpad
                                                             .col.s12.m6.valign-wrapper.no-padding
                                                                 .col.s1.valign
                                                                     i.mdi-communication-location-on.blue-text.text-accent-2.profile-content-icon
                                                                 .col.s11.valign
                                                                     .profile-content.address Address
-                                                                        .grey-text.text-lighten-1 Address
+                                                                    .profile-content.grey-text.text-lighten-1 Address
                                                             .row.hide-on-large-only
                                                             .col.s12.m6.valign-wrapper.no-padding
                                                                 .col.s1.valign
                                                                     i.mdi-action-assignment.blue-text.text-accent-2.profile-content-icon
                                                                 .col.s11.valign
                                                                     .profile-content.cgpa CGPA
-                                                                        .grey-text.text-lighten-1 CGPA
+                                                                    .profile-content.grey-text.text-lighten-1 CGPA
                                             .col.s12.leftpad.padded-container.white.top-padding--mobile.collection-item(hidden='true')
                                                 .col.s12.no-padding
                                                     h6.grey-text.text-lighten-1.search-list--header ACHIEVEMENTS
@@ -143,7 +143,7 @@ div.main
                                                             .profile-content.mother-email Email
                                                     .col.s12.m4.valign-wrapper.no-padding
                                             .row.hide-on-med-and-up
-                                    .leave-tab.col.s12
+                                    .leave-tab.col.s12(style="display: none;")
                                         .white.collection.search-list--leave-contianer.leave-list
                                             .row.hide-on-med-and-down
                                             .col.s12.leftpad.collection-item.no-padding--mobile.hide-on-med-and-down
@@ -185,7 +185,7 @@ div.main
                                                         span.grey-text.text-lighten-1 CONSENT TYPE
                                                             br
                                                         span.consent Consent
-                                    .dc-tab.col.s12
+                                    .dc-tab.col.s12(style="display: none;")
                                         .white.collection.search-list--profile-contianer.dc-list
                                             .col.s12.leftpad.collection-item.no-padding--mobile.no-dc-cases(hidden='true')
                                                 h5.text-lighten-1.search-list--header No DC Cases
