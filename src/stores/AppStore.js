@@ -33,6 +33,10 @@ if (__SERVER__) {
   _pages['/student-mess'] = {title: 'Mess Option'};
   _pages['/student-certificate'] = {title: 'Certificates'};
   _pages['/student-product'] = {title: 'Products'};
+  _pages['/staff-notice'] = {title: 'Notices'};
+  _pages['/staff-leave'] = {title: 'Leaves'};
+  _pages['/staff-certificate'] = {title: 'Certificates'};
+  _pages['/staff-mess'] = {title: 'Mess Option'};
 }
 
 var AppStore = assign({}, EventEmitter.prototype, {

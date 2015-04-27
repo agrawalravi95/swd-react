@@ -7,15 +7,18 @@ div.main
 			.fixed-action-btn.leave-search-btn
 				a.waves-effect.waves-light.btn-floating.btn-large.orange.darken-2.modal-trigger.no-padding(href="#search-leave-modal")
 					i.mdi-action-search
-				#search-leave-modal.modal
+				#search-leave-modal.modal.fixed-modal-footer
 					.modal-content
 						.row.center-align
 							h4 Search Leave
 						form.col.s12
 							.row
-								.input-field.col.s12
-									input#search-box.validate(type="text")
-									label(htmlFor='search-box') Search Text
+								.input-field.col.s6
+									input#search-start-date.validate.datepicker(type="date")
+									label(htmlFor='search-box') Start Date
+								.input-field.col.s6
+									input#search-end-date.validate.datepicker(type="date")
+									label(htmlFor='search-box') End Date
 					.modal-footer
 						a.waves-effect.waves-orange.btn-flat.modal-action.modal-close(href='#!') Search
 						a.waves-effect.btn-flat.modal-action.modal-close(href='#!') Cancel
@@ -37,8 +40,8 @@ div.main
 					.row
 						.col.s12
 							a.btn.waves-effect.waves-light.orange(href='#')
-								i.mdi-content-add.left
-								span Add Printed Leave
+								i.mdi-action-done-all.left
+								span Approve Marked
 					.col.s12
 						.row.padded-container.no-margin--bottom
 							.col.s6.m3.center-align Leave ID
@@ -115,8 +118,8 @@ div.main
 					.row
 						.col.s12
 							a.btn.waves-effect.waves-light.orange(href='#')
-								i.mdi-action-done-all.left
-								span Approve Marked
+								i.mdi-content-add.left
+								span Add Printed Leave
 						.col.s12
 							.row.padded-container.no-margin--bottom
 								.col.s6.m3.center-align Name
@@ -293,271 +296,6 @@ div.main
 								li
 									a(href="#!")
 										i.mdi-navigation-chevron-right
-
-		//- .section
-		//- 	.row
-		//- 		h4 Printed Leaves
-		//- 	.row
-		//- 		.col.s12
-		//- 			a.btn.waves-effect.waves-light.orange(href='#')
-		//- 				i.mdi-content-add.left
-		//- 				span Add Printed Leave
-		//- 	.col.s12
-		//- 		.row.padded-container.no-margin--bottom
-		//- 			.col.s6.m3.center-align Name
-		//- 			.col.s6.m3.center-align Student ID
-		//- 			.col.s3.center-align.hide-on-small-only Start Date
-		//- 			.col.s3.center-align.hide-on-small-only End Date
-		//- 	.col.s12.no-padding--mobile
-		//- 		ul.white.collapsible(data-collapsible="accordion")
-		//- 			li.leave-block--printed.leave-block
-		//- 				.collapsible-header
-		//- 					.row.no-margin--bottom
-		//- 						.col.s6.m3.center-align Ravi Agrawal
-		//- 						.col.s6.m3.center-align 2012A7PS046G
-		//- 						.col.s3.center-align.hide-on-small-only 30 Mar 2015
-		//- 						.col.s3.center-align.hide-on-small-only 3 Apr 2015
-		//- 				.collapsible-body.grey.lighten-5
-		//- 					.row.hide-on-med-and-up
-		//- 						.col.s4.grey-text.text-lighten-1.right-align Start Date
-		//- 						.col.s6 25 March 2015
-		//- 						.row.hide-on-med-and-up
-		//- 						.col.s4.grey-text.text-lighten-1.right-align End Date
-		//- 						.col.s6 30 March 2015
-		//- 						.row.hide-on-med-and-up
-		//- 						.col.s4.grey-text.text-lighten-1.right-align Hostel
-		//- 						.col.s6 AH-X
-		//- 						.row.hide-on-med-and-up
-		//- 						.col.s4.grey-text.text-lighten-1.right-align Contact
-		//- 						.col.s6 7506490104
-		//- 						.row.hide-on-med-and-up
-		//- 						.col.s4.grey-text.text-lighten-1.right-align Consent
-		//- 						.col.s6 Email
-		//- 						.row.hide-on-med-and-up
-		//- 						.col.s4.grey-text.text-lighten-1.right-align Address
-		//- 						.col.s6 BITS Pilani K.K. Birla, Goa Campus, NH -17B, Zuarinagar
-		//- 					.row.hide-on-small-only.no-margin--bottom
-		//- 						.col.m2.grey-text.text-lighten-1.right-align Hostel
-		//- 						.col.m2 106, AH-4
-		//- 						.col.m1.grey-text.text-lighten-1.right-align Contact
-		//- 						.col.m1 7506490104
-		//- 						.col.m2.grey-text.text-lighten-1.right-align Email
-		//- 						.col.m2 agrawalravi95@gmail.com
-		//- 						.row
-		//- 						.col.m2.grey-text.text-lighten-1.right-align Address
-		//- 						.col.m6 BITS Pilani K.K. Birla, Goa Campus, NH -17B, Zuarinagar
-		//- 						.col.m2.grey-text.text-lighten-1.right-align Consent
-		//- 						.col.m1 Email
-		//- 			li.leave-block--printed.leave-block
-		//- 				.collapsible-header
-		//- 					.row.no-margin--bottom
-		//- 						.col.s6.m3.center-align Ravi Agrawal
-		//- 						.col.s6.m3.center-align 2012A7PS046G
-		//- 						.col.s3.center-align.hide-on-small-only 30 Mar 2015
-		//- 						.col.s3.center-align.hide-on-small-only 3 Apr 2015
-		//- 				.collapsible-body.grey.lighten-5
-		//- 					.row.hide-on-med-and-up
-		//- 						.col.s4.grey-text.text-lighten-1.right-align Start Date
-		//- 						.col.s6 25 March 2015
-		//- 						.row.hide-on-med-and-up
-		//- 						.col.s4.grey-text.text-lighten-1.right-align End Date
-		//- 						.col.s6 30 March 2015
-		//- 						.row.hide-on-med-and-up
-		//- 						.col.s4.grey-text.text-lighten-1.right-align Hostel
-		//- 						.col.s6 AH-X
-		//- 						.row.hide-on-med-and-up
-		//- 						.col.s4.grey-text.text-lighten-1.right-align Contact
-		//- 						.col.s6 7506490104
-		//- 						.row.hide-on-med-and-up
-		//- 						.col.s4.grey-text.text-lighten-1.right-align Consent
-		//- 						.col.s6 Email
-		//- 						.row.hide-on-med-and-up
-		//- 						.col.s4.grey-text.text-lighten-1.right-align Address
-		//- 						.col.s6 BITS Pilani K.K. Birla, Goa Campus, NH -17B, Zuarinagar
-		//- 					.row.hide-on-small-only.no-margin--bottom
-		//- 						.col.m2.grey-text.text-lighten-1.right-align Hostel
-		//- 						.col.m2 106, AH-4
-		//- 						.col.m1.grey-text.text-lighten-1.right-align Contact
-		//- 						.col.m1 7506490104
-		//- 						.col.m2.grey-text.text-lighten-1.right-align Email
-		//- 						.col.m2 agrawalravi95@gmail.com
-		//- 						.row
-		//- 						.col.m2.grey-text.text-lighten-1.right-align Address
-		//- 						.col.m6 BITS Pilani K.K. Birla, Goa Campus, NH -17B, Zuarinagar
-		//- 						.col.m2.grey-text.text-lighten-1.right-align Consent
-		//- 						.col.m1 Email
-		//- 		.row
-		//- 		.row.center-align
-		//- 			ul.pagination
-		//- 				li.disabled
-		//- 					a(href="#!")
-		//- 						i.mdi-navigation-chevron-left
-		//- 				li.active.orange
-		//- 					a(href="#1") 1
-		//- 				li.waves-effect
-		//- 					a(href="#1") 2
-		//- 				li.waves-effect
-		//- 					a(href="#1") 3
-		//- 				li.waves-effect
-		//- 					a(href="#1") 4
-		//- 				li
-		//- 					a(href="#!")
-		//- 						i.mdi-navigation-chevron-right
-		//- .section
-		//- 	.row
-		//- 		h4 Pending Leaves
-		//- 	.row
-		//- 		.col.s12
-		//- 			a.btn.waves-effect.waves-light.orange(href='#')
-		//- 				i.mdi-action-done-all.left
-		//- 				span Approve Marked
-		//- 	.col.s12
-		//- 		.row.padded-container.no-margin--bottom
-		//- 			.col.s6.m3.center-align Leave ID
-		//- 			.col.s6.m3.center-align Name
-		//- 			.col.s3.center-align.hide-on-small-only Hostel
-		//- 			.col.s3.center-align.hide-on-small-only Consent
-		//- 	.col.s12.no-padding--mobile
-		//- 		ul.white.collapsible(data-collapsible="accordion")
-		//- 			li.leave-block--pending.leave-block
-		//- 				.collapsible-header.collapsible-header-proxy
-		//- 					.row.no-margin--bottom
-		//- 						.col.s6.m3.center-align.leave-approve-checkbox-container
-		//- 							form.leave-approve-checkbox(onclick="event.stopPropagation();")
-		//- 								input#approve(type='checkbox' onchange='changePendingLeaveBack(this)')
-		//- 								label(for='approve') &nbsp;
-		//- 						.col.s6.m3.center-align Leave ID
-		//- 						.col.s6.m3.center-align Ravi Agrawal
-		//- 						.col.s3.center-align.hide-on-small-only 106, AH-4
-		//- 						.col.s3.center-align.hide-on-small-only Email
-		//- 				.collapsible-body.grey.lighten-5
-		//- 					.row.hide-on-med-and-up
-		//- 						.row
-		//- 						.col.s4.grey-text.text-lighten-1.right-align Start Date
-		//- 						.col.s6 25 March 2015
-		//- 						.row
-		//- 						.col.s4.grey-text.text-lighten-1.right-align End Date
-		//- 						.col.s6 30 March 2015
-		//- 						.row
-		//- 						.col.s4.grey-text.text-lighten-1.right-align Hostel
-		//- 						.col.s6 AH-X
-		//- 						.row
-		//- 						.col.s4.grey-text.text-lighten-1.right-align Contact
-		//- 						.col.s6 7506490104
-		//- 						.row
-		//- 						.col.s4.grey-text.text-lighten-1.right-align Consent
-		//- 						.col.s6 Email
-		//- 						.row
-		//- 						.col.s4.grey-text.text-lighten-1.right-align Address
-		//- 						.col.s6 BITS Pilani K.K. Birla, Goa Campus, NH -17B, Zuarinagar
-		//- 					.row.hide-on-small-only.no-margin--bottom.padded-container
-		//- 						.col.m2.grey-text.text-lighten-1.right-align Student ID
-		//- 						.col.m2 2012A7PS046G
-		//- 						.col.m2.grey-text.text-lighten-1.right-align Start Date
-		//- 						.col.m2 30 Mar 2015
-		//- 						.col.m2.grey-text.text-lighten-1.right-align End Date
-		//- 						.col.m2 4 Apr 2015
-		//- 						.row
-		//- 						.col.m2.grey-text.text-lighten-1.right-align Contact
-		//- 						.col.m2 7506490104
-		//- 						.col.m2.grey-text.text-lighten-1.right-align Email
-		//- 						.col.m2 agrawalravi95@gmail.com
-		//- 						.row
-		//- 						.col.m2.grey-text.text-lighten-1.right-align Address
-		//- 						.col.m10 BITS Pilani K.K. Birla, Goa Campus, NH -17B, Zuarinagar
-		//- 		.row
-		//- 		.row.center-align
-		//- 			ul.pagination
-		//- 				li.disabled
-		//- 					a(href="#!")
-		//- 						i.mdi-navigation-chevron-left
-		//- 				li.active.orange
-		//- 					a(href="#1") 1
-		//- 				li.waves-effect
-		//- 					a(href="#1") 2
-		//- 				li.waves-effect
-		//- 					a(href="#1") 3
-		//- 				li.waves-effect
-		//- 					a(href="#1") 4
-		//- 				li
-		//- 					a(href="#!")
-		//- 						i.mdi-navigation-chevron-right
-		//- .section
-		//- 	.row
-		//- 		h4 Leave History
-		//- 	.row
-		//- 		.col.s12
-		//- 			a.btn.waves-effect.waves-light.orange(href='#')
-		//- 				i.mdi-action-print.left
-		//- 				span Add Printed Leave
-		//- 	.col.s12
-		//- 		.row.padded-container.no-margin--bottom
-		//- 			.col.s6.m3.center-align Leave ID
-		//- 			.col.s6.m3.center-align Name
-		//- 			.col.s3.center-align.hide-on-small-only Hostel
-		//- 			.col.s3.center-align.hide-on-small-only Status
-		//- 	.col.s12.no-padding--mobile
-		//- 		ul.white.collapsible(data-collapsible="accordion")
-		//- 			li.leave-block--history.leave-block
-		//- 				.collapsible-header
-		//- 					.row.no-margin--bottom
-		//- 						.col.s6.m3.center-align Leave ID
-		//- 						.col.s6.m3.center-align Ravi Agrawal
-		//- 						.col.s3.center-align.hide-on-small-only 106, AH-X
-		//- 						.col.s3.center-align.hide-on-small-only.green-text Approved
-		//- 				.collapsible-body.grey.lighten-5
-		//- 					.row.hide-on-med-and-up
-		//- 						.col.s4.grey-text.text-lighten-1.right-align Start Date
-		//- 						.col.s6 25 March 2015
-		//- 						.row.hide-on-med-and-up
-		//- 						.col.s4.grey-text.text-lighten-1.right-align End Date
-		//- 						.col.s6 30 March 2015
-		//- 						.row.hide-on-med-and-up
-		//- 						.col.s4.grey-text.text-lighten-1.right-align Hostel
-		//- 						.col.s6 AH-X
-		//- 						.row.hide-on-med-and-up
-		//- 						.col.s4.grey-text.text-lighten-1.right-align Contact
-		//- 						.col.s6 7506490104
-		//- 						.row.hide-on-med-and-up
-		//- 						.col.s4.grey-text.text-lighten-1.right-align Consent
-		//- 						.col.s6 Email
-		//- 						.row.hide-on-med-and-up
-		//- 						.col.s4.grey-text.text-lighten-1.right-align Address
-		//- 						.col.s6 BITS Pilani K.K. Birla, Goa Campus, NH -17B, Zuarinagar
-		//- 					.row.hide-on-small-only.no-margin--bottom
-		//- 						.col.m2.grey-text.text-lighten-1.right-align Student ID
-		//- 						.col.m2 2012A7PS046G
-		//- 						.col.m2.grey-text.text-lighten-1.right-align Start Date
-		//- 						.col.m2 30 Mar 2015
-		//- 						.col.m2.grey-text.text-lighten-1.right-align End Date
-		//- 						.col.m2 4 Apr 2015
-		//- 						.row
-		//- 						.col.m2.grey-text.text-lighten-1.right-align Email
-		//- 						.col.m2 agrawalravi95@gmail.com
-		//- 						.col.m2.grey-text.text-lighten-1.right-align Contact
-		//- 						.col.m2 7506490104
-		//- 						.col.m2.grey-text.text-lighten-1.right-align Consent
-		//- 						.col.m1 Email
-		//- 						.row
-		//- 						.col.m2.grey-text.text-lighten-1.right-align Address
-		//- 						.col.m6 BITS Pilani K.K. Birla, Goa Campus, NH -17B, Zuarinagar
-		//- 		.row
-		//- 		.row.center-align
-		//- 			ul.pagination
-		//- 				li.disabled
-		//- 					a(href="#!")
-		//- 						i.mdi-navigation-chevron-left
-		//- 				li.active.orange
-		//- 					a(href="#1") 1
-		//- 				li.waves-effect
-		//- 					a(href="#1") 2
-		//- 				li.waves-effect
-		//- 					a(href="#1") 3
-		//- 				li.waves-effect
-		//- 					a(href="#1") 4
-		//- 				li
-		//- 					a(href="#!")
-		//- 						i.mdi-navigation-chevron-right
 
 script.
 	function changePendingLeaveBack(elt) {
