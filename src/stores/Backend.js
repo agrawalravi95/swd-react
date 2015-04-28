@@ -66,6 +66,10 @@ var api = {
       res.json({success: true, type: req.session.type});
     });
   },
+  logout: function(req, res) {
+    req.session.reset();
+    res.json({success: true});
+  },
   // Returns basic student info for login page.
   studentInfo: function(req, res) {
     if (!req.session || !req.session.user || req.session.type != 'student') {

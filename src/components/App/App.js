@@ -52,14 +52,36 @@ var Application = React.createClass({
           alert(JSON.stringify(data.error));
           return;
         }
-        this.loginType = data.type;
+        this.loginType = data.type ? data.type : "guest";
         this.refs.navbar.updateNavbar(this.loginType);
-        return;
+        if (this.loginType == "guest") {
+          $(this.refs.loginButton.getDOMNode()).show(0);
+          return;
+        }
+        $(this.refs.logoutButton.getDOMNode()).show(0);
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
       }.bind(this)
-     });
+    });
+  },
+
+  onLogout(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    $.ajax({
+      url: '/api/backend/logout',
+      dataType: 'json',
+      type: 'POST',
+      data: '',
+      success: function(data) {
+        $(this.refs.loginButton.getDOMNode()).show(0);
+        $(this.refs.logoutButton.getDOMNode()).hide(0);
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
   },
 
   onLoginSubmit(e) {
@@ -112,6 +134,8 @@ var Application = React.createClass({
           return;
         }
         this.loginType = data.type;
+        $(this.refs.loginButton.getDOMNode()).hide(0);
+        $(this.refs.logoutButton.getDOMNode()).show(0);
         window.location.href = "/student";
       }.bind(this),
       error: function(xhr, status, err) {
@@ -136,6 +160,16 @@ var Application = React.createClass({
         });
       });
     })(jQuery);
+    if (!this.loginType) {
+      return;
+    }
+    if (this.loginType == "guest") {
+      $(this.refs.loginButton.getDOMNode()).show(0);
+      $(this.refs.logoutButton.getDOMNode()).hide(0);
+      return;
+    }
+    $(this.refs.loginButton.getDOMNode()).hide(0);
+    $(this.refs.logoutButton.getDOMNode()).show(0);
   },
 
   getLoginType() {
@@ -167,7 +201,8 @@ var Application = React.createClass({
                   <h5 className="header col s12 light">BITS, Pilani - K. K. Birla Goa Campus</h5>
                 </div>
                 <div className="row center">
-                  <a className="waves-effect waves-light orange darken-2 btn modal-trigger " href="#login-modal">Login</a>
+                  <a ref="loginButton" className="waves-effect waves-light orange darken-2 btn modal-trigger hidden" href="#login-modal">Login</a>
+                  <a ref="logoutButton" className="waves-effect waves-light orange darken-2 btn hidden" onClick={this.onLogout}>Logout</a>
 
                   <div id="login-modal" className="modal">
                     <div className="modal-content">

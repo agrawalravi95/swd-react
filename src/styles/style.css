@@ -452,3 +452,7 @@ header, .main, footer {
   background-size: cover;
   background-position: center center;
 }
+
+.hidden {
+  display: none;
+}
