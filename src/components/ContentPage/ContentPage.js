@@ -18,7 +18,7 @@ componentDidMountFoos["student"] = function() {
     data: "",
     success: function(data) {
       if (data.error) {
-        alert("Error:\n" + data.error);
+        alert("Error:\n" + JSON.stringify(data.error));
         return;
       }
       data = data.row;
@@ -49,7 +49,7 @@ componentDidMountFoos["csa"] = function() {
     data: "",
     success: function(data) {
       if (data.error) {
-        alert("Error:\n" + data.error);
+        alert("Error:\n" + JSON.stringify(data.error));
         return;
       }
       data.rows.forEach(function(row) {
@@ -83,7 +83,7 @@ componentDidMountFoos["student-mess"] = function() {
       data: {mess: mess},
       success: function(data) {
         if (data.error) {
-          alert("Error:\n" + data.error);
+          alert("Error:\n" + JSON.stringify(data.error));
           return;
         }
         alert("Mess option successfully chosen!");
@@ -100,7 +100,7 @@ componentDidMountFoos["student-mess"] = function() {
     data: "",
     success: function(data) {
       if (data.error) {
-        alert("Error:\n" + data.error);
+        alert("Error:\n" + JSON.stringify(data.error));
         return;
       }
       if (data.open) $("#mess-closed-section").hide()
@@ -116,7 +116,7 @@ componentDidMountFoos["student-mess"] = function() {
     data: "",
     success: function(data) {
       if (data.error) {
-        alert("Error:\n" + data.error);
+        alert("Error:\n" + JSON.stringify(data.error));
         return;
       }
       if (data.open) $("#mess-open-section").show()
@@ -307,11 +307,6 @@ componentDidMountFoos["student-dues"] = function() {
 }
 
 componentDidMountFoos["staff-leave"] = function() {
-
-}
-
-componentDidMountFoos["student-search-min"] = function() {
-
 }
 
 

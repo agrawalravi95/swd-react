@@ -135,9 +135,16 @@ ul.pagination li a {
 	display: none;
 }
 
+.side-nav li {
+  padding: 0 !important;
+  margin-right: 0;
+  margin-left: 0;
+}
+
 .side-nav li i{
 	position: relative;
-	top: 7px;
+	vertical-align: middle;
+    margin-left: 1rem;
 	margin-right: 1rem;
 	font-size: 1.75rem;
 }
@@ -438,4 +445,10 @@ header, .main, footer {
 
 .mess-options {
 	display: none;
+}
+
+.home-bg {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url('/atifs-pic-bits-main-building2.jpg');
+  background-size: cover;
+  background-position: center center;
 }

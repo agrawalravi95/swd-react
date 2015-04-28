@@ -13,11 +13,11 @@ import React from 'react';
 var Navbar = React.createClass({
 
   componentDidMount() {
-   (function($){
-    $(function(){
-      $('.button-collapse').sideNav();
-    });
-  })(jQuery);
+    $('.button-collapse').sideNav();
+  },
+
+  updateNavbar(foo) {
+
   },
 
   render() {
@@ -33,7 +33,7 @@ var Navbar = React.createClass({
             <img src="images/logo-small.png" width="125" height="125" alt="BITS Pilani Logo" />
           </a>
         </li>
-        <li className="bold active"><a href="/" className="waves-effect waves-blue"><i className="small mdi-action-home light-blue-text text-darken-3"></i> Home</a></li>
+        <li className="bold"><a href="/" className="waves-effect waves-blue"><i className="small mdi-action-home light-blue-text text-darken-3"></i> Home</a></li>
         <li className="bold"><a href="/swd-services" className="waves-effect waves-teal"><i className="small mdi-action-stars teal-text text-darken-1"></i> SWD Services</a></li>
         <li className="bold"><a href="/csa" className="waves-effect waves-purple"><i className="small mdi-social-people deep-purple-text text-darken-2"></i> CSA</a></li>
         <li className="bold"><a href="/activity-center" className="waves-effect waves-red"><i className="small mdi-maps-local-attraction red-text text-darken-1"></i> Activity Center</a></li>
@@ -55,7 +55,7 @@ var Navbar = React.createClass({
             <img src="images/logo-small.png" width="125" height="125" alt="BITS Pilani Logo" />
           </a>
         </li>
-        <li className="bold active"><a href="/" className="waves-effect waves-blue"><i className="small mdi-action-home light-blue-text text-darken-3"></i> Home</a></li>
+        <li className="bold"><a href="/" className="waves-effect waves-blue"><i className="small mdi-action-home light-blue-text text-darken-3"></i> Home</a></li>
         <li className="bold"><a href="/swd-services" className="waves-effect waves-teal"><i className="small mdi-action-stars teal-text text-darken-1"></i> SWD Services</a></li>
         <li className="bold"><a href="/csa" className="waves-effect waves-purple"><i className="small mdi-social-people deep-purple-text text-darken-2"></i> CSA</a></li>
         <li className="bold"><a href="/activity-center" className="waves-effect waves-red"><i className="small mdi-maps-local-attraction red-text text-darken-1"></i> Activity Center</a></li>

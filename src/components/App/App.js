@@ -32,29 +32,57 @@ var Application = React.createClass({
   },
 
   componentDidMount() {
-   (function($){
-      $(function(){
-        $('.modal-trigger').leanModal();
-        $('ul.tabs').tabs();
-        $('select').material_select();
-        $('.datepicker').pickadate({
-          selectMonths: true,
-          selectYears: 60
-        });
-        $('.collapsible').collapsible({
-          accordion : false
-        });
-      });
-    })(jQuery);
+    $('.modal-trigger').leanModal({ready: function() {this.refs.username.getDOMNode().focus();}.bind(this)});
+    $('ul.tabs').tabs();
+    $('select').material_select();
+    $('.datepicker').pickadate({
+      selectMonths: true,
+      selectYears: 60
+    });
+    $('.collapsible').collapsible({
+      accordion : false
+    });
+    $.ajax({
+      url: '/api/backend/getLoginType',
+      dataType: 'json',
+      type: 'POST',
+      data: "",
+      success: function(data) {
+        if (data.error) {
+          alert(JSON.stringify(data.error));
+          return;
+        }
+        this.loginType = data.type;
+        this.refs.navbar.updateNavbar(this.loginType);
+        return;
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+     });
   },
 
   onLoginSubmit(e) {
-    var user = this.refs.username.getDOMNode().value.trim();
-    var pass = this.refs.password.getDOMNode().value;
     e.preventDefault();
     e.stopPropagation();
-    if (!user || !pass) {
-      alert("Enter your username and password");
+    var user = this.refs.username.getDOMNode().value.trim();
+    var pass = this.refs.password.getDOMNode().value;
+    var makevalid = function(e) {
+      $(e.target).toggleClass("invalid", false);
+      e.target.removeEventListener("keypress", makevalid);
+    }
+    if (!user) {
+      var userfield = this.refs.username.getDOMNode()
+      $(userfield).toggleClass("invalid", true);
+      userfield.addEventListener("keypress", makevalid);
+      userfield.focus();
+      return;
+    }
+    if (!pass) {
+      var passfield = this.refs.password.getDOMNode();
+      $(passfield).toggleClass("invalid", true);
+      passfield.addEventListener("keypress", makevalid);
+      passfield.focus();
       return;
     }
     $.ajax({
@@ -63,11 +91,28 @@ var Application = React.createClass({
       type: 'POST',
       data: {user: user, pass: pass},
       success: function(data) {
-        if (data.success) {
-          window.location.href = "/student";
+        if (data.error) {
+          alert(JSON.stringify(data.error));
           return;
         }
-        alert(data.error);
+        if (data.failure) {
+          if (data.failure == "user") {
+            var userfield = this.refs.username.getDOMNode()
+            $(userfield).toggleClass("invalid", true);
+            userfield.addEventListener("keypress", makevalid);
+            userfield.focus();
+            this.refs.password.getDOMNode().value = "";
+          }
+          else if (data.failure == "pass") {
+            var passfield = this.refs.password.getDOMNode()
+            $(passfield).toggleClass("invalid", true);
+            passfield.addEventListener("keypress", makevalid);
+            passfield.focus();
+          }
+          return;
+        }
+        this.loginType = data.type;
+        window.location.href = "/student";
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
@@ -93,6 +138,10 @@ var Application = React.createClass({
     })(jQuery);
   },
 
+  getLoginType() {
+    return this.loginType;
+  },
+
   render() {
     var page = AppStore.getPage(this.props.path);
     invariant(page !== undefined, 'Failed to load page content.');
@@ -106,16 +155,16 @@ var Application = React.createClass({
     return (
       /* jshint ignore:start */
       <div className="App grey lighten-4">
-        <Navbar />
+        <Navbar ref="navbar"/>
         {
           this.props.path === '/' ?
           <div className="main">
-            <div className="section  blue-grey darken-2 no-pad-bot" id="index-banner">
+            <div className="section home-bg no-pad-bot" id="index-banner">
               <div className="container">
               <br/><br/>
-                <h1 className="header center">SWD BITS Goa</h1>
+                <h1 className="header center">Student Welfare Division</h1>
                 <div className="row center">
-                  <h5 className="header col s12 light">Welcome to Student Welfare Division</h5>
+                  <h5 className="header col s12 light">BITS, Pilani - K. K. Birla Goa Campus</h5>
                 </div>
                 <div className="row center">
                   <a className="waves-effect waves-light orange darken-2 btn modal-trigger " href="#login-modal">Login</a>
@@ -137,8 +186,8 @@ var Application = React.createClass({
                           </div>
                         </div>
                         <div className="modal-footer no-padding">
-                          <input type="submit" className="waves-effect waves-red btn orange modal-action modal-close" onClick={this.onLoginSubmit} ref="login" />
-                          <a href="/" className="waves-effect waves-red btn-flat modal-action modal-close">Cancel</a>
+                          <input type="submit" value="Login" className="waves-effect waves-red btn orange modal-action" onClick={this.onLoginSubmit} ref="login" />
+                          <a href="javascript:void(0)" className="waves-effect waves-red btn-flat modal-action modal-close">Cancel</a>
                         </div>
                       </form>
                     </div>
