@@ -37,6 +37,8 @@ if (__SERVER__) {
   _pages['/staff-leave'] = {title: 'Leaves'};
   _pages['/staff-certificate'] = {title: 'Certificates'};
   _pages['/staff-mess'] = {title: 'Mess Option'};
+  _pages['/staff-profile'] = {title: 'Staff Profile'};
+  _pages['/warden-profile'] = {title: 'Warden Profile'};
 }
 
 var AppStore = assign({}, EventEmitter.prototype, {
