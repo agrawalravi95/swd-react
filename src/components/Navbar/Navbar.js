@@ -76,7 +76,8 @@ var NavbarStaff = React.createClass({
               <li className="bold">
                 <h5 className="grey-text">SWD</h5>
               </li>
-              <li className="bold"><a href="/staff-profile" className="waves-effect waves-blue"><i className="small mdi-social-person light-blue-text text-darken-3"></i> Profile</a></li>
+              <li className="bold"><a href="/" className="waves-effect waves-blue"><i className="small mdi-action-home light-blue-text text-darken-3"></i> Home</a></li>
+              <li className="bold"><a href="/staff" className="waves-effect waves-blue"><i className="small mdi-social-person light-blue-text text-darken-3"></i> Profile</a></li>
               <li className="bold"><a href="/search-student" className="waves-effect waves-blue"><i className="small mdi-action-search blue-text text-darken-2"></i> Search Student</a></li>
               <li className="bold"><a href="/staff-leave" className="waves-effect waves-teal"><i className="small mdi-image-landscape teal-text text-darken-1"></i> Leaves</a></li>
               <li className="bold"><a href="/staff-notice" className="waves-effect waves-purple"><i className="small mdi-action-assignment deep-purple-text text-darken-2"></i> Notices</a></li>
@@ -98,7 +99,8 @@ var NavbarStaff = React.createClass({
                   <img src="images/logo-small.png" width="125" height="125" alt="BITS Pilani Logo" />
                 </a>
               </li>
-              <li className="bold"><a href="/staff-profile" className="waves-effect waves-blue"><i className="small mdi-social-person light-blue-text text-darken-3"></i> Profile</a></li>
+              <li className="bold"><a href="/" className="waves-effect waves-blue"><i className="small mdi-action-home light-blue-text text-darken-3"></i> Home</a></li>
+              <li className="bold"><a href="/staff" className="waves-effect waves-blue"><i className="small mdi-social-person light-blue-text text-darken-3"></i> Profile</a></li>
               <li className="bold"><a href="/search-student" className="waves-effect waves-blue"><i className="small mdi-action-search blue-text text-darken-2"></i> Search Student</a></li>
               <li className="bold"><a href="/staff-leave" className="waves-effect waves-teal"><i className="small mdi-image-landscape teal-text text-darken-1"></i> Leaves</a></li>
               <li className="bold"><a href="/staff-notice" className="waves-effect waves-purple"><i className="small mdi-action-assignment deep-purple-text text-darken-2"></i> Notices</a></li>
@@ -127,6 +129,7 @@ var NavbarStudent = React.createClass({
               <li className="bold">
                 <h5 className="grey-text">SWD</h5>
               </li>
+              <li className="bold"><a href="/" className="waves-effect waves-blue"><i className="small mdi-action-home light-blue-text text-darken-3"></i> Home</a></li>
               <li className="bold"><a href="/student" className="waves-effect waves-blue"><i className="small mdi-social-person light-blue-text text-darken-3"></i> Profile</a></li>
               <li className="bold"><a href="/student-leave" className="waves-effect waves-teal"><i className="small mdi-image-landscape teal-text text-darken-1"></i> Leaves</a></li>
               <li className="bold"><a href="/student-dues" className="waves-effect waves-purple"><i className="small mdi-action-assignment deep-purple-text text-darken-2"></i> Dues</a></li>
@@ -148,6 +151,7 @@ var NavbarStudent = React.createClass({
                   <img src="images/logo-small.png" width="125" height="125" alt="BITS Pilani Logo" />
                 </a>
               </li>
+              <li className="bold"><a href="/" className="waves-effect waves-blue"><i className="small mdi-action-home light-blue-text text-darken-3"></i> Home</a></li>
               <li className="bold"><a href="/student" className="waves-effect waves-blue"><i className="small mdi-social-person light-blue-text text-darken-3"></i> Profile</a></li>
               <li className="bold"><a href="/student-leave" className="waves-effect waves-teal"><i className="small mdi-image-landscape teal-text text-darken-1"></i> Leaves</a></li>
               <li className="bold"><a href="/student-dues" className="waves-effect waves-purple"><i className="small mdi-action-assignment deep-purple-text text-darken-2"></i> Dues</a></li>
@@ -177,7 +181,8 @@ var NavbarWarden = React.createClass({
               <li className="bold">
                 <h5 className="grey-text">SWD</h5>
               </li>
-              <li className="bold"><a href="/warden-profile" className="waves-effect waves-blue"><i className="small mdi-social-person light-blue-text text-darken-3"></i> Profile</a></li>
+              <li className="bold"><a href="/" className="waves-effect waves-blue"><i className="small mdi-action-home light-blue-text text-darken-3"></i> Home</a></li>
+              <li className="bold"><a href="/warden" className="waves-effect waves-blue"><i className="small mdi-social-person light-blue-text text-darken-3"></i> Profile</a></li>
               <li className="bold"><a href="/search-student" className="waves-effect waves-blue"><i className="small mdi-action-search blue-text text-darken-2"></i> Search Student</a></li>
               <li className="bold"><a href="/staff-leave" className="waves-effect waves-teal"><i className="small mdi-image-landscape teal-text text-darken-1"></i> Leaves</a></li>
               <li className="bold"><a href="/staff-late-comers" className="waves-effect waves-purple"><i className="small mdi-av-timer deep-purple-text text-darken-2"></i> Late Comers</a></li>
@@ -196,7 +201,8 @@ var NavbarWarden = React.createClass({
                   <img src="images/logo-small.png" width="125" height="125" alt="BITS Pilani Logo" />
                 </a>
               </li>
-              <li className="bold"><a href="/warden-profile" className="waves-effect waves-blue"><i className="small mdi-social-person light-blue-text text-darken-3"></i> Profile</a></li>
+              <li className="bold"><a href="/" className="waves-effect waves-blue"><i className="small mdi-action-home light-blue-text text-darken-3"></i> Home</a></li>
+              <li className="bold"><a href="/warden" className="waves-effect waves-blue"><i className="small mdi-social-person light-blue-text text-darken-3"></i> Profile</a></li>
               <li className="bold"><a href="/search-student" className="waves-effect waves-blue"><i className="small mdi-action-search blue-text text-darken-2"></i> Search Student</a></li>
               <li className="bold"><a href="/staff-leave" className="waves-effect waves-teal"><i className="small mdi-image-landscape teal-text text-darken-1"></i> Leaves</a></li>
               <li className="bold"><a href="/staff-late-comers" className="waves-effect waves-purple"><i className="small mdi-av-timer deep-purple-text text-darken-2"></i> Late Comers</a></li>

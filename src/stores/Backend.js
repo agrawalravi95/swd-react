@@ -91,7 +91,6 @@ var api = {
   messOptionOpen: function(req, res) {
     poolHelper("SELECT * FROM mess_option_open", [], function(err, rows) {
       res.json({error: err, open: rows[0].open == 1,
-               currentMonth: rows[0].current_month,
                nextMonth: rows[0].next_month});
     });
   },
@@ -102,7 +101,7 @@ var api = {
       res.json({error: "not logged in"});
       return;
     }
-    poolHelper("SELECT mess FROM mess_option INNER JOIN mess_option_open ON mess_option.month=mess_option_open.current_month WHERE login_id=?",
+    poolHelper("SELECT mess FROM mess_option WHERE login_id=? ORDER BY id DESC",
                [req.session.user], function(err, rows) {
       res.json({error: err, mess: rows && rows[0] ? rows[0].mess : null});
     });
@@ -167,11 +166,18 @@ var api = {
     });
   },
   getStudentLeaves: function(req, res) {
-    if (!req.session || !req.session.user || req.session.type != "student") {
+    if (!req.session || !req.session.user) {
       res.json({error: "not logged in"});
       return;
     }
-    poolHelper("SELECT * FROM leave_requests WHERE login_id=? ORDER BY start_date DESC", [req.session.user], function(err, rows) {
+    var login_id;
+    if (req.session.type == "student") {
+      login_id = req.session.user;
+    }
+    else {
+      login_id = req.body.login_id;
+    }
+    poolHelper("SELECT * FROM leave_requests WHERE login_id=? ORDER BY start_date DESC", [login_id], function(err, rows) {
       if (err) {
         res.json({error: err});
         return;
@@ -195,7 +201,7 @@ var api = {
       res.json({firstIsCurrent: rows.length ? rows[0].end_date >= (new Date()).valueOf() : false, leaves: ret});
     });
   },
-  getLeavesStaff: function(req, res) {
+  getLeavesWarden: function(req, res) {
     if (!req.session || !req.session.user) {
       res.json({error: "not logged in"});
       return;
@@ -312,6 +318,69 @@ var api = {
       return;
     }
     res.json({type: req.session.type});
+  },
+  openMessOption: function(req, res) {
+    if (!req.session || req.session.type != 'staff') {
+      res.json({error: "not logged in."});
+      return;
+    }
+    poolHelper("UPDATE mess_option_open SET open = ?, next_month = ?", [1, req.body.month], function(err, rows) {
+      if (err) {
+        res.json({error: err});
+        return;
+      }
+      res.json({success: true});
+    });
+  },
+  closeMessOption: function(req, res) {
+    if (!req.session || req.session.type != 'staff') {
+      res.json({error: "not logged in."});
+      return;
+    }
+    poolHelper("UPDATE mess_option_open SET open = 0", [], function(err, rows) {
+      if (err) {
+        res.json({error: err});
+        return;
+      }
+      res.json({success: true});
+    });
+  },
+  staffInfo: function(req, res) {
+    if (!req.session || req.session.type != 'staff') {
+      res.json({error: "not logged in."});
+      return;
+    }
+    poolHelper("SELECT * FROM staff WHERE login_id = ?", [req.session.user], function(err, rows) {
+      if (err) {
+        res.json({error: err});
+        return;
+      }
+      if (!rows.length) {
+        res.json({error: "not found"});
+        return;
+      }
+      res.json({name: rows[0].name});
+    });
+  },
+  bonafideRequest: function(req, res) {
+    if (!req.session || req.session.type != 'student') {
+      res.json({error: 'not logged in.'});
+      return;
+    }
+    poolHelper("SELECT student_name, id FROM student_info WHERE login_id = ?", [req.session.user], function(err, rows) {
+      if (err) {
+        res.json({error: err});
+        return;
+      }
+      poolHelper("INSERT INTO bonafide (student_name, student_id, reason) VALUES (?, ?, ?)",
+                 [rows[0].student_name, rows[0].id, req.body.reason], function(err, rows) {
+        if (err) {
+          res.json({error: err});
+          return;
+        }
+        res.json({success: true});
+      });
+    });
   }
 }
 

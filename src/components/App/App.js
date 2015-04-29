@@ -32,7 +32,6 @@ var Application = React.createClass({
   },
 
   componentDidMount() {
-    $('.modal-trigger').leanModal({ready: function() {this.refs.username.getDOMNode().focus();}.bind(this)});
     $('ul.tabs').tabs();
     $('select').material_select();
     $('.datepicker').pickadate({
@@ -54,6 +53,9 @@ var Application = React.createClass({
         }
         this.loginType = data.type ? data.type : "guest";
         this.refs.navbar.updateNavbar(this.loginType);
+        if (this.props.path != "/") {
+          return;
+        }
         if (this.loginType == "guest") {
           $(this.refs.loginButton.getDOMNode()).show(0);
           return;
@@ -138,7 +140,7 @@ var Application = React.createClass({
         this.loginType = data.type;
         $(this.refs.loginButton.getDOMNode()).hide(0);
         $(this.refs.logoutButton.getDOMNode()).show(0);
-        window.location.href = "/student";
+        window.location.href = "/" + this.loginType;
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
@@ -162,7 +164,7 @@ var Application = React.createClass({
         });
       });
     })(jQuery);
-    if (!this.loginType) {
+    if (!this.loginType || this.props.path != "/") {
       return;
     }
     if (this.loginType == "guest") {
@@ -212,7 +214,7 @@ var Application = React.createClass({
                       <form className="col s12">
                         <div className="row">
                           <div className="input-field col s12">
-                            <input ref="username" type="text" className="validate"/>
+                            <input ref="username" type="text" id="login-username" className="validate"/>
                             <label htmlFor="username">Username</label>
                           </div>
                         </div>

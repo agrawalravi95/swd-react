@@ -8,7 +8,7 @@ div.main
             .row
                 h4 Search
             .row
-                .input-field
+                .input-field.search-field(hidden='true')
                     input#search(type='text', onkeyup="if (event.keyCode != 13) return; searchWarden();")
                     label(htmlfor='search') Search by name, ID, or hostel
         .section(hidden='true')#results-section

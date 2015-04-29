@@ -11,6 +11,8 @@
 import React from 'react';
 
 var componentDidMountFoos = {}
+
+
 componentDidMountFoos["student"] = function() {
   $.ajax({
     url: '/api/backend/studentInfo',
@@ -103,25 +105,8 @@ componentDidMountFoos["student-mess"] = function() {
         alert("Error:\n" + JSON.stringify(data.error));
         return;
       }
-      if (data.open) $("#mess-closed-section").hide()
-      else $("#mess-open-section").hide();
-    }.bind(this),
-    error: function(xhr, status, err) {
-      alert(err.toString());
-    }.bind(this)
-  });
-  $.ajax({
-    url: '/api/backend/messOptionOpen',
-    type: 'POST',
-    data: "",
-    success: function(data) {
-      if (data.error) {
-        alert("Error:\n" + JSON.stringify(data.error));
-        return;
-      }
       if (data.open) $("#mess-open-section").show()
       else $("#mess-closed-section").show();
-      $("#allotted").text($("#allotted").text().replace("{MONTH}", data.currentMonth));
       $("#next-month").text($("#next-month").text().replace("{MONTH}", data.nextMonth));
       $("#chosen").text($("#chosen").text().replace("{MONTH}", data.nextMonth));
     }.bind(this),
@@ -170,6 +155,7 @@ componentDidMountFoos["student-mess"] = function() {
 };
 
 componentDidMountFoos["index"] = function() {
+    $('.modal-trigger').leanModal({ready: function() {$("#login-username")[0].focus();}.bind(this)});
   $.ajax({
     url: '/api/backend/getNotices',
     type: 'POST',
@@ -306,9 +292,56 @@ componentDidMountFoos["student-dues"] = function() {
   });
 }
 
-componentDidMountFoos["staff-leave"] = function() {
+componentDidMountFoos["staff-mess"] = function() {
+  $.getScript('scripts/staff-mess.js', function() {
+    $('.mess-option-view').show(0);
+  });
+  $.ajax({
+    url: '/api/backend/messOptionOpen',
+    type: 'POST',
+    data: "",
+    success: function(data) {
+      if (data.error) {
+        alert("Error:\n" + JSON.stringify(data.error));
+        return;
+      }
+      $("#messoptionbox")[0].checked = data.open;
+    }.bind(this),
+    error: function(xhr, status, err) {
+      alert(err.toString());
+    }.bind(this)
+  });
 }
 
+componentDidMountFoos["staff"] = function() {
+  $.ajax({
+    url: '/api/backend/staffInfo',
+    type: 'POST',
+    data: "",
+    success: function(data) {
+      if (data.error) {
+        alert("Error:\n" + JSON.stringify(data.error));
+        return;
+      }
+      $(".profile-name").text(data.name);
+    }.bind(this),
+    error: function(xhr, status, err) {
+      alert(err.toString());
+    }.bind(this)
+  });
+}
+
+componentDidMountFoos["search-student"] = componentDidMountFoos["search-student-min"] = function() {
+  $.getScript("scripts/search.js", function() {
+    $('.search-field').show(0);
+  });
+}
+
+componentDidMountFoos["student-certificate"] = function() {
+  $.getScript("scripts/cert-apply.js", function() {
+    $('.cert-container').show(0);
+  });
+}
 
 var ContentPage = React.createClass({
 

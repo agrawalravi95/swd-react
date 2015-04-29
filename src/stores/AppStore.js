@@ -20,25 +20,6 @@ var _pages = {};
 var _loading = false;
 
 if (__SERVER__) {
-  _pages['/'] = {title: 'Home Page'};
-  _pages['/swd-services'] = {title: 'SWD Services'};
-  _pages['/csa'] = {title: 'CSA'};
-  _pages['/activity-center'] = {title: 'Activity Center'};
-  _pages['/anti-ragging'] = {title: 'Anti Ragging'};
-  _pages['/migration-form'] = {title: 'Migration Form'};
-  _pages['/contact'] = {title: 'Contact'};
-  _pages['/student'] = {title: 'Student'};
-  _pages['/student-leave'] = {title: 'Leave Portal'};
-  _pages['/student-dues'] = {title: 'Dues Details'};
-  _pages['/student-mess'] = {title: 'Mess Option'};
-  _pages['/student-certificate'] = {title: 'Certificates'};
-  _pages['/student-product'] = {title: 'Products'};
-  _pages['/staff-notice'] = {title: 'Notices'};
-  _pages['/staff-leave'] = {title: 'Leaves'};
-  _pages['/staff-certificate'] = {title: 'Certificates'};
-  _pages['/staff-mess'] = {title: 'Mess Option'};
-  _pages['/staff-profile'] = {title: 'Staff Profile'};
-  _pages['/warden-profile'] = {title: 'Warden Profile'};
 }
 
 var AppStore = assign({}, EventEmitter.prototype, {

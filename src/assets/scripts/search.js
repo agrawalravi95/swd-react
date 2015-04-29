@@ -105,7 +105,7 @@ function populateLeaves(item) {
   }
   var login_id = item.attr("login_id");
   $.ajax({
-    url: '/api/backend/getLeaves',
+    url: '/api/backend/getStudentLeaves',
     type: 'POST',
     data: {login_id: login_id},
     success: function(data) {

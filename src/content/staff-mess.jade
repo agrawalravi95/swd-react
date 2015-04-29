@@ -2,65 +2,58 @@
 title: Mess Option
 ---
 .main
-	.container
-		.section
-			.row
-				h4 Toggle Mess Option
-			.row.padded-container.white
-				.col.s12.m3
-					.switch.mess-option-switch
-						label
-							span Off
-							input(type='checkbox' onchange ='toggleMessOptions()')
-							span.lever
-							span On
-					span &nbsp;
-				.col.s12.m9.mess-options
-					form(action="#!")
-						.input-field.col.s6.mess-select-input
-							select
-								option(value="" disabled selected) Choose the month
-								option(value="Jan") January
-								option(value="Feb") February
-								option(value="Mar") March
-								option(value="Apr") April
-								option(value="May") May
-								option(value="Jun") June
-								option(value="Jul") July
-								option(value="Aug") August
-								option(value="Sep") September
-								option(value="Oct") October
-								option(value="Nov") November
-								option(value="Dec") December
-							label.active Mess Option For
-						.input-field.col.s6
-							input#lastdate.validate.datepicker(type="date")
-							label(htmlFor='lastdate') Last Date
-					.row
-					.col.s12.right-align
-						a.btn-flat.waves-effect(href="") Cancel
-						a.btn-flat.waves-effect(onclick="toastMessage('Mess Option Opened for June 2015')") Confirm
-			.row
-		.section
-			.row
-				h4 Generate Reports
-			.row
-				.col.s12.m6
-					.col.s12.padded-container.center-align.white
-						i.mdi-maps-restaurant-menu.medium.red-text.text-lighten-1
-						br
-						a.btn-flat.waves-effect(href="#!") Mess Report
-				.col.s12.m6
-					.col.s12.padded-container.center-align.white
-						i.mdi-maps-restaurant-menu.medium.green-text.text-lighten-1
-						br
-						a.btn-flat.waves-effect(href="#!") Mess Rebate Report
-script.
-	function toggleMessOptions() {
-		$('.mess-options').toggle();
-	}
-
-	function toastMessage(msg) {
-		alert(msg);
-		Materialize.toast(msg, 3000);
-	}
+  .container.mess-option-view
+    .section
+      .row
+        h4 Toggle Mess Option
+      .row.padded-container.white
+        .col.s12.m3
+          .switch.mess-option-switch
+            label
+              span Closed
+              input#messoptionbox(type='checkbox' onchange='toggleMessOptions()')
+              span.lever
+              span Open
+          span &nbsp;
+        .col.s12.m9.mess-options
+          form(action="#!")
+            .input-field
+              input#mess-month(type='text')
+              label(htmlfor='mess-month') Mess Option For
+            //.input-field.col.s6.mess-select-input
+            //  select
+            //    option(value="" disabled selected) Choose the month
+            //    option(value="Jan") January
+            //    option(value="Feb") February
+            //    option(value="Mar") March
+            //    option(value="Apr") April
+            //    option(value="May") May
+            //    option(value="Jun") June
+            //    option(value="Jul") July
+            //    option(value="Aug") August
+            //    option(value="Sep") September
+            //    option(value="Oct") October
+            //    option(value="Nov") November
+            //    option(value="Dec") December
+              label.active Mess Option For
+            //.input-field.col.s6
+            //  input#lastdate.validate.datepicker(type="date")
+            //  label(htmlFor='lastdate') Last Date
+          .row
+          .col.s12.right-align
+            a.btn-flat.waves-effect(onclick="openmess()") Confirm
+      .row
+    .section
+      .row
+        h4 Generate Reports
+      .row
+        .col.s12.m6
+          .col.s12.padded-container.center-align.white
+            i.mdi-maps-restaurant-menu.medium.red-text.text-lighten-1
+            br
+            a.btn-flat.waves-effect(href="#!") Mess Report
+        .col.s12.m6
+          .col.s12.padded-container.center-align.white
+            i.mdi-maps-restaurant-menu.medium.green-text.text-lighten-1
+            br
+            a.btn-flat.waves-effect(href="#!") Mess Rebate Report

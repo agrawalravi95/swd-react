@@ -2,7 +2,7 @@
 title: Certificates
 ---
 div.main
-	div.container
+	div.container.cert-container(hidden="true")
 		div.section
 			.row
 				h4 Bonafide Certificate
@@ -19,10 +19,10 @@ div.main
 							form.col.s12
 								.row
 									.input-field.col.s12
-										input#reason.validate(type='text')
+										input#cert-reason.validate(type='text')
 										label(htmlfor='reason') Reason
 						.modal-footer
-							a.waves-effect.waves-orange.btn-flat.modal-action.modal-close(href='#') Apply
+							a.waves-effect.waves-orange.btn-flat.modal-action.modal-close(href='#', onclick='applyForCert()') Apply
 							a.waves-effect.waves-red.btn-flat.modal-action.modal-close(href='#') Cancel
 
 						
