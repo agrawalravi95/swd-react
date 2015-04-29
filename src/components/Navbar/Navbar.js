@@ -221,6 +221,11 @@ var Navbar = React.createClass({
     $('.button-collapse').sideNav();
   },
 
+  componentDidUpdate() {
+    $('.button-collapse').sideNav();
+  },
+
+
   updateNavbar(foo) {
     this.setState({type: foo});
   },

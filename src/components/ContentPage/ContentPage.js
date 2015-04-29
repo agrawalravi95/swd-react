@@ -203,7 +203,7 @@ componentDidMountFoos["index"] = function() {
 
 componentDidMountFoos["student-leave"] = function() {
   $.ajax({
-    url: '/api/backend/getLeaves',
+    url: '/api/backend/getStudentLeaves',
     type: 'POST',
     data: "",
     success: function(data) {
