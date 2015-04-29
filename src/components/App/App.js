@@ -251,12 +251,11 @@ var Application = React.createClass({
           <div className="container">
             <div className="row">
               <div className="col l4 s12">
-                <h5 className="white-text">Settings</h5>
+                <h5 className="white-text">More</h5>
                 <ul>
-                  <li><a className="white-text" href="#!">Link 1</a></li>
-                  <li><a className="white-text" href="#!">Link 2</a></li>
-                  <li><a className="white-text" href="#!">Link 3</a></li>
-                  <li><a className="white-text" href="#!">Link 4</a></li>
+                  <li><a className="white-text" href="/swd-services">SWD Services</a></li>
+                  <li><a className="white-text" href="/csa">CSA</a></li>
+                  <li><a className="white-text" href="/activity-center">Activity Center</a></li>
                 </ul>
               </div>
               <div className="col l4 s12">
@@ -271,8 +270,8 @@ var Application = React.createClass({
               <div className="col l4 s12">
                 <h5 className="white-text">Connect</h5>
                 <ul>
-                  <li><a className="white-text" href="#!">Link 1</a></li>
-                  <li><a className="white-text" href="#!">Link 2</a></li>
+                  <li><a className="white-text" href="#!">Contact Us</a></li>
+                  <li><a className="white-text" href="#!">About Us</a></li>
                   <li><a className="white-text" href="#!">Link 3</a></li>
                   <li><a className="white-text" href="#!">Link 4</a></li>
                 </ul>

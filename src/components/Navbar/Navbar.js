@@ -11,6 +11,27 @@
 import React from 'react';
 //import NavbarGuest from '../NavbarGuest';
 
+
+
+function onLogout(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  $.ajax({
+    url: '/api/backend/logout',
+    dataType: 'json',
+    type: 'POST',
+    data: '',
+    success: function(data) {
+      $('.mdi-action-settings-power').hide();
+      // $(this.refs.logoutButton.getDOMNode()).hide(0);
+      this.setState({type: 'guest'});
+    }.bind(this),
+    error: function(xhr, status, err) {
+      console.error(this.props.url, status, err.toString());
+    }.bind(this)
+  });
+}
+
 var NavbarGuest = React.createClass({
 
   render() {
@@ -21,14 +42,11 @@ var NavbarGuest = React.createClass({
             <div className="top-nav--home">
 
             <ul id="nav-mobile" className="fixed side-nav">
-              <li className="bold">
+              <li className="bold center-align">
                 <h5 className="grey-text">SWD</h5>
               </li>
               <li className="bold"><a href="/" className="waves-effect waves-blue"><i className="small mdi-action-home light-blue-text text-darken-3"></i> Home</a></li>
-              <li className="bold"><a href="/swd-services" className="waves-effect waves-teal"><i className="small mdi-action-stars teal-text text-darken-1"></i> SWD Services</a></li>
-              <li className="bold"><a href="/csa" className="waves-effect waves-purple"><i className="small mdi-social-people deep-purple-text text-darken-2"></i> CSA</a></li>
-              <li className="bold"><a href="/activity-center" className="waves-effect waves-red"><i className="small mdi-maps-local-attraction red-text text-darken-1"></i> Activity Center</a></li>
-          <li className="bold"><a href="/contact" className="waves-effect waves-blue"><i className="small mdi-action-perm-contact-cal blue-text text-darken-2"></i> Contact Us</a></li>
+              <li className="bold"><a href="/search-student-min" className="waves-effect waves-blue"><i className="small mdi-action-search blue-text text-darken-2"></i> Search Student</a></li>
               <li className="bold"><a href="/anti-ragging" className="waves-effect waves-light"><i className="small mdi-action-assignment grey-text"></i> Anti Ragging</a></li>
               <li className="bold"><a href="/migration-form" className="waves-effect waves-light"><i className="small mdi-action-receipt grey-text"></i> Migration Form</a></li>
             </ul>
@@ -47,10 +65,7 @@ var NavbarGuest = React.createClass({
                 </a>
               </li>
               <li className="bold"><a href="/" className="waves-effect waves-blue"><i className="small mdi-action-home light-blue-text text-darken-3"></i> Home</a></li>
-              <li className="bold"><a href="/swd-services" className="waves-effect waves-teal"><i className="small mdi-action-stars teal-text text-darken-1"></i> SWD Services</a></li>
-              <li className="bold"><a href="/csa" className="waves-effect waves-purple"><i className="small mdi-social-people deep-purple-text text-darken-2"></i> CSA</a></li>
-              <li className="bold"><a href="/activity-center" className="waves-effect waves-red"><i className="small mdi-maps-local-attraction red-text text-darken-1"></i> Activity Center</a></li>
-          <li className="bold"><a href="/contact" className="waves-effect waves-blue"><i className="small mdi-action-perm-contact-cal blue-text text-darken-2"></i> Contact Us</a></li>
+              <li className="bold"><a href="/search-student-min" className="waves-effect waves-blue"><i className="small mdi-action-search blue-text text-darken-2"></i> Search Student</a></li>
               <li className="bold"><a href="/anti-ragging" className="waves-effect waves-light"><i className="small mdi-action-assignment grey-text"></i> Anti Ragging</a></li>
               <li className="bold"><a href="/migration-form" className="waves-effect waves-light"><i className="small mdi-action-receipt grey-text"></i> Migration Form</a></li>
             </ul>
@@ -58,7 +73,7 @@ var NavbarGuest = React.createClass({
         </div>
       /* jshint ignore:end */
     );
-  }  
+  }
 
 });
 
@@ -73,7 +88,7 @@ var NavbarStaff = React.createClass({
             <div className="top-nav--home">
 
             <ul id="nav-mobile" className="fixed side-nav">
-              <li className="bold">
+              <li className="bold center-align">
                 <h5 className="grey-text">SWD</h5>
               </li>
               <li className="bold"><a href="/" className="waves-effect waves-blue"><i className="small mdi-action-home light-blue-text text-darken-3"></i> Home</a></li>
@@ -84,6 +99,7 @@ var NavbarStaff = React.createClass({
               <li className="bold"><a href="/staff-mess" className="waves-effect waves-red"><i className="small mdi-maps-local-restaurant red-text text-darken-1"></i> Mess Option</a></li>
               <li className="bold"><a href="/staff-certificate" className="waves-effect waves-green"><i className="small mdi-action-wallet-membership green-text text-darken-2"></i> Certificates</a></li>
               <li className="bold"><a href="/staff-product" className="waves-effect waves-blue"><i className="small mdi-action-shopping-cart blue-text text-darken-2"></i> Products</a></li>
+              <li className="bold"><a onClick='onLogout(event)' className="waves-effect waves-light"><i className="small mdi-action-settings-power grey-text"></i> Log Out</a></li>
             </ul>
           </div>
 
@@ -107,12 +123,13 @@ var NavbarStaff = React.createClass({
               <li className="bold"><a href="/staff-certificate" className="waves-effect waves-green"><i className="small mdi-action-wallet-membership green-text text-darken-2"></i> Cerificates</a></li>
               <li className="bold"><a href="/staff-mess" className="waves-effect waves-red"><i className="small mdi-maps-local-restaurant red-text text-darken-1"></i> Mess Option</a></li>
               <li className="bold"><a href="/staff-product" className="waves-effect waves-blue"><i className="small mdi-action-shopping-cart blue-text text-darken-2"></i> Products</a></li>
+              <li className="bold"><a onClick='onLogout(event)' className="waves-effect waves-light"><i className="small mdi-action-settings-power grey-text"></i> Log Out</a></li>
             </ul>
           </header>
         </div>
       /* jshint ignore:end */
     );
-  }  
+  }
 
 });
 
@@ -126,7 +143,7 @@ var NavbarStudent = React.createClass({
             <div className="top-nav--home">
 
             <ul id="nav-mobile" className="fixed side-nav">
-              <li className="bold">
+              <li className="bold center-align">
                 <h5 className="grey-text">SWD</h5>
               </li>
               <li className="bold"><a href="/" className="waves-effect waves-blue"><i className="small mdi-action-home light-blue-text text-darken-3"></i> Home</a></li>
@@ -136,6 +153,7 @@ var NavbarStudent = React.createClass({
               <li className="bold"><a href="/student-mess" className="waves-effect waves-red"><i className="small mdi-maps-local-restaurant red-text text-darken-1"></i> Mess Option</a></li>
               <li className="bold"><a href="/student-certificate" className="waves-effect waves-green"><i className="small mdi-action-wallet-membership green-text text-darken-2"></i> Certificates</a></li>
               <li className="bold"><a href="/student-product" className="waves-effect waves-blue"><i className="small mdi-action-shopping-cart blue-text text-darken-2"></i> Products</a></li>
+              <li className="bold"><a onClick='onLogout(event)' className="waves-effect waves-light"><i className="small mdi-action-settings-power grey-text"></i> Log Out</a></li>
             </ul>
           </div>
 
@@ -158,12 +176,13 @@ var NavbarStudent = React.createClass({
               <li className="bold"><a href="/student-mess" className="waves-effect waves-red"><i className="small mdi-maps-local-restaurant red-text text-darken-1"></i> Mess Option</a></li>
               <li className="bold"><a href="/student-certificate" className="waves-effect waves-green"><i className="small mdi-action-wallet-membership green-text text-darken-2"></i> Products</a></li>
               <li className="bold"><a href="/student-product" className="waves-effect waves-blue"><i className="small mdi-action-shopping-cart blue-text text-darken-2"></i> Products</a></li>
+              <li className="bold"><a onClick='onLogout(event)' className="waves-effect waves-light"><i className="small mdi-action-settings-power grey-text"></i> Log Out</a></li>
             </ul>
           </header>
         </div>
       /* jshint ignore:end */
     );
-  }  
+  }
 
 });
 
@@ -178,7 +197,7 @@ var NavbarWarden = React.createClass({
             <div className="top-nav--home">
 
             <ul id="nav-mobile" className="fixed side-nav">
-              <li className="bold">
+              <li className="bold center-align">
                 <h5 className="grey-text">SWD</h5>
               </li>
               <li className="bold"><a href="/" className="waves-effect waves-blue"><i className="small mdi-action-home light-blue-text text-darken-3"></i> Home</a></li>
@@ -186,6 +205,7 @@ var NavbarWarden = React.createClass({
               <li className="bold"><a href="/search-student" className="waves-effect waves-blue"><i className="small mdi-action-search blue-text text-darken-2"></i> Search Student</a></li>
               <li className="bold"><a href="/staff-leave" className="waves-effect waves-teal"><i className="small mdi-image-landscape teal-text text-darken-1"></i> Leaves</a></li>
               <li className="bold"><a href="/staff-late-comers" className="waves-effect waves-purple"><i className="small mdi-av-timer deep-purple-text text-darken-2"></i> Late Comers</a></li>
+              <li className="bold"><a onClick='onLogout(event)' className="waves-effect waves-light"><i className="small mdi-action-settings-power grey-text"></i> Log Out</a></li>
             </ul>
           </div>
 
@@ -206,12 +226,13 @@ var NavbarWarden = React.createClass({
               <li className="bold"><a href="/search-student" className="waves-effect waves-blue"><i className="small mdi-action-search blue-text text-darken-2"></i> Search Student</a></li>
               <li className="bold"><a href="/staff-leave" className="waves-effect waves-teal"><i className="small mdi-image-landscape teal-text text-darken-1"></i> Leaves</a></li>
               <li className="bold"><a href="/staff-late-comers" className="waves-effect waves-purple"><i className="small mdi-av-timer deep-purple-text text-darken-2"></i> Late Comers</a></li>
+              <li className="bold"><a onClick='onLogout(event)' className="waves-effect waves-light"><i className="small mdi-action-settings-power grey-text"></i> Log Out</a></li>
             </ul>
           </header>
         </div>
       /* jshint ignore:end */
     );
-  }  
+  }
 
 });
 
