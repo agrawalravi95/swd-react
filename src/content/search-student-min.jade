@@ -7,10 +7,10 @@ div.main
         .section
             .row
                 h4 Search
-            .form(action='/student')
+            form.form(onsubmit='searchMin(); event.preventDefault(); event.stopPropagation();')
               .row
                 .input-field
-                    input#search(type='text', onkeyup="if (event.keyCode != 13) return; searchMin();")
+                    input#search(type='text')
                     label(htmlfor='search') Search by name, ID, or hostel
         .section(hidden='true')#results-section
             .row

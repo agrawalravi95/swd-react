@@ -1,3 +1,5 @@
+var queryNumber = 0;
+
 function searchMin() {
   var val = $("#search").val();
   if (!val) {
@@ -9,6 +11,10 @@ function searchMin() {
     data: {query: val},
     success: function(data) {
       if (data.error) {
+        if (data.error.errno == 1139) { // bad regex
+          alert("You tried a regular expression search, but your syntax was invalid. (did you forget to close a bracket?)");
+          return;
+        }
         alert("Error:\n" + JSON.stringify(data.error));
         return;
       }
@@ -25,13 +31,16 @@ function searchMin() {
       list.append(template);
       template = list.find('.search-result-template').clone();
       template.removeClass('search-result-template');
-      data.forEach(function(student) {
+      var searchID = ++queryNumber;
+      queueUIStuff(data, function(student) {
         var elt = template.clone();
         elt.find('.name').text(student.student_name);
         elt.find('.id').text(student.id);
         elt.find('.hostel').text(student.hostel);
         list.append(elt);
         elt.show(0);
+      }, function() {
+        return queryNumber != searchID;
       });
     }.bind(this),
     error: function(xhr, status, err) {
@@ -42,12 +51,19 @@ function searchMin() {
 
 function searchWarden() {
   var val = $("#search").val();
+  if (!val) {
+    return;
+  }
   $.ajax({
     url: '/api/backend/searchStudentStaff',
     type: 'POST',
     data: {query: val},
     success: function(data) {
       if (data.error) {
+        if (data.error.errno == 1139) { // bad regex
+          alert("You tried a regular expression search, but your syntax was invalid. (did you forget to close a bracket?)");
+          return;
+        }
         alert("Error:\n" + JSON.stringify(data.error));
         return;
       }
@@ -65,7 +81,8 @@ function searchWarden() {
       template = list.find('.search-result-template').clone();
       template.removeClass('search-result-template');
       var i = 0;
-      data.forEach(function(student) {
+      var searchID = ++queryNumber;
+      queueUIStuff(data, function(student) {
         var elt = template.clone();
         elt.find('.name').text(student.student_name);
         elt.find('.id').text(student.id);
@@ -90,6 +107,8 @@ function searchWarden() {
         i++;
         list.append(elt);
         elt.show(0);
+      }, function() {
+        return queryNumber != searchID;
       });
     }.bind(this),
     error: function(xhr, status, err) {
@@ -122,7 +141,8 @@ function populateLeaves(item) {
       var template = item.find('.leave-item-template').clone();
       template.removeClass('leave-item-template');
       var daycount = 0;
-      data.leaves.forEach(function(leave) {
+      var searchID = queryNumber;
+      queueUIStuff(data.leaves, function(leave) {
         daycount += leave.days;
         var elt = template.clone();
         elt.find(".leave-id").text(leave.id);
@@ -142,6 +162,8 @@ function populateLeaves(item) {
         elt.find(".consent").text(leave.consent);
         list.append(elt);
         elt.show(0);
+      }, function() {
+        return searchID != queryNumber;
       });
       list.find('.days').text("(" + daycount + " days)");
       item.attr('leave-populated', 'true');
@@ -174,7 +196,8 @@ function populateDisco(item) {
       }
       var template = item.find('.dc-item-template').clone();
       template.removeClass('dc-item-template');
-      data.forEach(function(dc) {
+      var searchID = queryNumber;
+      queueUIStuff(data, function(dc) {
         var elt = template.clone();
         elt.find(".disco-title").text(dc.heading);
         elt.find(".action").text(dc.action);
@@ -186,6 +209,8 @@ function populateDisco(item) {
           elt.find(".icon").addClass('yellow-text');
         list.append(elt);
         elt.show(0);
+      }, function() {
+        return searchID != queryNumber;
       });
       item.attr('disco-populated', 'true');
     }.bind(this),
@@ -193,4 +218,12 @@ function populateDisco(item) {
       alert(err.toString());
     }.bind(this)
   });
+}
+
+function queueUIStuff(aArray, aFoo, aStop) {
+  if (!aArray.length || (aStop && aStop())) {
+    return;
+  }
+  aArray.splice(0, 10).forEach(aFoo);
+  setTimeout(queueUIStuff.bind(null, aArray, aFoo, aStop), 50)
 }

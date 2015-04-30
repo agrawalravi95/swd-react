@@ -24,8 +24,8 @@ var server = express();
 server.use(sessions({
   cookieName: 'session',
   secret: 'had98f7yh23yfbsdanyf98uq03984w',
-  duration: 30 * 60 * 1000,
-  activeDuration: 5 * 60 * 1000
+  duration: 90 * 24 * 60 * 60 * 1000,
+  activeDuration: 90 * 24 * 60 * 60 * 1000
 }));
 
 server.set('port', (process.env.PORT || 5000));

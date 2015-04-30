@@ -2,7 +2,7 @@
 title: Leaves
 ---
 div.main
-	div.container
+	div.container.main-container(hidden='true')
 		.section
 			.fixed-action-btn.leave-search-btn
 				a.waves-effect.waves-light.btn-floating.btn-large.orange.darken-2.modal-trigger.no-padding(href="#search-leave-modal")
@@ -39,7 +39,7 @@ div.main
 					.row
 					.row
 						.col.s12
-							a.btn.waves-effect.waves-light.orange(href='#')
+							a.btn.waves-effect.waves-light.orange(href='#', onclick='approveLeaves()')
 								i.mdi-action-done-all.left
 								span Approve Marked
 					.col.s12
@@ -49,55 +49,55 @@ div.main
 							.col.s3.center-align.hide-on-small-only Hostel
 							.col.s3.center-align.hide-on-small-only Consent
 					.col.s12.no-padding--mobile
-						ul.white.collapsible(data-collapsible="accordion")
-							li.leave-block--pending.leave-block
+						ul.white.collapsible(data-collapsible="accordion")#pending-list
+							li.leave-block--pending.leave-block#pending-leave-template(hidden="true")
 								.collapsible-header.collapsible-header-proxy
 									.row.no-margin--bottom
 										.col.s6.m3.center-align.leave-approve-checkbox-container
 											form.leave-approve-checkbox(onclick="event.stopPropagation();")
-												input#approve(type='checkbox' onchange='changePendingLeaveBack(this)')
-												label(for='approve') &nbsp;
-										.col.s6.m3.center-align Leave ID
-										.col.s6.m3.center-align Ravi Agrawal
-										.col.s3.center-align.hide-on-small-only 106, AH-4
-										.col.s3.center-align.hide-on-small-only Email
+												input.approve-checkbox(type='checkbox' onchange='changePendingLeaveBack(this)')
+												label.approve-label(for='approve-checkbox') &nbsp;
+										.col.s6.m3.center-align.leave-id Leave ID
+										.col.s6.m3.center-align.name Name
+										.col.s3.center-align.hide-on-small-only.hostel Hostel
+										.col.s3.center-align.hide-on-small-only.consent Consent
 								.collapsible-body.grey.lighten-5
 									.row.hide-on-med-and-up
 										.row
 										.col.s4.grey-text.text-lighten-1.right-align Start Date
-										.col.s6 25 March 2015
+										.col.s6.start-date Start Date
 										.row
 										.col.s4.grey-text.text-lighten-1.right-align End Date
-										.col.s6 30 March 2015
+										.col.s6.end-date End Date
 										.row
 										.col.s4.grey-text.text-lighten-1.right-align Hostel
-										.col.s6 AH-X
+										.col.s6.hostel Hostel
 										.row
 										.col.s4.grey-text.text-lighten-1.right-align Contact
-										.col.s6 7506490104
+										.col.s6.contact Contact
 										.row
 										.col.s4.grey-text.text-lighten-1.right-align Consent
-										.col.s6 Email
+										.col.s6.consent Consent
 										.row
 										.col.s4.grey-text.text-lighten-1.right-align Address
-										.col.s6 BITS Pilani K.K. Birla, Goa Campus, NH -17B, Zuarinagar
+										.col.s6 Address
 									.row.hide-on-small-only.no-margin--bottom.padded-container
 										.col.m2.grey-text.text-lighten-1.right-align Student ID
-										.col.m2 2012A7PS046G
+										.col.m2.student-id ID
 										.col.m2.grey-text.text-lighten-1.right-align Start Date
-										.col.m2 30 Mar 2015
+										.col.m2.start-date Start Date
 										.col.m2.grey-text.text-lighten-1.right-align End Date
-										.col.m2 4 Apr 2015
+										.col.m2.end-date End Date
 										.row
 										.col.m2.grey-text.text-lighten-1.right-align Contact
-										.col.m2 7506490104
+										.col.m2.contact Contact
 										.col.m2.grey-text.text-lighten-1.right-align Email
-										.col.m2 agrawalravi95@gmail.com
+										.col.m2.email Email
 										.row
 										.col.m2.grey-text.text-lighten-1.right-align Address
-										.col.m10 BITS Pilani K.K. Birla, Goa Campus, NH -17B, Zuarinagar
+										.col.m10.address Address
 						.row
-						.row.center-align
+						.row.center-align(hidden='true')
 							ul.pagination
 								li.disabled
 									a(href="#!")
@@ -128,45 +128,7 @@ div.main
 								.col.s3.center-align.hide-on-small-only End Date
 						.col.s12.no-padding--mobile
 							ul.white.collapsible(data-collapsible="accordion")
-								li.leave-block--printed.leave-block
-									.collapsible-header
-										.row.no-margin--bottom
-											.col.s6.m3.center-align Ravi Agrawal
-											.col.s6.m3.center-align 2012A7PS046G
-											.col.s3.center-align.hide-on-small-only 30 Mar 2015
-											.col.s3.center-align.hide-on-small-only 3 Apr 2015
-									.collapsible-body.grey.lighten-5
-										.row.hide-on-med-and-up
-											.col.s4.grey-text.text-lighten-1.right-align Start Date
-											.col.s6 25 March 2015
-											.row.hide-on-med-and-up
-											.col.s4.grey-text.text-lighten-1.right-align End Date
-											.col.s6 30 March 2015
-											.row.hide-on-med-and-up
-											.col.s4.grey-text.text-lighten-1.right-align Hostel
-											.col.s6 AH-X
-											.row.hide-on-med-and-up
-											.col.s4.grey-text.text-lighten-1.right-align Contact
-											.col.s6 7506490104
-											.row.hide-on-med-and-up
-											.col.s4.grey-text.text-lighten-1.right-align Consent
-											.col.s6 Email
-											.row.hide-on-med-and-up
-											.col.s4.grey-text.text-lighten-1.right-align Address
-											.col.s6 BITS Pilani K.K. Birla, Goa Campus, NH -17B, Zuarinagar
-										.row.hide-on-small-only.no-margin--bottom
-											.col.m2.grey-text.text-lighten-1.right-align Hostel
-											.col.m2 106, AH-4
-											.col.m1.grey-text.text-lighten-1.right-align Contact
-											.col.m1 7506490104
-											.col.m2.grey-text.text-lighten-1.right-align Email
-											.col.m2 agrawalravi95@gmail.com
-											.row
-											.col.m2.grey-text.text-lighten-1.right-align Address
-											.col.m6 BITS Pilani K.K. Birla, Goa Campus, NH -17B, Zuarinagar
-											.col.m2.grey-text.text-lighten-1.right-align Consent
-											.col.m1 Email
-								li.leave-block--printed.leave-block
+								li.leave-block--printed.leave-block(hidden='true')
 									.collapsible-header
 										.row.no-margin--bottom
 											.col.s6.m3.center-align Ravi Agrawal
@@ -205,7 +167,7 @@ div.main
 											.col.m2.grey-text.text-lighten-1.right-align Consent
 											.col.m1 Email
 							.row
-							.row.center-align
+							.row.center-align(hidden='true')
 								ul.pagination
 									li.disabled
 										a(href="#!")
@@ -230,52 +192,52 @@ div.main
 							.col.s3.center-align.hide-on-small-only Hostel
 							.col.s3.center-align.hide-on-small-only Status
 					.col.s12.no-padding--mobile
-						ul.white.collapsible(data-collapsible="accordion")
-							li.leave-block--history.leave-block
+						ul.white.collapsible(data-collapsible="accordion")#history-list
+							li.leave-block--history.leave-block#old-leave-template(hidden='true')
 								.collapsible-header
 									.row.no-margin--bottom
-										.col.s6.m3.center-align Leave ID
-										.col.s6.m3.center-align Ravi Agrawal
-										.col.s3.center-align.hide-on-small-only 106, AH-X
-										.col.s3.center-align.hide-on-small-only.green-text Approved
+										.col.s6.m3.center-align.leave-id Leave ID
+										.col.s6.m3.center-align.name Name
+										.col.s3.center-align.hide-on-small-only.hostel Hostel
+										.col.s3.center-align.hide-on-small-only.status Status
 								.collapsible-body.grey.lighten-5
 									.row.hide-on-med-and-up
 										.col.s4.grey-text.text-lighten-1.right-align Start Date
-										.col.s6 25 March 2015
+										.col.s6.start-date Start Date
 										.row.hide-on-med-and-up
 										.col.s4.grey-text.text-lighten-1.right-align End Date
-										.col.s6 30 March 2015
+										.col.s6.end-date End Date
 										.row.hide-on-med-and-up
 										.col.s4.grey-text.text-lighten-1.right-align Hostel
-										.col.s6 AH-X
+										.col.s6.hostel Hostel
 										.row.hide-on-med-and-up
 										.col.s4.grey-text.text-lighten-1.right-align Contact
-										.col.s6 7506490104
+										.col.s6.contact Contact
 										.row.hide-on-med-and-up
 										.col.s4.grey-text.text-lighten-1.right-align Consent
-										.col.s6 Email
+										.col.s6.consent Consent
 										.row.hide-on-med-and-up
 										.col.s4.grey-text.text-lighten-1.right-align Address
 										.col.s6 BITS Pilani K.K. Birla, Goa Campus, NH -17B, Zuarinagar
 									.row.hide-on-small-only.no-margin--bottom
 										.col.m2.grey-text.text-lighten-1.right-align Student ID
-										.col.m2 2012A7PS046G
+										.col.m2.student-id ID
 										.col.m2.grey-text.text-lighten-1.right-align Start Date
-										.col.m2 30 Mar 2015
+										.col.m2.start-date Start Date
 										.col.m2.grey-text.text-lighten-1.right-align End Date
-										.col.m2 4 Apr 2015
+										.col.m2.end-date End Date
 										.row
 										.col.m2.grey-text.text-lighten-1.right-align Email
-										.col.m2 agrawalravi95@gmail.com
+										.col.m2.email Email
 										.col.m2.grey-text.text-lighten-1.right-align Contact
-										.col.m2 7506490104
+										.col.m2.contact Contact
 										.col.m2.grey-text.text-lighten-1.right-align Consent
-										.col.m1 Email
+										.col.m1.email Email
 										.row
 										.col.m2.grey-text.text-lighten-1.right-align Address
-										.col.m6 BITS Pilani K.K. Birla, Goa Campus, NH -17B, Zuarinagar
+										.col.m6.address Address
 						.row
-						.row.center-align
+						.row.center-align(hidden="true")
 							ul.pagination
 								li.disabled
 									a(href="#!")
@@ -293,11 +255,3 @@ div.main
 										i.mdi-navigation-chevron-right
 
 script.
-	function changePendingLeaveBack(elt) {
-		elt = $(elt);
-		var header = elt.closest(".collapsible-header");
-		header.toggleClass("green lighten-5",
-			elt.attr("checked"));
-		header.toggleClass('collapsible-header', false);
-		setTimeout(function() {header.toggleClass('collapsible-header', true)}, 0);
-	}

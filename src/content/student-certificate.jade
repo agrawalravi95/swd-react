@@ -24,13 +24,13 @@ div.main
 						.modal-footer
 							a.waves-effect.waves-orange.btn-flat.modal-action.modal-close(href='#', onclick='applyForCert()') Apply
 							a.waves-effect.waves-red.btn-flat.modal-action.modal-close(href='#') Cancel
-		.section
+		.section.current-status-section(hidden='true')
 			.row
 				h4 Current Status
 			.row
 				.col.s12.z-depth-1.white.padded-container
 					.row.hide-on-large-only
-					span Your Bonafide Certificate has been printed, please collect it from the SWD.
+					span.printed-status(hidden='true') Your Bonafide Certificate requested on {DATE} has been printed, please collect it from the SWD.
 					.row.hide-on-large-only
-					span Your Bonafide Certificate is pending, please contact the SWD Office for urgent cases.
+					span.pending-status(hidden='true') Your Bonafide Certificate requested on {DATE} is pending, please contact the SWD Office for urgent cases.
 					.row.hide-on-large-only

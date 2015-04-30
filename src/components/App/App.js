@@ -77,10 +77,7 @@ var Application = React.createClass({
       type: 'POST',
       data: '',
       success: function(data) {
-        $(this.refs.loginButton.getDOMNode()).show(0);
-        $(this.refs.logoutButton.getDOMNode()).hide(0);
-        this.loginType = "guest";
-        this.refs.navbar.updateNavbar(this.loginType);
+        window.location.href = "/";
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());

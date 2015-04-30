@@ -166,7 +166,7 @@ componentDidMountFoos["index"] = function() {
         return;
       }
       var template = $('.first-card').clone();
-      data.forEach(function(notice) {
+      queueUIStuff(data, function(notice) {
         var elt = template.clone();
         elt.find('.card-title').text(notice.title);
         elt.find('.card-date').text(notice.date);
@@ -230,7 +230,7 @@ componentDidMountFoos["student-leave"] = function() {
         return;
       }
       $("#prev-leaves").show();
-      data.leaves.forEach(function(leave) {
+      queuUIStuff(data.leaves, function(leave) {
         var elt = template.clone();
         elt.find(".leave-id").text(leave.id);
         var status = leave.status === 1 ? "Approved" :
@@ -330,6 +330,24 @@ componentDidMountFoos["staff"] = function() {
     }.bind(this)
   });
 }
+componentDidMountFoos["warden"] = function() {
+  $.ajax({
+    url: '/api/backend/wardenInfo',
+    type: 'POST',
+    data: "",
+    success: function(data) {
+      if (data.error) {
+        alert("Error:\n" + JSON.stringify(data.error));
+        return;
+      }
+      $(".profile-name").text(data.name);
+      $(".hostel-line").text(data.hostel.toUpperCase() + " Warden");
+    }.bind(this),
+    error: function(xhr, status, err) {
+      alert(err.toString());
+    }.bind(this)
+  });
+}
 
 componentDidMountFoos["search-student"] = componentDidMountFoos["search-student-min"] = function() {
   $.getScript("scripts/search.js", function() {
@@ -340,7 +358,132 @@ componentDidMountFoos["search-student"] = componentDidMountFoos["search-student-
 componentDidMountFoos["student-certificate"] = function() {
   $.getScript("scripts/cert-apply.js", function() {
     $('.cert-container').show(0);
+    $.ajax({
+      url: '/api/backend/getLatestBonafideRequest',
+      type: 'POST',
+      data: "",
+      success: function(data) {
+        if (data.error) {
+          alert("Error:\n" + JSON.stringify(data.error));
+          return;
+        }
+        if (data.norequests) {
+          return;
+        }
+        var statusspan = data.printed ? $('.printed-status') : $('.pending-status');
+        statusspan.text(statusspan.text().replace('{DATE}', data.date));
+        statusspan.show(0);
+        $('.current-status-section').show(0);
+      }.bind(this),
+      error: function(xhr, status, err) {
+        alert(err.toString());
+      }.bind(this)
+    });
   });
+}
+
+var leaveLoadID = 0;
+componentDidMountFoos["staff-leave"] = function() {
+  var currentLeaveLoadID = ++leaveLoadID;
+  $.getScript("scripts/staff-leave.js", function() {
+    $('.main-container').show(0);
+    $.ajax({
+      url: '/api/backend/getPendingLeavesStaff',
+      type: 'POST',
+      data: "",
+      success: function(data) {
+        if (data.error) {
+          alert("Error:\n" + JSON.stringify(data.error));
+          return;
+        }
+        if (!data.leaves.length) {
+          return;
+        }
+        var template = $('#pending-leave-template').clone();
+        var i = 0;
+        queueUIStuff(data.leaves, function(leave) {
+          var elt = template.clone();
+          elt.find(".name").text(leave.name);
+          elt.find(".student-id").text(leave.student_id);
+          elt.find(".leave-id").text(leave.leave_id);
+          elt.find(".start-date").text(leave.start);
+          elt.find(".end-date").text(leave.end);
+          elt.find(".address").text(leave.address);
+          elt.find(".reason").text(leave.reason);
+          elt.find(".consent").text(leave.consent);
+          elt.find(".contact").text(leave.phone);
+          elt.find(".hostel").text(leave.hostel);
+          elt.find(".approve-checkbox").attr("id", leave.leave_id);
+          elt.find(".approve-label").attr("for", leave.leave_id);
+          elt.attr("id", "");
+          $("#pending-list").append(elt);
+          elt.show(0);
+          i++;
+        }, function() {
+          return currentLeaveLoadID != leaveLoadID;
+        });
+      }.bind(this),
+      error: function(xhr, status, err) {
+        alert(err.toString());
+      }.bind(this)
+    });
+    $.ajax({
+      url: '/api/backend/getLeaveHistoryStaff',
+      type: 'POST',
+      data: "",
+      success: function(data) {
+        if (data.error) {
+          alert("Error:\n" + JSON.stringify(data.error));
+          return;
+        }
+        if (!data.leaves.length) {
+          return;
+        }
+        var template = $('#old-leave-template').clone();
+        var i = 0;
+        queueUIStuff(data.leaves, function(leave) {
+          var elt = template.clone();
+          elt.find(".name").text(leave.name);
+          elt.find(".student-id").text(leave.student_id);
+          elt.find(".leave-id").text(leave.leave_id);
+          elt.find(".start-date").text(leave.start);
+          elt.find(".end-date").text(leave.end);
+          elt.find(".address").text(leave.address);
+          elt.find(".reason").text(leave.reason);
+          elt.find(".consent").text(leave.consent);
+          elt.find(".contact").text(leave.phone);
+          elt.find(".hostel").text(leave.hostel);
+          var status = leave.status === 1 ? "Approved" :
+                       leave.status === 0 ? "Denied" : "Pending";
+          elt.find(".status").text(status);
+          if (status == "Approved") {
+            elt.find(".status").addClass("green-text");
+          }
+          else if (status == "Denied") {
+            elt.find(".status").addClass("red-text");
+          }
+          elt.attr("id", "");
+          $("#history-list").append(elt);
+          elt.show(0);
+          i++;
+        }, function() {
+          return currentLeaveLoadID != leaveLoadID;
+        });
+      }.bind(this),
+      error: function(xhr, status, err) {
+        alert(err.toString());
+      }.bind(this)
+    });
+  });
+}
+
+
+function queueUIStuff(aArray, aFoo, aStop) {
+  if (!aArray.length || (aStop && aStop())) {
+    return;
+  }
+  aArray.splice(0, 10).forEach(aFoo);
+  setTimeout(queueUIStuff.bind(null, aArray, aFoo, aStop), 50)
 }
 
 var ContentPage = React.createClass({
