@@ -82,6 +82,8 @@ function searchWarden() {
       template.removeClass('search-result-template');
       var i = 0;
       var searchID = ++queryNumber;
+      $(".search-result").hide(0);
+      $("#search-loading").show(0);
       queueUIStuff(data, function(student) {
         var elt = template.clone();
         elt.find('.name').text(student.student_name);
@@ -109,6 +111,9 @@ function searchWarden() {
         elt.show(0);
       }, function() {
         return queryNumber != searchID;
+      }, function() {
+        $("#search-loading").hide(0);
+        $(".search-result").show(0);
       });
     }.bind(this),
     error: function(xhr, status, err) {
@@ -220,10 +225,14 @@ function populateDisco(item) {
   });
 }
 
-function queueUIStuff(aArray, aFoo, aStop) {
-  if (!aArray.length || (aStop && aStop())) {
+function queueUIStuff(aArray, aFoo, aStop, aComplete) {
+  if ((aStop && aStop())) {
+    return;
+  }
+  if (!aArray.length) {
+    aComplete();
     return;
   }
   aArray.splice(0, 10).forEach(aFoo);
-  setTimeout(queueUIStuff.bind(null, aArray, aFoo, aStop), 50)
+  setTimeout(queueUIStuff.bind(null, aArray, aFoo, aStop, aComplete), 50)
 }

@@ -413,9 +413,6 @@ var api = {
         res.json({error: err});
         return;
       }
-      for (var i = 0; i < 8; i++){
-        rows = [...rows, ...rows];
-      }
       res.json(rows);
     });
   },

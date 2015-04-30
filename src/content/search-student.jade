@@ -15,7 +15,37 @@ div.main
         .section(hidden='true')#results-section
             .row
                 h4 Search Result
-            .row.search-result
+            .preloader-container.center-align.padded-container#search-loading
+                .preloader-wrapper.active
+                    .spinner-layer.spinner-blue
+                        .circle-clipper.left
+                            .circle
+                        .gap-path
+                            .circle
+                        .circle-clipper.right
+                            .circle
+                    .spinner-layer.spinner-green
+                        .circle-clipper.left
+                            .circle
+                        .gap-path
+                            .circle
+                        .circle-clipper.right
+                            .circle
+                    .spinner-layer.spinner-yellow
+                        .circle-clipper.left
+                            .circle
+                        .gap-path
+                            .circle
+                        .circle-clipper.right
+                            .circle
+                    .spinner-layer.spinner-red
+                        .circle-clipper.left
+                            .circle
+                        .gap-path
+                            .circle
+                        .circle-clipper.right
+                            .circle
+            .row.search-result(hidden="true")
                 ul.collapsible(data-collapsible="accordion")#results-list
                     li.search-result-template(hidden='true', onclick='setTimeout(function() { $(this).find("ul.tabs").tabs(); }.bind(this), 0); populateLeaves(this); populateDisco(this);')
                         .collapsible-header
