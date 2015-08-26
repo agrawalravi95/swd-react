@@ -19,6 +19,7 @@ import ActionTypes from './constants/ActionTypes';
 import AppStore from './stores/AppStore';
 import Backend from './stores/Backend';
 import bodyParser from 'body-parser';
+import multer from 'multer';
 
 var server = express();
 server.use(sessions({
@@ -32,7 +33,7 @@ server.set('port', (process.env.PORT || 5000));
 server.use(express.static(path.join(__dirname)));
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({extended: true}));
-
+server.use(multer({ dest: './uploads/'}))
 
 //
 // Page API
@@ -50,6 +51,11 @@ server.get('/api/page/*', function(req, res) {
 //
 // DB APIs
 //
+server.get('/notices/*', function(req, res){
+  var file = __dirname + req.url;
+  res.download(file); // Set disposition and send it.
+});
+
 server.get('/api/backend/*', function(req, res) {
   Backend.process(req, res);
 });

@@ -14,15 +14,15 @@ div.main
             form.col.s12
               .row
                 .input-field.col.s12
-                  input#title.validate(type='text')
+                  input#notice-title.validate(type='text')
                   label(htmlfor='reason') Title
                 .file-field.col.s12.input-field
                     input.validate.file-path(type='text', disabled='true', placeholder="File path")
                     .btn(style="left: 0;")
                         span File
-                        input(type='file')
+                        input#notice-file(type='file', onchange='$(".file-path").val(this.value);')
           .modal-footer
-            a.waves-effect.waves-orange.btn-flat.modal-action.modal-close(href='#') Add
+            a.waves-effect.waves-orange.btn-flat.modal-action.modal-close(href='#', onclick='submitNotice()') Add
             a.waves-effect.waves-red.btn-flat.modal-action.modal-close(href='#') Cancel
     .section
       .row
@@ -42,4 +42,3 @@ div.main
                   form.archive-notice-form(action='#')
                     input#archive(type='checkbox')
                     label.larger-font(for='archive') Mark As Archived
-script(src='materialize.min2.js')

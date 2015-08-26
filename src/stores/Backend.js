@@ -8,6 +8,8 @@
 
 'use strict';
 var mysql = require('mysql');
+var fs = require('fs');
+var mkdirp = require('mkdirp');
 var _pool = null;
 
 function getPool() {
@@ -106,7 +108,7 @@ var api = {
       res.json({error: "not logged in"});
       return;
     }
-    poolHelper("SELECT mess FROM mess_option WHERE login_id=? ORDER BY id DESC",
+    poolHelper("SELECT mess FROM mess_option WHERE login_id=? ORDER BY index_ DESC",
                [req.session.user], function(err, rows) {
       res.json({error: err, mess: rows && rows[0] ? rows[0].mess : null});
     });
@@ -392,9 +394,6 @@ var api = {
         res.json({error: err});
         return;
       }
-      for (var i = 0; i < 8; i++) {
-        rows = [...rows, ...rows];
-      }
       res.json(rows);
     });
   },
@@ -412,6 +411,9 @@ var api = {
       if (err) {
         res.json({error: err});
         return;
+      }
+      for (var i = 0; i < 5; i++){
+        rows = [...rows, ...rows];
       }
       res.json(rows);
     });
@@ -515,19 +517,13 @@ var api = {
       res.json({error: 'not logged in.'});
       return;
     }
-    poolHelper("SELECT student_name, id FROM student_info WHERE login_id = ?", [req.session.user], function(err, rows) {
+    poolHelper("INSERT INTO bonafide (login_id, reason, req_date) VALUES (?, ?, ?)",
+               [req.session.user, req.body.reason, (new Date()).valueOf()], function(err, rows) {
       if (err) {
         res.json({error: err});
         return;
       }
-      poolHelper("INSERT INTO bonafide (login_id, student_name, student_id, reason, req_date) VALUES (?, ?, ?, ?, ?)",
-                 [req.session.user, rows[0].student_name, rows[0].id, req.body.reason, (new Date()).valueOf()], function(err, rows) {
-        if (err) {
-          res.json({error: err});
-          return;
-        }
-        res.json({success: true});
-      });
+      res.json({success: true});
     });
   },
 
@@ -536,7 +532,7 @@ var api = {
       res.json({error: 'not logged in'});
       return;
     }
-    poolHelper("SELECT * from bonafide WHERE login_id = ? ORDER BY id DESC LIMIT 1", [req.session.user], function(err, rows) {
+    poolHelper("SELECT * from bonafide WHERE login_id = ? ORDER BY index_ DESC LIMIT 1", [req.session.user], function(err, rows) {
       if (err) {
         res.json({error: err});
         return;
@@ -589,6 +585,41 @@ var api = {
         return;
       }
       res.json({success: true});
+    });
+  },
+
+  addNotice: function(req, res) {
+    if (!req.session || req.session.type != 'staff') {
+      res.json({error: "not logged in."});
+      return;
+    }
+    fs.readFile(req.files.file.path, function (err, data) {
+      if (err) {
+        res.json({error: err});
+        return;
+      }
+      var newPath = "notices/" + req.files.file.name + "/"
+      mkdirp("./build/" + newPath, function(err) {
+        if (err) {
+          res.json({error: err});
+          return;
+        }
+        newPath += req.files.file.originalname;
+        fs.writeFile("./build/" + newPath, data, function (err) {
+          if (err) {
+            res.json({error: err});
+            return;
+          }
+          var time = (new Date()).valueOf();
+          poolHelper("INSERT INTO notices (title, url, published, updated) VALUES (?, ?, ?, ?)", [req.body.title, "./" + newPath, time, time], function(err, rows) {
+            if (err) {
+              res.json({error: err});
+              return;
+            }
+            res.json({success:true});
+          });
+        });
+      })
     });
   }
 }

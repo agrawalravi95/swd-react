@@ -57,7 +57,9 @@ componentDidMountFoos["csa"] = function() {
       data.rows.forEach(function(row) {
         var id = "#" + row.title;
         $(id + "-name").text(row.name);
+        $(id + "-name").attr("title", row.name);
         $(id + "-email").text(row.email);
+        $(id + "-email").attr("title", row.email);
         $(id + "-phone").text(row.phone);
       });
     }.bind(this),
@@ -230,7 +232,7 @@ componentDidMountFoos["student-leave"] = function() {
         return;
       }
       $("#prev-leaves").show();
-      queuUIStuff(data.leaves, function(leave) {
+      queueUIStuff(data.leaves, function(leave) {
         var elt = template.clone();
         elt.find(".leave-id").text(leave.id);
         var status = leave.status === 1 ? "Approved" :
@@ -293,7 +295,7 @@ componentDidMountFoos["student-dues"] = function() {
 }
 
 componentDidMountFoos["staff-mess"] = function() {
-  $.getScript('scripts/staff-mess.js', function() {
+  $.getScript('/scripts/staff-mess.js', function() {
     $('.mess-option-view').show(0);
   });
   $.ajax({
@@ -350,13 +352,13 @@ componentDidMountFoos["warden"] = function() {
 }
 
 componentDidMountFoos["search-student"] = componentDidMountFoos["search-student-min"] = function() {
-  $.getScript("scripts/search.js", function() {
+  $.getScript("/scripts/search.js", function() {
     $('.search-field').show(0);
   });
 }
 
 componentDidMountFoos["student-certificate"] = function() {
-  $.getScript("scripts/cert-apply.js", function() {
+  $.getScript("/scripts/cert-apply.js", function() {
     $('.cert-container').show(0);
     $.ajax({
       url: '/api/backend/getLatestBonafideRequest',
@@ -385,8 +387,9 @@ componentDidMountFoos["student-certificate"] = function() {
 var leaveLoadID = 0;
 componentDidMountFoos["staff-leave"] = function() {
   var currentLeaveLoadID = ++leaveLoadID;
-  $.getScript("scripts/staff-leave.js", function() {
+  $.getScript("/scripts/staff-leave.js", function() {
     $('.main-container').show(0);
+    $('ul.tabs').tabs();
     $.ajax({
       url: '/api/backend/getPendingLeavesStaff',
       type: 'POST',
@@ -404,6 +407,7 @@ componentDidMountFoos["staff-leave"] = function() {
         queueUIStuff(data.leaves, function(leave) {
           var elt = template.clone();
           elt.find(".name").text(leave.name);
+          elt.find(".name").attr("title", leave.name);
           elt.find(".student-id").text(leave.student_id);
           elt.find(".leave-id").text(leave.leave_id);
           elt.find(".start-date").text(leave.start);
@@ -477,6 +481,11 @@ componentDidMountFoos["staff-leave"] = function() {
   });
 }
 
+componentDidMountFoos["staff-notice"] = function() {
+  $.getScript("/scripts/notices.js", function() {
+
+  });
+}
 
 function queueUIStuff(aArray, aFoo, aStop) {
   if (!aArray.length || (aStop && aStop())) {

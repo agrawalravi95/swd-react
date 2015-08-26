@@ -32,9 +32,9 @@ div.main
 						li.tab.col.s4
 							a(href="#pending").active Pending
 						li.tab.col.s4
-							a(href="#printed").active Printed
+							a(href="#printed") Printed
 						li.tab.col.s4
-							a(href="#history").active History
+							a(href="#history") History
 				#pending.padded-container
 					.row
 					.row
@@ -58,7 +58,7 @@ div.main
 												input.approve-checkbox(type='checkbox' onchange='changePendingLeaveBack(this)')
 												label.approve-label(for='approve-checkbox') &nbsp;
 										.col.s6.m3.center-align.leave-id Leave ID
-										.col.s6.m3.center-align.name Name
+										.col.s6.m3.center-align.name.truncate Name
 										.col.s3.center-align.hide-on-small-only.hostel Hostel
 										.col.s3.center-align.hide-on-small-only.consent Consent
 								.collapsible-body.grey.lighten-5
@@ -80,7 +80,9 @@ div.main
 										.col.s6.consent Consent
 										.row
 										.col.s4.grey-text.text-lighten-1.right-align Address
-										.col.s6 Address
+										.col.s6.address Address
+										.col.s4.grey-text.text-lighten-1.right-align Reason
+										.col.s6.reason Reason
 									.row.hide-on-small-only.no-margin--bottom.padded-container
 										.col.m2.grey-text.text-lighten-1.right-align Student ID
 										.col.m2.student-id ID
@@ -96,6 +98,9 @@ div.main
 										.row
 										.col.m2.grey-text.text-lighten-1.right-align Address
 										.col.m10.address Address
+										.row
+										.col.m2.grey-text.text-lighten-1.right-align Reason
+										.col.m10.reason Reason
 						.row
 						.row.center-align(hidden='true')
 							ul.pagination
@@ -197,7 +202,7 @@ div.main
 								.collapsible-header
 									.row.no-margin--bottom
 										.col.s6.m3.center-align.leave-id Leave ID
-										.col.s6.m3.center-align.name Name
+										.col.s6.m3.center-align.name.truncate Name
 										.col.s3.center-align.hide-on-small-only.hostel Hostel
 										.col.s3.center-align.hide-on-small-only.status Status
 								.collapsible-body.grey.lighten-5
@@ -218,7 +223,10 @@ div.main
 										.col.s6.consent Consent
 										.row.hide-on-med-and-up
 										.col.s4.grey-text.text-lighten-1.right-align Address
-										.col.s6 BITS Pilani K.K. Birla, Goa Campus, NH -17B, Zuarinagar
+										.col.s6.address Address
+										.row.hide-on-med-and-up
+										.col.s4.grey-text.text-lighten-1.right-align Reason
+										.col.s6.reason Reason
 									.row.hide-on-small-only.no-margin--bottom
 										.col.m2.grey-text.text-lighten-1.right-align Student ID
 										.col.m2.student-id ID
@@ -236,6 +244,9 @@ div.main
 										.row
 										.col.m2.grey-text.text-lighten-1.right-align Address
 										.col.m6.address Address
+										.row
+										.col.m2.grey-text.text-lighten-1.right-align Reason
+										.col.m6.reason Address
 						.row
 						.row.center-align(hidden="true")
 							ul.pagination
